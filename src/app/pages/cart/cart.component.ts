@@ -31,7 +31,6 @@ export class CartComponent implements OnInit{
         id
       })
       .subscribe((resp:any)=>{
-        console.log(resp);
         this.loadListDetailsCart();
       })
     }

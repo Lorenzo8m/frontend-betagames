@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@use  "../node_modules/bootstrap/scss/bootstrap.scss";
-@use "./app/styles/bootstrap-overrides.scss";
+@import  "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+@import "./app/styles/bootstrap-overrides.scss";
 // C:\Users\Betacom\Desktop\prova\Betagames\src\app\styles\_bootstrap-overrides.scss
 
 
