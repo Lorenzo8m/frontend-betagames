@@ -10,7 +10,7 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-
+  //=======GAMES==================
   listGames(){
     return this.http.get(this.url + "games/list")
   }
@@ -22,5 +22,12 @@ export class ApiService {
   }
   deleteGames(body: {}){
     return this.http.post(this.url + "games/delete", body)
+  }
+  //=======DETAILS CART==================
+  listDetailsCart(){
+    return this.http.get(this.url + "detailsCarts/list")
+  }
+  deleteDetailsCart(body: {}){
+    return this.http.post(this.url + "detailsCarts/delete", body)
   }
 }

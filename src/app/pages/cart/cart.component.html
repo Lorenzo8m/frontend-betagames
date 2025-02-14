@@ -1,0 +1,33 @@
+<p>cart works!</p>
+
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price at time</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dc of listDetailsCart ; index as i">
+            <th scope="row">{{dc.id}}</th>
+            <td>{{dc.gamesDTO.name}}</td>
+            <td>{{dc.gamesDTO.price | currency: 'EUR'}}</td>
+            <td>
+                <button type="button" class="btn btn-primary">-</button>
+                {{dc.quantity}}
+                <button type="button" class="btn btn-primary">+</button>
+            </td>
+            <td>{{dc.priceAtTime | currency: 'EUR'}}</td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="onDelete(dc.id)">X</button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+

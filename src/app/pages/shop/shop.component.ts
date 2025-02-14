@@ -16,7 +16,7 @@ export class ShopComponent {
     ngOnInit(): void {
       this.games.listGames().subscribe((resp:any)=>{
         this.listGames = resp.data;
-        console.log(this.listGames);
+        console.log("ciccio");
       })
     }
 }

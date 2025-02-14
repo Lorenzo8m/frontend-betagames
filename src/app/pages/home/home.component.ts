@@ -15,8 +15,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.games.listGames().subscribe((resp:any)=>{
-      this.listGames = resp.dati;
-      console.log(this.listGames);
+      this.listGames = resp.data;
     })
   }
 

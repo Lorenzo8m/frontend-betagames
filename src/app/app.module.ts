@@ -13,6 +13,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AccountComponent } from './pages/account/account.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CardComponent } from './pages/shop/card/card.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CardComponent } from './pages/shop/card/card.component';
     HomeComponent,
     AccountComponent,
     ShopComponent,
-    CardComponent
+    CardComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
