@@ -27,7 +27,24 @@ export class ApiService {
   listDetailsCart(){
     return this.http.get(this.url + "detailsCarts/list")
   }
+  listByCart(id: number){
+    return this.http.get(this.url + "detailsCarts/listByCarts?id=" + id)
+  }
+  createDetailsCart(body: {}) {
+    return this.http.post(this.url + "detailsCarts/create", body)
+  }
+  updateDetailsCart(body: {}){
+    return this.http.post(this.url + "detailsCarts/update", body)
+  }
   deleteDetailsCart(body: {}){
     return this.http.post(this.url + "detailsCarts/delete", body)
   }
+  deleteAllByCart(body: {}){
+    return this.http.post(this.url + "detailsCarts/deleteAllByCart", body)
+  }
+  //=======ORDER==================
+  createOrder(body: {}){
+    return this.http.post(this.url + "orders/createOrders", body)
+  }
+
 }

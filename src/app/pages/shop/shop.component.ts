@@ -9,14 +9,25 @@ import { ApiService } from '../../services/api.service';
 })
 export class ShopComponent {
 
-   constructor(private games:ApiService){}
+   constructor(private serv:ApiService){}
   
-    listGames: any;
+    listGames: any=[];
   
     ngOnInit(): void {
-      this.games.listGames().subscribe((resp:any)=>{
+      this.serv.listGames().subscribe((resp:any)=>{
         this.listGames = resp.data;
-        console.log("ciccio");
       })
     }
+
+    // addToCart(gameId: number, cartId: number, quantity: number):void {
+    //   console.log("add ", gameId + " " + cartId + " " + quantity)
+    //   this.serv.createDetailsCart({
+    //     gameId,
+    //     cartId,
+    //     quantity
+    //   }).subscribe((resp:any)=>{
+    //     resp.msg;
+    //     console.log(resp.msg);
+    //   })
+    // }
 }
