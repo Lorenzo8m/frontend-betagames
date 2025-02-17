@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-card',
@@ -8,4 +9,19 @@ import { Component } from '@angular/core';
 })
 export class CardComponent {
 
+  @Input() game: any;
+
+  constructor(private serv:ApiService){}
+  
+  addToCart(gameId: number, cartId: number, quantity: number):void {
+      console.log("add ", gameId + " " + cartId + " " + quantity)
+      this.serv.createDetailsCart({
+        gameId,
+        cartId,
+        quantity
+      }).subscribe((resp:any)=>{
+        resp.msg;
+        console.log(resp.msg);
+      })
+  }
 }

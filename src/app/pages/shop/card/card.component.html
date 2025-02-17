@@ -1,1 +1,17 @@
-<p>card works!</p>
+<div class="col">
+    <div class="card border-light h-100 shadow-sm" >
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+        <div class="card-body">
+            <h5 class="card-title">{{game.name}}</h5>
+            <p>Price: {{game.price | currency: 'EUR'}}</p>
+        
+            <div *ngIf="game.stockQuantity <= 0; else elseBlock">
+                Out of stock
+            </div>
+            <ng-template #elseBlock>
+                <a class="btn btn-primary" (click)="addToCart(game.id, 2, 1)">add cart</a>
+            </ng-template>
+
+        </div>
+    </div>
+</div>

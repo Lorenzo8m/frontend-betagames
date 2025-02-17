@@ -1,13 +1,15 @@
 <div class="container">
     <table class="table">
-        <thead>
+        <thead class="table-light">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Price at time</th>
-            <th scope="col"></th>
+            <th scope="col">
+              <button type="button" class="btn btn-danger" (click)="deleteAll(2)">clear</button>
+            </th>
           </tr>
         </thead>
         <tbody class="align-middle">
@@ -15,18 +17,24 @@
             <th scope="row">{{i+1}}</th>
             <td>{{dc.gamesDTO.name}}</td>
             <td>{{dc.gamesDTO.price | currency: 'EUR'}}</td>
-            <td class="d-flex">
-                <input type="number" class="form-control text-center" value="" aria-label="Username" aria-describedby="basic-addon1">
-                <button type="button" class="btn btn-primary">-</button>
-                {{dc.quantity}}
-                <button type="button" class="btn btn-primary">+</button>
-            </td>
-            <td>{{dc.priceAtTime | currency: 'EUR'}}</td>
             <td>
-                <button type="button" class="btn btn-danger" (click)="onDelete(dc.id)"><i class="bi bi-x"></i></button>
+                <input type="number" class="form-control text-center" [(ngModel)]="dc.quantity"  (change)="updateQuantity(dc.quantity,dc.id)"  aria-label="quantity" aria-describedby="basic-addon1">
+            </td>
+            <td>{{dc.gamesDTO.price * dc.quantity | currency: 'EUR'}}</td>
+            <td>
+                <button type="button" class="btn" (click)="onDelete(dc.id)"><i class="bi bi-x-lg"></i></button>
             </td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4" scope="row"></th>
+            <td>{{ totalAmount() | currency: 'EUR' }}</td>
+            <td>
+              <!-- <button type="button" class="btn btn-primary" (click)="checkout(dc.id)">Chekout</button> -->
+            </td>
+          </tr>
+        </tfoot>
     </table>
 </div>
 
