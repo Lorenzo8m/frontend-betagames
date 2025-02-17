@@ -16,7 +16,7 @@ export class CartComponent implements OnInit{
     listDetailsCart: any[]=[];
 
     loadListDetailsCart(): void{
-      this.detailsCart.listByCart(2).subscribe((resp:any)=>{
+      this.detailsCart.listByCart(1).subscribe((resp:any)=>{
         this.listDetailsCart = resp.data;
       })
     }

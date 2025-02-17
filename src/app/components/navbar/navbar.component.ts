@@ -8,7 +8,7 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent implements OnInit, OnChanges{
+export class NavbarComponent implements OnInit{
 
   constructor(
       private detailsCart:ApiService
@@ -17,15 +17,12 @@ export class NavbarComponent implements OnInit, OnChanges{
   listDetailsCart: any[]=[];
 
   loadListDetailsCart(): void{
-    this.detailsCart.listByCart(2).subscribe((resp:any)=>{
+    this.detailsCart.listByCart(1).subscribe((resp:any)=>{
       this.listDetailsCart = resp.data;
     })
   }
 
   ngOnInit(): void {
-    this.loadListDetailsCart();
-  }
-  ngOnChanges(changes: SimpleChanges): void {
     this.loadListDetailsCart();
   }
 }
