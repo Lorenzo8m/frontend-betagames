@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-body-primary">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid fs-5">
     <a class="navbar-brand" href="#">Betagames</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,15 +16,21 @@
           <a class="nav-link" routerLink="cart">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Ordini</a>
+          <a class="nav-link" >Ordini</a>
         </li>
       </ul>
-      <div class="d-flex">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li><a class="nav-link" routerLink="/account">Accout</a></li>
-          <li><a class="nav-link" href="#">Side Cart</a></li>
-        </ul>
+      <div class="d-flex justify-content-around">
+        <div class="d-lg-none">
+          <a class="nav-link" routerLink="/account">Accout</a>
+        </div>
+        <div class="d-none d-lg-block">
+          <a class="nav-link" routerLink="/account"><i class="bi bi-person-fill"></i></a>
+        </div>
       </div>
+    </div>
+    <div class="position-relative">
+      <i class="bi bi-cart3"></i>
+      <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><div>{{listDetailsCart.length}}</div></span>
     </div>
   </div>
 </nav>

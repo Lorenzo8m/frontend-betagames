@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,6 @@ import { CardComponent } from './pages/shop/card/card.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { OrdiniComponent } from './components/ordini/ordini.component';
 import { FormCartComponent } from './components/form-cart/form-cart.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule } from '@angular/forms';
 import { InfoProfiloComponent } from './components/info-profilo/info-profilo.component';
 
@@ -39,7 +39,7 @@ import { InfoProfiloComponent } from './components/info-profilo/info-profilo.com
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
-    BsDatepickerModule.forRoot(),
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [
