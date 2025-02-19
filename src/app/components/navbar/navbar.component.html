@@ -29,9 +29,23 @@
       </div>
     </div>
     <div class="position-relative">
-      <i class="bi bi-cart3"></i>
+      <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRightLabel">
+        <i class="bi bi-cart3"></i>
+      </a>
       <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><div>{{listDetailsCart.length}}</div></span>
     </div>
   </div>
 </nav>
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Gran Carrello Magico</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    Il carrello a destra...
+    può essere il punto giusto qua sulla nav-bar?<br>
+    Come andiamo a prenderci il numero di elementi nel carrello possiamo anche prenderci i dettagli no?
+  </div>
+</div>
   
