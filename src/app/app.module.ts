@@ -14,6 +14,11 @@ import { AccountComponent } from './pages/account/account.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CardComponent } from './pages/shop/card/card.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { OrdiniComponent } from './components/ordini/ordini.component';
+import { FormCartComponent } from './components/form-cart/form-cart.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FormsModule } from '@angular/forms';
+import { InfoProfiloComponent } from './components/info-profilo/info-profilo.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +28,19 @@ import { CartComponent } from './pages/cart/cart.component';
     AccountComponent,
     ShopComponent,
     CardComponent,
-    CartComponent
+    CartComponent,
+    OrdiniComponent,
+    FormCartComponent,
+    InfoProfiloComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    BsDatepickerModule.forRoot(),
+    FormsModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

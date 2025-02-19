@@ -1,0 +1,64 @@
+<p>form-cart works!</p>
+<form #cardform="ngForm" (ngSubmit)="onSubmit(cardform)">
+  <div class="mb-2">
+    <label for="cardNumber" class="form-label">Card Number</label>
+    <input
+      type="email"
+      class="form-control"
+      id="cardNumber"
+      name="cardNumber"
+      aria-describedby="emailHelp"
+      ngModel
+    />
+  </div>
+  <div class="mb-2">
+    <label for="userId" class="form-label">User Id</label>
+    <input type="text" class="form-control" id="userId" name="userId" ngModel />
+  </div>
+  <div class="mb-2">
+    <label for="cvv" class="form-label">CVV</label>
+    <input type="text" class="form-control" id="cvv" name="cvv" ngModel />
+  </div>
+  <div class="mb-2">
+    <label for="billingAddress" class="form-label">Billing Address</label>
+    <input
+      type="text"
+      class="form-control"
+      id="billingAddress"
+      name="billingAddress"
+      ngModel
+    />
+  </div>
+  <div class="mb-2">
+    <label for="cardHolderName" class="form-label">Card Holder Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="cardHolderName"
+      name="cardHolderName"
+      ngModel
+    />
+  </div>
+  <div class="container mt-3">
+    <label for="expirationDate">Expiration Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="expirationDate"
+      name="expirationDate"
+      placeholder="Select date"
+      ngModel
+    />
+  </div>
+  <div class="mb-2 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="!cardform.valid"
+  >
+    Submit
+  </button>
+</form>
