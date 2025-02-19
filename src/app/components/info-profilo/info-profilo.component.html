@@ -1,0 +1,32 @@
+<p>info profilo</p>
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Number Cart</th>
+            <th scope="col">Name</th>
+            <th scope="col">Billing Address</th>
+            <th scope="col">Role</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of listUser; index as i">
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.listPayCardsDTO?.[0]?.cardNumber ?? 'N/A' }}</td>
+            <td>{{ user.listPayCardsDTO?.[0]?.billingAddress ?? 'N/A' }}</td>
+            <td>{{ user.listPayCardsDTO?.[0]?.cardHolderName ?? 'N/A' }}</td>            
+            <td>{{ user.role.name }}</td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)="onDelete(user.id)">X</button>
+            </td>
+           </tr>
+        </tbody>
+    </table>
+</div>
+
