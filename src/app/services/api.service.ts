@@ -42,6 +42,9 @@ export class ApiService {
   listByCart(id: number){
     return this.http.get(this.url + "detailsCarts/listByCarts?id=" + id)
   }
+  deleteAllByCart(body: {}){
+    return this.http.post(this.url + "detailsCarts/deleteAllByCart", body)
+  }
   deleteDetailsCart(body: {}) {
     return this.http.post(this.url + 'detailsCarts/delete', body);
   }
@@ -72,10 +75,10 @@ export class ApiService {
   listInfoUsersById(id:number){
     return this.http.get(this.url + "admin/users/searchByTyping");}//Ricordare a prendere ID
 
-  
-  deleteAllByCart(body: {}){
-    return this.http.post(this.url + "detailsCarts/deleteAllByCart", body)
+  deleteUser(body:{}){
+    return this.http.post(this.url +"user/users/delete", body);
   }
+  
   //=======ORDER==================
   createOrder(body: {}){
     return this.http.post(this.url + "orders/createOrders", body)

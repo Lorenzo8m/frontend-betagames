@@ -15,6 +15,8 @@ export class InfoProfiloComponent implements OnInit {
   ){}
 
   listUser:any;
+  rc: any;
+  msg = "";
 
   loadListInfo():void{
     this.service.listInfoUsersById(1)
@@ -29,6 +31,21 @@ export class InfoProfiloComponent implements OnInit {
     this.loadListInfo();
   }
 
-  onDelete(id:number){}
-
+  onDelete(body:{}){
+    this.service.deleteUser(body)
+    .subscribe(
+      (resp:any)=>{
+        this.loadListInfo();
+        if (resp.rc) {
+          this.rc = resp.rc;
+          this.msg = resp.msg;
+          console.log(this.msg)
+        }else{
+          this.rc=resp.rc;
+          this.msg = resp.msg;
+          console.log(this.msg)
+        }
+      }
+    )
+  };
 }
