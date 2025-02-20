@@ -1,5 +1,42 @@
-<p>account works!</p>
-<p>Ordini</p>
-<p>Carrello</p>
-<p>pay card</p>
-<p>info profilo</p>
+<div class="container text-center mt-5">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a
+        class="nav-link"
+        id="nav-ordini-tab"
+        routerLink="ordini"
+        routerLinkActive="active"
+      >
+        Ordini
+      </a>
+      <a
+        class="nav-link"
+        id="nav-cardData-tab"
+        routerLink="formcard"
+        routerLinkActive="active"
+      >
+        Card Data
+      </a>
+      <a
+        class="nav-link"
+        id="nav-infoProfilo-tab"
+        routerLink="infoUser"
+        routerLinkActive="active"
+      >
+        Info Profile
+      </a>
+      <a
+        class="nav-link"
+        id="nav-games-tab"
+        routerLink="gamesuser"
+        routerLinkActive="active"
+      >
+        Games
+      </a>
+    </div>
+  </nav>
+
+  <div class="tab-content mt-2">
+    <router-outlet></router-outlet>
+  </div>
+</div>

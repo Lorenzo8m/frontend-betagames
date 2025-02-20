@@ -1,0 +1,59 @@
+<p>Profile Info</p>
+
+<div class="container">
+  <div *ngIf="listUser && hasActiveUsers()">
+    <ng-container *ngFor="let user of listUser">
+      <div *ngIf="user.active" class="user-info mb-4">
+        <div class="user-header">
+          <h4>User ID: {{ user.id }}</h4>
+        </div>
+        <div class="user-details">
+          <p><strong>Username:</strong> {{ user.username }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Role:</strong> {{ user.role.name }}</p>
+          <p><strong>Carts:</strong></p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + user.id">
+            View Cards
+          </button>
+          
+          <div class="modal fade" [id]="'modal' + user.id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="modalLabel">Payment Cards for {{ user.username }}</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let card of user.listPayCardsDTO">
+                        <td>
+                          <strong>Card Number:</strong> {{ card.cardNumber }} <br>
+                          <strong>Cardholder Name:</strong> {{ card.cardHolderName }} <br>
+                          <strong>Billing Address:</strong> {{ card.billingAddress }} <br>
+                          <strong>Expiration Date:</strong> {{ card.expirationDate | date:'dd/MM/yyyy' }}
+                        </td>
+                      </tr>
+                      <tr *ngIf="user.listPayCardsDTO.length === 0">
+                        <td class="text-muted">No registered payment cards.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-danger" (click)="onDelete(user)">Delete</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <hr>
+  <p *ngIf="listUser && !hasActiveUsers()" class="text-center text-muted fs-4">
+    Non ci sono utenti attivi.
+  </p>
+</div>
