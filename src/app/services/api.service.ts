@@ -90,7 +90,7 @@ export class ApiService {
   listOrder() {
     return this.http.get(this.url + "admin/orders/allOrders");
   }
-  searchByTyping(id:number) {
+  searchByTypingOrder(id:number) {
     return this.http.get(this.url + "admin/orders/searchByTyping?id=" + id);
   }
   //=======USER=========
@@ -99,9 +99,6 @@ export class ApiService {
   }
   updateUser(body:{}) {
     return this.http.post(this.url + "users/update",body)
-  }
-  deleteUser(body: {}) {
-    return this.http.post(this.url + "users/delete", body);
   }
   userSearchByTyping(id: number) {
     return this.http.get(this.url + "users/searchByTyping?id="+id + "&active=true")
@@ -134,7 +131,7 @@ export class ApiService {
   }
   deleteAuthors(body: {}) {
     return this.http.post(this.url + "admin/authors/delete", body);
-
+  }
   //=======CATEGORIES==================
   listCategories(){
     return this.http.get(this.url + "public/categories/list")
