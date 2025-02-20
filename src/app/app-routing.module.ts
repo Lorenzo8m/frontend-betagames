@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"shop", component:ShopComponent},
   {path:"cart", component:CartComponent},
-  {path:"admin", component: AdminComponent}
+  {path:"admin", component: AdminComponent},
   {path:"account", component:AccountComponent, children:[
   {path:'', redirectTo:'ordini',pathMatch:'full'},
   {path:"ordini", component:OrdiniComponent},
