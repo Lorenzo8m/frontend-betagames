@@ -19,6 +19,7 @@ import { OrdiniComponent } from './components/ordini/ordini.component';
 import { FormCartComponent } from './components/form-cart/form-cart.component';
 import { FormsModule } from '@angular/forms';
 import { InfoProfiloComponent } from './components/info-profilo/info-profilo.component';
+import { GamesUserComponent } from './components/games-user/games-user.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { InfoProfiloComponent } from './components/info-profilo/info-profilo.com
     CartComponent,
     OrdiniComponent,
     FormCartComponent,
-    InfoProfiloComponent
+    InfoProfiloComponent,
+    GamesUserComponent
   ],
   imports: [
     BrowserModule,
