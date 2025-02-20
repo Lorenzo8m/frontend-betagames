@@ -14,7 +14,7 @@ export class InfoProfiloComponent implements OnInit {
 
   ){}
 
-  listUser:any;
+  listUser:any[]=[];
   rc: any;
   msg = "";
 
@@ -48,4 +48,7 @@ export class InfoProfiloComponent implements OnInit {
       }
     )
   };
+  hasActiveUsers(): boolean {
+    return this.listUser && Array.isArray(this.listUser) && this.listUser.some(user => user.active);
+  }
 }

@@ -7,6 +7,8 @@ import { CartComponent } from './pages/cart/cart.component';
 import { OrdiniComponent } from './components/ordini/ordini.component';
 import { FormCartComponent } from './components/form-cart/form-cart.component';
 import { InfoProfiloComponent } from './components/info-profilo/info-profilo.component';
+import { GamesUserComponent } from './components/games-user/games-user.component';
+import { authGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
@@ -17,7 +19,8 @@ const routes: Routes = [
     {path:'', redirectTo:'ordini',pathMatch:'full'},
     {path:"ordini", component:OrdiniComponent},
     {path: "formcard", component:FormCartComponent},
-    {path:"infoUser", component:InfoProfiloComponent}
+    {path:"infoUser", component:InfoProfiloComponent},
+    {path:"gamesuser", component:GamesUserComponent}
   ]},
 ];
 
