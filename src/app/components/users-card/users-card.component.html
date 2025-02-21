@@ -1,0 +1,56 @@
+<div class="d-flex flex-row justify-content-between">
+    <h1 class="mb-6">Lista Utenti</h1>
+    <input type="text" class="form-control w-25 mb-3" placeholder="Cerca..." [(ngModel)]="searchQuery"
+        (input)="onSearch()" />
+</div>
+<div *ngFor="let u of listUser; index as i">
+    <div class="card mb-3" *ngIf="u.active">
+        <div class="card-header d-flex flex-row justify-content-between">
+            User {{u.id}}
+            <p><span class="badge badge-pill" [ngClass]="getRoleClass(u.role.name)">{{u.role.name}}</span></p>
+            <div class="d-flex flex-row">
+                <i class="bi bi-trash3-fill ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteStaticBackdrop' + i"></i>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Username: {{u.username}}</p>
+            <p class="card-text">Email: {{u.email}}</p>
+            <a class="" data-bs-toggle="collapse" href="#collapseExample{{i}}">Details account <i class="bi bi-caret-down-fill"></i></a>
+            <div class="collapse" id="collapseExample{{i}}">
+                <div *ngFor="let ds of u.detailsShipping; index as j">
+                    <div class="card card-body m-2">
+                        <div class="d-flex justify-content-start">
+                            <p class="card-text fw-bold">Name:</p><span>{{ds.name}}</span>
+                            <p class="card-text fw-bold ms-3">Surname: </p><span> {{ds.lastname}}</span>
+                            <p class="card-text fw-bold ms-3">Country: </p><span>{{ds.country}}</span>
+                            <p class="card-text fw-bold">Region:</p><span>{{ds.stateRegion}}</span>
+                            <p class="card-text fw-bold ms-3">CAP: </p><span> {{ds.cap}}</span>
+                            <p class="card-text fw-bold ms-3">Adress: </p><span>{{ds.address}}</span>
+                            <p class="card-text fw-bold ms-3">City: </p><span>{{ds.city}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Delete Modal-->
+    <div class="modal fade" id="deleteStaticBackdrop{{i}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cancellare Autore?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Attenzione! Si vuole veramente cancellare l'Utente {{u.username}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        (click)="deleteUser(u.id)">Cancella</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

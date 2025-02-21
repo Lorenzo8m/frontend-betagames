@@ -3,16 +3,79 @@
         <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg> -->
         <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) + mainSuffixImg" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">{{game.name}}</h5>
-            <p>Price: {{game.price | currency: 'EUR'}}</p>
-        
+          <h5 class="card-title">{{game.name}}</h5>
+          <p>Price: {{game.price | currency: 'EUR'}}</p>
+          
+          <a class="btn btn-arancione" data-bs-toggle="modal" data-bs-target="#inspectGameModal1" [attr.data-bs-target]="'#modal' + game.id">Inspect</a>
+          <div style="display: inline-block;"> <!-- BLOCCO PULSANTE ADD TO CART-->
             <div *ngIf="game.stockQuantity <= 0; else elseBlock">
-                Out of stock
+              <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
             </div>
             <ng-template #elseBlock>
-                <a class="btn btn-primary" (click)="addToCart(game.id, 1, 1)">add cart</a>
+              <a class="btn btn-primary" (click)="addToCart(game.id, 1, 1)">add cart</a>
             </ng-template>
-
+          </div>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal modal-xl modal-fullscreen-lg-down" [id]="'modal' + game.id" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- Devo studiarmi bene come funziona il responsive -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">{{game.name}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="col-5">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <p>{{game.description}}</p>
+                </div>
+                <div class="row">
+                  <p>Publication year: {{game.date | date:'yyyy'}}</p> <!-- CASINO NEL FORMATO DELLA DATA -->
+                </div>
+                <div class="row">
+                  <p>Min - Max player number: {{game.minPlayerNumber}} - {{game.maxPlayerNumber}}</p>
+                </div>
+                <div class="row">
+                  <p>Game time: {{game.minGameTime}} - {{game.maxGameTime}}</p>
+                </div>
+                <div class="row">
+                  <p>Min age: {{game.minAge}}</p>
+                </div>
+                <div class="row">
+                  <p>Editor: {{game.editorDTO.name}} - <a href="https://{{game.editorDTO.website}}" target="_blank" rel="noopener noreferrer">{{game.editorDTO.website}}</a></p>
+                </div>
+                <!-- DATA DI USCITA, NUMERO MINIMO E MASSIMO DI GIOCATORI, TEMPO MINIMO E MASSIMO, ETà -->
+                <!-- EDITORE - AUTORI - CATEGORIE (CLICCABILI???) -->
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- Vedere come impaginare stock quantity, prezzo (se qui o nel body), e i pulsanti-->
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <div class="ms-auto">
+            <span class="me-3">Price: {{game.price | currency: 'EUR'}}</span>
+            <div style="display: inline-block;"> <!-- BLOCCO PULSANTE ADD TO CART-->
+              <div *ngIf="game.stockQuantity <= 0; else elseBlock">
+                <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
+              </div>
+              <ng-template #elseBlock>
+                <a class="btn btn-primary" (click)="addToCart(game.id, 1, 1)">add cart</a>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

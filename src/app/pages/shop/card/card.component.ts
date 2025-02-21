@@ -27,7 +27,9 @@ export class CardComponent {
       })
   }
 
+
   correctImageName(gameName: string): string {
     return gameName.replace(/\s+/g, ''); // Sostituisci gli spazi con caratteri di sottolineatura
   }
 }
+
