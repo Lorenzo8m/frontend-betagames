@@ -14,7 +14,9 @@ export class InfoProfiloComponent implements OnInit {
 
   ){}
 
-  listUser:any;
+  listUser:any[]=[];
+  rc: any;
+  msg = "";
 
   loadListInfo():void{
     this.service.listInfoUsersById(1)
@@ -29,6 +31,24 @@ export class InfoProfiloComponent implements OnInit {
     this.loadListInfo();
   }
 
-  onDelete(id:number){}
-
+  onDelete(body:{}){
+    this.service.deleteUser(body)
+    .subscribe(
+      (resp:any)=>{
+        this.loadListInfo();
+        if (resp.rc) {
+          this.rc = resp.rc;
+          this.msg = resp.msg;
+          console.log(this.msg)
+        }else{
+          this.rc=resp.rc;
+          this.msg = resp.msg;
+          console.log(this.msg)
+        }
+      }
+    )
+  };
+  hasActiveUsers(): boolean {
+    return this.listUser && Array.isArray(this.listUser) && this.listUser.some(user => user.active);
+  }
 }
