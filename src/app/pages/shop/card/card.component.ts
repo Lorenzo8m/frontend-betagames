@@ -11,6 +11,8 @@ export class CardComponent {
 
   @Input() game: any;
 
+  mainSuffixImg: String = "1.webp"
+
   constructor(private serv:ApiService){}
   
   addToCart(gameId: number, cartId: number, quantity: number):void {
@@ -26,4 +28,8 @@ export class CardComponent {
   }
 
 
-}//class
+  correctImageName(gameName: string): string {
+    return gameName.replace(/\s+/g, ''); // Sostituisci gli spazi con caratteri di sottolineatura
+  }
+}
+
