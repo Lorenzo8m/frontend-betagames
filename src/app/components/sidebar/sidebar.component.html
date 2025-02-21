@@ -65,8 +65,7 @@
     </nav>
     <div class="content flex-grow-1 p-3">
         <div *ngIf="activeContent === 'home'">
-            <h1>Contenuto principale</h1>
-            <p>Qui va il contenuto della pagina.</p>
+            <app-home-admin-card></app-home-admin-card>
         </div>
         <div *ngIf="activeContent === 'games'">
             <app-games-card></app-games-card>

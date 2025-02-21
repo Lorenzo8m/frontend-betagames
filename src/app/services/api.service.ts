@@ -15,7 +15,7 @@ export class ApiService {
 
   listGames(){
 
-    return this.http.get(this.url + "rest/public/games/list")
+    return this.http.get(this.url + "public/games/list")
 
   }
   listGamesById(id: number){
@@ -47,7 +47,7 @@ export class ApiService {
     return this.http.get(this.url + 'detailsCarts/list');
   }
   listByCart(id: number){
-    return this.http.get(this.url + "detailsCarts/listByCarts?id=" + id)
+    return this.http.get(this.url + "user/detailsCarts/listByCarts?id=" + id)
   }
   createDetailsCart(body: {}) {
     return this.http.post(this.url + "detailsCarts/create", body)
@@ -68,6 +68,9 @@ export class ApiService {
   }
   deleteOrdini(body: {}) {
     return this.http.post(this.url + 'orders/deleteOrders', body);
+  }
+  updateOrders(body: {}) {
+    return this.http.post(this.url + "admin/orders/updateOrders",body)
   }
   listOrderByUser(id:number){
     return this.http.get(this.url + 'user/orders/userOrders?id='+ id);
@@ -97,13 +100,13 @@ export class ApiService {
   }
   //=======USER=========
   listUser() {
-    return this.http.get(this.url + "users/list");
+    return this.http.get(this.url + "admin/users/list");
   }
   updateUser(body:{}) {
     return this.http.post(this.url + "users/update",body)
   }
-  userSearchByTyping(id: number) {
-    return this.http.get(this.url + "users/searchByTyping?id="+id + "&active=true")
+  SearchByTypingUser(id: number) {
+    return this.http.get(this.url + "admin/users/searchByTyping?id="+id + "&active=true")
   }
   //======EDITORS======
   listEditors() {

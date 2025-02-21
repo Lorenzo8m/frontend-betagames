@@ -10,6 +10,7 @@ import { ApiService } from '../../services/api.service';
 export class OrdersCardComponent {
 
 
+
 searchQuery: any;
 
   constructor(
@@ -23,8 +24,19 @@ searchQuery: any;
       this.listOrders = resp.data;
     })
   }
+
+  updateOrder(id:number, ordersStatus: string) {
+    this.listOrderService.updateOrders({
+      "id":id,
+      "orderStatus":ordersStatus
+    }).subscribe((resp: any) => {
+      console.log(resp);
+      this.loadListOrders();
+    })
+  }
   onSearch() {
-    this.listOrderService.searchByTyping(this.searchQuery).subscribe((resp: any) => {
+    this.listOrderService.searchByTypingOrder(this.searchQuery).subscribe((resp: any) => {
+      console.log(resp.data);
       this.listOrders = resp.data;
     })
   //console.log(this.searchQuery)
