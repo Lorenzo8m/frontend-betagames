@@ -1,0 +1,93 @@
+<div class="container mt-4">
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+        <!-- Ordini Totali -->
+        <div class="col">
+            <div class="card card-primary text-center border border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary"><i class="bi bi-cart-check text-primary"></i>Total Orders</h5>
+                    <p class="card-text display-4 text-primary">{{totalOrders}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accessi Medi -->
+        <div class="col">
+            <div class="card card-success text-center border border-success">
+                <div class="card-body">
+                    <h5 class="card-title text-success"><i class="bi bi-person-check text-success"></i> Average access</h5>
+                    <p class="card-text display-4 text-success">{{ averageLogins }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Incasso Totale -->
+        <div class="col">
+            <div class="card card-warning border-warning text-center">
+                <div class="card-body">
+                    <h5 class="card-title text-warning"><i class="bi bi-cash-stack text-warning"></i>Total </h5>
+                    <p class="card-text display-4 text-warning">{{ totalRevenue | currency:'EUR' }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ordini da Evadere -->
+        <div class="col">
+            <div class="card card-danger border border-danger text-center">
+                <div class="card-body ">
+                    <h5 class="card-title text-danger"><i class="bi bi-exclamation-triangle text-danger"></i> orders to fill</h5>
+                    <p class="card-text display-4 text-danger">{{pendingOrders}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clienti Attivi -->
+        <div class="col">
+            <div class="card card-info border-warning text-center">
+                <div class="card-body">
+                    <h5 class="card-title text-warning"><i class="bi bi-people text-warning"></i> Active costumers</h5>
+                    <p class="card-text display-4 text-warning">{{activeCustomers}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prodotto più Venduto -->
+        <div class="col">
+            <div class="card card-secondary text-center border-info">
+                <div class="card-body">
+                    <h5 class="card-title text-info"><i class="bi bi-star-fill text-info"></i> Best selling product</h5>
+                    <p class="card-text display-4 text-info">Sales: {{topProduct.sales}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Positivi -->
+        <div class="col">
+            <div class="card card-success text-center border-success">
+                <div class="card-body">
+                    <h5 class="card-title text-success"><i class="bi bi-hand-thumbs-up text-success"></i> Positive feedback</h5>
+                    <p class="card-text display-4 text-success">{{positiveFeedback}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tempo Medio di Consegna -->
+        <div class="col">
+            <div class="card card-dark border-danger text-center">
+                <div class="card-body">
+                    <h5 class="card-title text-danger"><i class="bi bi-clock-history text-danger"></i> Avere shipping time</h5>
+                    <p class="card-text display-4 text-danger">{{averageDeliveryTime}} min</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prodotti in Magazzino -->
+        <div class="col">
+            <div class="card card-primary text-center  border-success">
+                <div class="card-body">
+                    <h5 class="card-title text-success"><i class="bi bi-box-seam text-success"></i> Products in stock</h5>
+                    <p class="card-text display-4 text-success">{{stockProducts}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
