@@ -1,7 +1,7 @@
 <div class="col">
     <div class="card border-light h-100 shadow-sm" >
         <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg> -->
-        <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) + mainSuffixImg" class="card-img-top" alt="...">
+        <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +1+ mainSuffixImg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{game.name}}</h5>
           <p>Price: {{game.price | currency: 'EUR'}}</p>
@@ -28,14 +28,37 @@
           <h1 class="modal-title fs-5" id="staticBackdropLabel">{{game.name}}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
 
-              <div class="col-5">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+              <div class="col-5"> <!-- COLONNA CON LE IMMAGINI / CAROSELLO DI IMMAGINI-->
+                <div id="gameCarousel" class="carousel slide">
+                  
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +1+ mainSuffixImg" class="d-block w-100" alt="...">
+                    </div> 
+                    <div class="carousel-item"> 
+                      <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +2+ mainSuffixImg" class="d-block w-100" alt="...">
+                    </div> 
+                    <div class="carousel-item"> 
+                      <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +3+ mainSuffixImg" class="d-block w-100" alt="...">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
               </div>
-              <div class="col">
+
+              <div class="col"> <!-- COLONNA CON LE INFORMAZIONI DEL GIOCO - NO PREZZO CHE STA SUL FOOTER (per ora) -->
                 <div class="row">
                   <p>{{game.description}}</p>
                 </div>
@@ -61,6 +84,7 @@
             </div>
           </div>
         </div>
+
         <div class="modal-footer">
           <!-- Vedere come impaginare stock quantity, prezzo (se qui o nel body), e i pulsanti-->
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

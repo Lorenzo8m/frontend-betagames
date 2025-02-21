@@ -11,7 +11,7 @@ export class CardComponent {
 
   @Input() game: any;
 
-  mainSuffixImg: String = "1.webp"
+  mainSuffixImg: String = ".webp"
 
   constructor(private serv:ApiService){}
   
@@ -27,9 +27,9 @@ export class CardComponent {
       })
   }
 
-
   correctImageName(gameName: string): string {
     return gameName.replace(/\s+/g, ''); // Sostituisci gli spazi con caratteri di sottolineatura
   }
+  
 }
 
