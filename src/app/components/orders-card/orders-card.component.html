@@ -4,8 +4,16 @@
 </div>
 <div *ngFor="let o of listOrders; index as i">
     <div class="card mb-3">
-        <div class="card-header">
-            Order {{o.id}}
+        <div class="card-header d-flex flex-row justify-content-between">
+            <h5>Order {{o.id}}</h5>
+            <select class="form-select form-select-sm  w-25 h-25" aria-label="Large select example">
+                <option selected>Update order status</option>
+                <option value="1" (click)="updateOrder(o.id,'pending')">pending</option>
+                <option value="2" (click)="updateOrder(o.id,'ready')">ready</option>
+                <option value="3" (click)="updateOrder(o.id,'shipped')">shipped</option>
+                <option value="3"(click)="updateOrder(o.id,'delivered')">delivered</option>
+            </select>
+
         </div>
 
         <div class="card-body">
@@ -32,7 +40,7 @@
                     <div class="card card-body m-2">
                         <div class="d-flex justify-content-start">
                             <p class="card-text fw-bold">Quantity:</p><span>{{do.quantity}}</span>
-                            <p class="card-text fw-bold ms-3">Price: </p><span> {{do.priceAtTime}}</span>
+                            <p class="card-text fw-bold ms-3">Price: </p><span> {{do.priceAtTime |currency: 'EUR'}}</span>
                             <p class="card-text fw-bold ms-3">Game: </p><span>{{do.gameDTO.name}}</span>
                         </div>
                     </div>

@@ -28,6 +28,8 @@ import { FormCartComponent } from './components/form-cart/form-cart.component';
 import { FormsModule } from '@angular/forms';
 import { InfoProfiloComponent } from './components/info-profilo/info-profilo.component';
 import { GamesUserComponent } from './components/games-user/games-user.component';
+import { HomeAdminCardComponent } from './components/home-admin-card/home-admin-card.component';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { GamesUserComponent } from './components/games-user/games-user.component
     OrdiniComponent,
     FormCartComponent,
     InfoProfiloComponent,
-    GamesUserComponent
+    GamesUserComponent,
+    HomeAdminCardComponent,
   ],
   imports: [
     BrowserModule,

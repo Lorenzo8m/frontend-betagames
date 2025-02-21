@@ -30,6 +30,7 @@ gameMaxPlayerNumber: number = 0;
 gameMinAge: number = 0;
 gamePrice: number = 0;
 gameEditorsId: number = 0;
+gameStockQuantity: any;
 
   constructor(private GameService: ApiService) {
     
@@ -43,7 +44,7 @@ gameEditorsId: number = 0;
     })
   }
 
-  saveUpdateGame(id: number, name:string, date: string, description: string, minGameTime: number, maxGameTime: number, minPlayerNumber: number, maxPlayerNumber: number, minAge: number, price: number, editorsId: number) {
+  saveUpdateGame(id: number, name:string, date: string, description: string, minGameTime: number, maxGameTime: number, minPlayerNumber: number, maxPlayerNumber: number, minAge: number, price: number,stockQuantity:number, editorsId: number) {
 
     this.GameService.updateGames({
       "id":id,
@@ -55,7 +56,8 @@ gameEditorsId: number = 0;
       "minPlayerNumber":minPlayerNumber,
       "maxPlayerNumber":maxPlayerNumber,
       "minAge":minAge,
-      "price":price,
+      "price": price,
+      "stockQuantity":stockQuantity,
       "editorsId":editorsId
     }).subscribe((resp: any) => {
       console.log(resp);

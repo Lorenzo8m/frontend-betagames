@@ -36,7 +36,7 @@ searchQuery: any;
     })
   }
   onSearch() {
-    this.userService.userSearchByTyping(this.searchQuery).subscribe((resp: any) => {
+    this.userService.SearchByTypingUser(this.searchQuery).subscribe((resp: any) => {
       this.listUser = resp.data;
     })
   }
