@@ -24,4 +24,6 @@ export class CardComponent {
         console.log(resp.msg);
       })
   }
-}
+
+
+}//class
