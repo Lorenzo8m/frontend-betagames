@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +31,7 @@ import { InfoProfiloComponent } from './components/info-profilo/info-profilo.com
     CartComponent,
     OrdiniComponent,
     FormCartComponent,
-    InfoProfiloComponent
+    InfoProfiloComponent,
   ],
   imports: [
     BrowserModule,

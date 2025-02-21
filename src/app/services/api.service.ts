@@ -16,6 +16,9 @@ export class ApiService {
   listGames(){
     return this.http.get(this.url + "public/games/list")
   }
+  listGamesById(id: number){
+    return this.http.get(this.url + "public/games/listById?id=" + id)
+  }
   createGames(body: {}){
     return this.http.post(this.url + "admin/games/create", body)
   }
@@ -34,24 +37,27 @@ export class ApiService {
     if (params.editorId)        httpParams = httpParams.set('editorId', params.editorId.toString());
     return this.http.get(this.url + "public/games/searchByTyping", { params: httpParams });
   }
+
   //=======DETAILS CART==================
   listDetailsCart() {
     return this.http.get(this.url + 'detailsCarts/list');
   }
-
   listByCart(id: number){
     return this.http.get(this.url + "detailsCarts/listByCarts?id=" + id)
   }
-  deleteDetailsCart(body: {}) {
-    return this.http.post(this.url + 'detailsCarts/delete', body);
-  }
-
   createDetailsCart(body: {}) {
     return this.http.post(this.url + "detailsCarts/create", body)
   }
   updateDetailsCart(body: {}){
     return this.http.post(this.url + "detailsCarts/update", body)
   }
+  deleteDetailsCart(body: {}) {
+    return this.http.post(this.url + 'detailsCarts/delete', body);
+  }
+  deleteAllByCart(body: {}){
+    return this.http.post(this.url + "detailsCarts/deleteAllByCart", body)
+  }
+
   //=======Ordini==================
   listOrdini() {
     return this.http.get(this.url + 'admin/orders/allOrders');
@@ -70,12 +76,9 @@ export class ApiService {
 
   //=======User==================
   listInfoUsersById(id:number){
-    return this.http.get(this.url + "admin/users/searchByTyping");}//Ricordare a prendere ID
-
-  
-  deleteAllByCart(body: {}){
-    return this.http.post(this.url + "detailsCarts/deleteAllByCart", body)
+    return this.http.get(this.url + "admin/users/searchByTyping");//Ricordare a prendere ID
   }
+
   //=======ORDER==================
   createOrder(body: {}){
     return this.http.post(this.url + "orders/createOrders", body)
@@ -85,4 +88,5 @@ export class ApiService {
   listCategories(){
     return this.http.get(this.url + "public/categories/list")
   }
-}
+
+}//class
