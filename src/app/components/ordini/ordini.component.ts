@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { SubjectServiceService } from '../../services/subject-service.service';
 
 @Component({
   selector: 'app-ordini',
@@ -11,21 +12,26 @@ import { Router } from '@angular/router';
 export class OrdiniComponent implements OnInit {
   
   constructor(private service:ApiService,
-              private router:Router
+              private router:Router,
+              private quote:SubjectServiceService
   ){}
 
   listOrdini: any;
+  currenteQuote:any;
 
+  ngOnInit(): void {
+    this.quote.currenteQuote.subscribe(
+      quote =>  this . currenteQuote = quote 
+    )
+    this.loadListOrdini();
+  }
 
   loadListOrdini():void{
-    this.service.listOrderByUser(1).subscribe(
+    this.service.listOrderByUser(this.currenteQuote.data.id).subscribe(
       (resp:any)=>{
         this.listOrdini = resp.data;
       }
     )
-  }
-  ngOnInit(): void {
-    this.loadListOrdini();
   }
 
   onDelete(id: number){

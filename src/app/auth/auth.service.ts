@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,7 @@ export class AuthService {
   isLoggedIn = false;
   isAdmin = false;
   idUser: any;
+  
 
   constructor() {
     if (localStorage.getItem('isLoggedIn') != null) {

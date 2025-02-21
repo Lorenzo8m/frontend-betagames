@@ -73,7 +73,7 @@ export class ApiService {
 
   //=======User==================
   listInfoUsersById(id:number){
-    return this.http.get(this.url + "admin/users/searchByTyping");}//Ricordare a prendere ID
+    return this.http.get(this.url + "admin/users/searchByTyping?id="+id);}//Ricordare a prendere ID
 
   deleteUser(body:{}){
     return this.http.post(this.url +"user/users/delete", body);
