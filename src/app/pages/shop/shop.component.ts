@@ -37,7 +37,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.searchInput.pipe(
       debounceTime(500) // Adjust the debounce time (in milliseconds) as needed
     ).subscribe((searchTerm: string) => {
-      this.searchByTyping(searchTerm)
+      this.searchByTypingGames(searchTerm)
     });
   }//ngOnInit
 
@@ -62,7 +62,7 @@ export class ShopComponent implements OnInit, OnDestroy {
      this.searchInput.next(searchTerm);
   }//onSearch
 
-  searchByTyping(searchTerm:String):void{
+  searchByTypingGames(searchTerm:String):void{
     console.log(searchTerm);
     let params: any = {};
 
@@ -74,7 +74,7 @@ export class ShopComponent implements OnInit, OnDestroy {
       params.categoriesId = this.selectedCategory.id;
     }
 
-    this.serv.searchByTyping(params).subscribe(
+    this.serv.searchByTypingGames(params).subscribe(
       (resp: any) => {
         this.listGames = resp.data;
       },

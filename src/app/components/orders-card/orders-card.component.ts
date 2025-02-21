@@ -24,7 +24,7 @@ searchQuery: any;
     })
   }
   onSearch() {
-    this.listOrderService.searchByTyping(this.searchQuery).subscribe((resp: any) => {
+    this.listOrderService.userSearchByTyping(this.searchQuery).subscribe((resp: any) => {
       this.listOrders = resp.data;
     })
   //console.log(this.searchQuery)

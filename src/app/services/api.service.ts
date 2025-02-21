@@ -12,11 +12,8 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   //=======GAMES==================
-
   listGames(){
-
-    return this.http.get(this.url + "rest/public/games/list")
-
+    return this.http.get(this.url + "public/games/list")
   }
   listGamesById(id: number){
     return this.http.get(this.url + "public/games/listById?id=" + id)
@@ -29,9 +26,8 @@ export class ApiService {
   }
   deleteGames(body: {}){
     return this.http.post(this.url + "admin/games/delete", body)
-
   }
-  searchByTyping(params: any): Observable<any> {
+  searchByTypingGames(params: any): Observable<any> {
     let httpParams = new HttpParams();
     // Aggiungi i parametri solo se sono presenti
     if (params.name)            httpParams = httpParams.set('name', params.name);
@@ -44,22 +40,22 @@ export class ApiService {
 
   //=======DETAILS CART==================
   listDetailsCart() {
-    return this.http.get(this.url + 'detailsCarts/list');
+    return this.http.get(this.url + 'admin/detailsCarts/list');
   }
   listByCart(id: number){
-    return this.http.get(this.url + "detailsCarts/listByCarts?id=" + id)
+    return this.http.get(this.url + "user/detailsCarts/listByCarts?id=" + id)
   }
   createDetailsCart(body: {}) {
-    return this.http.post(this.url + "detailsCarts/create", body)
+    return this.http.post(this.url + "user/detailsCarts/create", body)
   }
   updateDetailsCart(body: {}){
-    return this.http.post(this.url + "detailsCarts/update", body)
+    return this.http.post(this.url + "user/detailsCarts/update", body)
   }
   deleteDetailsCart(body: {}) {
-    return this.http.post(this.url + 'detailsCarts/delete', body);
+    return this.http.post(this.url + 'user/detailsCarts/delete', body);
   }
   deleteAllByCart(body: {}){
-    return this.http.post(this.url + "detailsCarts/deleteAllByCart", body)
+    return this.http.post(this.url + "user/detailsCarts/deleteAllByCart", body)
   }
 
   //=======Ordini==================
