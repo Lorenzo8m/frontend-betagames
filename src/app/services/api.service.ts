@@ -78,6 +78,14 @@ export class ApiService {
   deleteUser(body:{}){
     return this.http.post(this.url +"user/users/delete", body);
   }
+
+  createUser(body:{}){
+    return this.http.post(this.url + "public/users/createUser", body)
+  }
+
+  login(body:{}){
+    return this.http.post(this.url + "public/users/login", body)
+  }
   
   //=======ORDER==================
   createOrder(body: {}){
