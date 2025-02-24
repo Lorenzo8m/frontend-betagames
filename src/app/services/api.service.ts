@@ -47,6 +47,12 @@ export class ApiService {
   listByCart(id: number){
     return this.http.get(this.url + "user/detailsCarts/listByCarts?id=" + id)
   }
+  deleteAllByCart(body: {}){
+    return this.http.post(this.url + "detailsCarts/deleteAllByCart", body)
+  }
+  deleteDetailsCart(body: {}) {
+    return this.http.post(this.url + 'detailsCarts/delete', body);
+  }
   createDetailsCart(body: {}) {
     return this.http.post(this.url + "user/detailsCarts/create", body)
   }
@@ -81,11 +87,21 @@ export class ApiService {
 
   //=======User==================
   listInfoUsersById(id:number){
-    return this.http.get(this.url + "admin/users/searchByTyping");//Ricordare a prendere ID
+    return this.http.get(this.url + "admin/users/searchByTyping?id="+id);
   }
+
   deleteUser(body:{}){
     return this.http.post(this.url +"user/users/delete", body);
   }
+
+  createUser(body:{}){
+    return this.http.post(this.url + "public/users/createUser", body)
+  }
+
+  login(body:{}){
+    return this.http.post(this.url + "public/users/login", body)
+  }
+
   //=======ORDER==================
   createOrder(body: {}){
     return this.http.post(this.url + "orders/createOrders", body)

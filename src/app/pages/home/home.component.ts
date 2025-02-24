@@ -9,7 +9,8 @@ import { ApiService } from '../../services/api.service';
 })
 export class HomeComponent implements OnInit{
 
-  constructor(private games:ApiService){}
+  constructor(private games:ApiService,
+  ){}
 
   listGames: any;
 

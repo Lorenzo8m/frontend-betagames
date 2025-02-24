@@ -1,0 +1,17 @@
+<p>loginForm works!</p>
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <div class="mb-2">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" name="username" ngModel required />
+  </div>
+  <div class="mb-2">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" name="password" ngModel required />
+  </div>
+  <div>
+    <button color="primary" type="submit" [disabled]="!loginForm.valid" >
+      Login
+    </button>
+  </div>
+</form>
+

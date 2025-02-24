@@ -1,3 +1,4 @@
+import { SubjectServiceService } from './../../services/subject-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 
@@ -11,6 +12,7 @@ import { ApiService } from '../../services/api.service';
 export class InfoProfiloComponent implements OnInit {
 
   constructor(private service:ApiService,
+          private quote:SubjectServiceService
 
   ){}
 
@@ -19,7 +21,10 @@ export class InfoProfiloComponent implements OnInit {
   msg = "";
 
   loadListInfo():void{
-    this.service.listInfoUsersById(1)
+    let valore = this.quote.getValueCurrentQuote();
+    console.log(this.quote.getValueCurrentQuote())
+    console.log(valore.data[0].carts.id)
+    this.service.listInfoUsersById(valore.data[0].id)
     .subscribe(
       (resp:any)=>{
         this.listUser = resp.data;
@@ -29,6 +34,8 @@ export class InfoProfiloComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadListInfo();
+    console.log(this.quote.getValueCurrentQuote())
+
   }
 
   onDelete(body:{}){
