@@ -25,11 +25,12 @@ export class CardComponent {
         resp.msg;
         console.log(resp.msg);
       })
-  }
+  }//addToCart
 
   correctImageName(gameName: string): string {
     return gameName.replace(/\s+/g, ''); // Sostituisci gli spazi con caratteri di sottolineatura
-  }
+  }//correctImageName
   
-}
 
+
+}//class

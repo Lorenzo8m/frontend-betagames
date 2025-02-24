@@ -20,9 +20,11 @@ export class NavbarComponent implements OnInit{
     this.detailsCart.listByCart(1).subscribe((resp:any)=>{
       this.listDetailsCart = resp.data;
     })
-  }
+  }//loadListDetailsCart
 
   ngOnInit(): void {
     this.loadListDetailsCart();
-  }
+  }//ngOnInit
+
+
 }
