@@ -6,11 +6,18 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SubjectServiceService {
 
-  qoute = new  BehaviorSubject ( {} );
+  qoute = new  BehaviorSubject <{ data:{
+    id:number;
+    carts:{id:number}
+  }[] }>( { data:[]} );
 
   currenteQuote = this.qoute.asObservable();
 
-  updateQuote ( newQuote: {} ){ 
+  getValueCurrentQuote(){
+    return this.qoute.getValue()
+  }
+
+  updateQuote ( newQuote: {data:[]} ){ 
     this . qoute . next (newQuote); 
   } 
 

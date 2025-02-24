@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { SubjectServiceService } from '../../services/subject-service.service';
 
 @Component({
   selector: 'app-games-user',
@@ -10,6 +11,7 @@ import { ApiService } from '../../services/api.service';
 export class GamesUserComponent {
 
    constructor(private service:ApiService,
+              private quote:SubjectServiceService
   
     ){}
   
@@ -18,7 +20,7 @@ export class GamesUserComponent {
     msg = "";
   
     loadListInfo():void{
-      this.service.listInfoUsersById(1)
+      this.service.listInfoUsersById(this.quote.getValueCurrentQuote().data[0].id)
       .subscribe(
         (resp:any)=>{
           this.listUser = resp.data;

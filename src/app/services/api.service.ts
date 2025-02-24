@@ -40,7 +40,7 @@ export class ApiService {
   }
 
   listByCart(id: number){
-    return this.http.get(this.url + "detailsCarts/listByCarts?id=" + id)
+    return this.http.get(this.url + "user/detailsCarts/listByCarts?id=" + id)
   }
   deleteAllByCart(body: {}){
     return this.http.post(this.url + "detailsCarts/deleteAllByCart", body)
@@ -49,8 +49,8 @@ export class ApiService {
     return this.http.post(this.url + 'detailsCarts/delete', body);
   }
 
-  createDetailsCart(body: {}) {
-    return this.http.post(this.url + "detailsCarts/create", body)
+  createDetailsCart(body:{}) {
+    return this.http.post(this.url + "user/detailsCarts/create", body)
   }
   updateDetailsCart(body: {}){
     return this.http.post(this.url + "detailsCarts/update", body)

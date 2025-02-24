@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
+import { SubjectServiceService } from '../../../services/subject-service.service';
 
 @Component({
   selector: 'app-card',
@@ -7,14 +8,24 @@ import { ApiService } from '../../../services/api.service';
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
 
   @Input() game: any;
+  quoteUser:number=0;
 
-  constructor(private serv:ApiService){}
+  constructor(private serv:ApiService,
+          private quote:SubjectServiceService
+  ){}  
+
+  ngOnInit(): void {
+
+  }
+
   
-  addToCart(gameId: number, cartId: number, quantity: number):void {
-      console.log("add ", gameId + " " + cartId + " " + quantity)
+  
+  addToCart(gameId: number, quantity: number):void {
+      const cartId = this.quote.getValueCurrentQuote().data[0].carts.id;
+      console.log("add ", gameId  + " " + quantity)
       this.serv.createDetailsCart({
         gameId,
         cartId,

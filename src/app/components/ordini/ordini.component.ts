@@ -27,7 +27,7 @@ export class OrdiniComponent implements OnInit {
   }
 
   loadListOrdini():void{
-    this.service.listOrderByUser(this.currenteQuote.data.id).subscribe(
+    this.service.listOrderByUser(this.currenteQuote.data[0].id).subscribe(
       (resp:any)=>{
         this.listOrdini = resp.data;
       }
