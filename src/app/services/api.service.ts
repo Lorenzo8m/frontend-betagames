@@ -88,11 +88,20 @@ export class ApiService {
   }
 
   createUser(body:{}){
-    return this.http.post(this.url + "public/users/createUser", body)
+    return this.http.post(this.url + "public/users/signin", body)
   }
 
   login(body:{}){
     return this.http.post(this.url + "public/users/login", body)
+  }
+  listUser() {
+    return this.http.get(this.url + "admin/users/list");
+  }
+  updateUser(body:{}) {
+    return this.http.post(this.url + "users/update",body)
+  }
+  SearchByTypingUser(id: number) {
+    return this.http.get(this.url + "admin/users/searchByTyping?id="+id + "&active=true")
   }
 
   //=======ORDER==================
@@ -105,16 +114,7 @@ export class ApiService {
   searchByTypingOrder(id:number) {
     return this.http.get(this.url + "admin/orders/searchByTyping?id=" + id);
   }
-  //=======USER=========
-  listUser() {
-    return this.http.get(this.url + "admin/users/list");
-  }
-  updateUser(body:{}) {
-    return this.http.post(this.url + "users/update",body)
-  }
-  SearchByTypingUser(id: number) {
-    return this.http.get(this.url + "admin/users/searchByTyping?id="+id + "&active=true")
-  }
+
   //======EDITORS======
   listEditors() {
     return this.http.get(this.url + "public/editors/list");
