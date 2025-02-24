@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { SubjectServiceService } from '../services/subject-service.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -10,24 +12,30 @@ export class AuthService {
   idUser: any;
   
 
-  constructor() {
-    if (localStorage.getItem('isLoggedIn') != null) {
-      console.log('token exist ' + localStorage.getItem('isLoggedIn'));
-      if (localStorage.getItem('isLoggedIn') == '0') {
-        this.isLoggedIn = false;
+  constructor(@Inject(PLATFORM_ID) private platformID:object,
+    private quote:SubjectServiceService
+  ) {
+    if (isPlatformBrowser(this.platformID)) {
+      
+      if (localStorage.getItem('isLoggedIn') != null) {
+        console.log('token exist ' + localStorage.getItem('isLoggedIn'));
+        if (localStorage.getItem('isLoggedIn') == '0') {
+          this.isLoggedIn = false;
+        } else {
+          this.isAdmin = true;
+        }
+        if (localStorage.getItem('isAdmin') == '0') {
+          this.isAdmin = false;
+        } else {
+          this.isAdmin = true;
+        }
       } else {
-        this.isAdmin = true;
+        console.log('Token not exist');
+        localStorage.setItem('isLoggedIn', '0');
+        localStorage.setItem('isAdmin', '0');
       }
-      if (localStorage.getItem('isAdmin') == '0') {
-        this.isAdmin = false;
-      } else {
-        this.isAdmin = true;
-      }
-    } else {
-      console.log('Token not exist');
-      localStorage.setItem('isLoggedIn', '0');
-      localStorage.setItem('isAdmin', '0');
     }
+    
     console.log('logged: ' + this.isLoggedIn);
     console.log('Admin: ' + this.isAdmin);
   }
@@ -42,6 +50,8 @@ export class AuthService {
     this.isLoggedIn = false;
     localStorage.setItem('isLoggedIn', '0');
     localStorage.setItem('isAdmin', '0');
+    localStorage.setItem("idUser","0");
+    this.quote.updateQuote({data:[]});
   }
 
   setRoleAdmin() {
@@ -62,3 +72,5 @@ export class AuthService {
     return this.isAdmin;
   }
 }
+
+
