@@ -13,7 +13,7 @@
               <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
             </div>
             <ng-template #elseBlock>
-              <a class="btn btn-primary" (click)="addToCart(game.id, 1, 1)">add cart</a>
+                <a class="btn btn-primary" (click)="addToCart(game.id, 1)">add cart</a>
             </ng-template>
           </div>
         </div>
@@ -98,18 +98,19 @@
         </div>
       </div>
 <!-- Modal Footer -->    
-      <div class="modal-footer">
-        <!-- Vedere come impaginare stock quantity, prezzo (se qui o nel body), e i pulsanti-->
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <div class="ms-auto">
-          <span class="me-3">Price: {{game.price | currency: 'EUR'}}</span>
-          <div style="display: inline-block;"> <!-- BLOCCO PULSANTE ADD TO CART-->
-            <div *ngIf="game.stockQuantity <= 0; else elseBlock">
-              <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
+        <div class="modal-footer">
+          <!-- Vedere come impaginare stock quantity, prezzo (se qui o nel body), e i pulsanti-->
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <div class="ms-auto">
+            <span class="me-3">Price: {{game.price | currency: 'EUR'}}</span>
+            <div style="display: inline-block;"> <!-- BLOCCO PULSANTE ADD TO CART-->
+              <div *ngIf="game.stockQuantity <= 0; else elseBlock">
+                <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
+              </div>
+              <ng-template #elseBlock>
+                <a class="btn btn-primary" (click)="addToCart(game.id, 1)">add cart</a>
+              </ng-template>
             </div>
-            <ng-template #elseBlock>
-              <a class="btn btn-primary" (click)="addToCart(game.id, 1, 1)">add cart</a>
-            </ng-template>
           </div>
         </div>
       </div>

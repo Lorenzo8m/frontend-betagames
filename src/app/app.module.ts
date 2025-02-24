@@ -28,8 +28,9 @@ import { FormCartComponent } from './components/form-cart/form-cart.component';
 import { FormsModule } from '@angular/forms';
 import { InfoProfiloComponent } from './components/info-profilo/info-profilo.component';
 import { GamesUserComponent } from './components/games-user/games-user.component';
+import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
+import { SigninComponent } from './components/signin/signin.component';
 import { HomeAdminCardComponent } from './components/home-admin-card/home-admin-card.component';
-
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { HomeAdminCardComponent } from './components/home-admin-card/home-admin-
     FormCartComponent,
     InfoProfiloComponent,
     GamesUserComponent,
-    HomeAdminCardComponent,
+    RegistrazioneComponent,
+    SigninComponent,
+    HomeAdminCardComponent
   ],
   imports: [
     BrowserModule,
