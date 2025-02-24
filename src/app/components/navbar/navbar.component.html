@@ -4,7 +4,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- Roba che in piccolo deve collassare nel menù a burger-->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="home" >Home</a>
@@ -24,34 +24,33 @@
         <li class="nav-item">
           <a class="nav-link" (click)="logout()">logout</a>
         </li>
+        <li>
+          <a class="nav-link" aria-current="page" routerLink="admin">Admin</a>
+        </li>
       </ul>
       <div class="d-flex justify-content-around">
-        <div class="d-lg-none">
+        <div class="d-lg-none"> <!-- User quando menù burger -->
           <a class="nav-link" routerLink="/account">Accout</a>
         </div>
-        <div class="d-none d-lg-block">
+        <div class="d-none d-lg-block"><!-- Pulsante user -->
           <a class="nav-link" routerLink="/account"><i class="bi bi-person-fill"></i></a>
         </div>
       </div>
     </div>
-    <div class="position-relative">
-      <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRightLabel">
-        <i class="bi bi-cart3"></i>
-      </a>
-      <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><div>{{listDetailsCart.length}}</div></span>
+    <div class="position-relative"> <!-- Pulsante carrello - non collassa / il badge si nuoverà rispetto a questo elemento (position-relative)-->
+      <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRightLabel"><i class="bi bi-cart3"></i></a> <!-- button carrello / icona -->
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger p-1">{{listDetailsCart.length}}</span> <!-- Badge-->
     </div>
   </div>
 </nav>
 
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasRightLabel">Gran Carrello Magico</h5>
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrello</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    Il carrello a destra...
-    può essere il punto giusto qua sulla nav-bar?<br>
-    Come andiamo a prenderci il numero di elementi nel carrello possiamo anche prenderci i dettagli no?
+
   </div>
 </div>
   

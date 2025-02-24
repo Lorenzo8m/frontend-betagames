@@ -12,9 +12,13 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   //=======GAMES==================
-
   listGames(){
+
     return this.http.get(this.url + "public/games/list")
+
+  }
+  listGamesById(id: number){
+    return this.http.get(this.url + "public/games/listById?id=" + id)
   }
   createGames(body: {}){
     return this.http.post(this.url + "admin/games/create", body)
@@ -25,7 +29,7 @@ export class ApiService {
   deleteGames(body: {}){
     return this.http.post(this.url + "admin/games/delete", body)
   }
-  searchByTyping(params: any): Observable<any> {
+  searchByTypingGames(params: any): Observable<any> {
     let httpParams = new HttpParams();
     // Aggiungi i parametri solo se sono presenti
     if (params.name)            httpParams = httpParams.set('name', params.name);
@@ -33,12 +37,13 @@ export class ApiService {
     if (params.categoriesId)    httpParams = httpParams.set('categoriesId', params.categoriesId.toString());
     if (params.editorId)        httpParams = httpParams.set('editorId', params.editorId.toString());
     return this.http.get(this.url + "public/games/searchByTyping", { params: httpParams });
-  }
-  //=======DETAILS CART==================
-  listDetailsCart() {
-    return this.http.get(this.url + 'detailsCarts/list');
+
   }
 
+  //=======DETAILS CART==================
+  listDetailsCart() {
+    return this.http.get(this.url + 'admin/detailsCarts/list');
+  }
   listByCart(id: number){
     return this.http.get(this.url + "user/detailsCarts/listByCarts?id=" + id)
   }
@@ -48,19 +53,28 @@ export class ApiService {
   deleteDetailsCart(body: {}) {
     return this.http.post(this.url + 'detailsCarts/delete', body);
   }
-
-  createDetailsCart(body:{}) {
+  createDetailsCart(body: {}) {
     return this.http.post(this.url + "user/detailsCarts/create", body)
   }
   updateDetailsCart(body: {}){
-    return this.http.post(this.url + "detailsCarts/update", body)
+    return this.http.post(this.url + "user/detailsCarts/update", body)
   }
+  deleteDetailsCart(body: {}) {
+    return this.http.post(this.url + 'user/detailsCarts/delete', body);
+  }
+  deleteAllByCart(body: {}){
+    return this.http.post(this.url + "user/detailsCarts/deleteAllByCart", body)
+  }
+
   //=======Ordini==================
   listOrdini() {
     return this.http.get(this.url + 'admin/orders/allOrders');
   }
   deleteOrdini(body: {}) {
     return this.http.post(this.url + 'orders/deleteOrders', body);
+  }
+  updateOrders(body: {}) {
+    return this.http.post(this.url + "admin/orders/updateOrders",body)
   }
   listOrderByUser(id:number){
     return this.http.get(this.url + 'user/orders/userOrders?id='+ id);
@@ -73,7 +87,8 @@ export class ApiService {
 
   //=======User==================
   listInfoUsersById(id:number){
-    return this.http.get(this.url + "admin/users/searchByTyping?id="+id);}//Ricordare a prendere ID
+    return this.http.get(this.url + "admin/users/searchByTyping?id="+id);
+  }
 
   deleteUser(body:{}){
     return this.http.post(this.url +"user/users/delete", body);
@@ -86,14 +101,59 @@ export class ApiService {
   login(body:{}){
     return this.http.post(this.url + "public/users/login", body)
   }
-  
+
   //=======ORDER==================
   createOrder(body: {}){
     return this.http.post(this.url + "orders/createOrders", body)
   }
+  listOrder() {
+    return this.http.get(this.url + "admin/orders/allOrders");
+  }
+  searchByTypingOrder(id:number) {
+    return this.http.get(this.url + "admin/orders/searchByTyping?id=" + id);
+  }
+  //=======USER=========
+  listUser() {
+    return this.http.get(this.url + "admin/users/list");
+  }
+  updateUser(body:{}) {
+    return this.http.post(this.url + "users/update",body)
+  }
+  SearchByTypingUser(id: number) {
+    return this.http.get(this.url + "admin/users/searchByTyping?id="+id + "&active=true")
+  }
+  //======EDITORS======
+  listEditors() {
+    return this.http.get(this.url + "public/editors/list");
+  }
 
+  createEditors(body: {}) {
+    return this.http.post(this.url + "admin/editors/create", body);
+  }
+
+  updateEditors(body: {}) {
+    return this.http.post(this.url + "admin/editors/update", body);
+  }
+
+  deleteEditors(body: {}) {
+    return this.http.post(this.url + "admin/editors/delete", body);
+  }
+  //======AUTHORS======
+  listAuthors() {
+    return this.http.get(this.url + "public/authors/list");
+  }
+  createAuthors(body: {}) {
+    return this.http.post(this.url + "admin/authors/create",body)
+  }
+  updateAuthors(body: {}) {
+    return this.http.post(this.url + "admin/authors/update", body);
+  }
+  deleteAuthors(body: {}) {
+    return this.http.post(this.url + "admin/authors/delete", body);
+  }
   //=======CATEGORIES==================
   listCategories(){
     return this.http.get(this.url + "public/categories/list")
   }
-}
+
+}//class

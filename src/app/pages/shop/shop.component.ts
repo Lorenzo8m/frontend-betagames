@@ -31,13 +31,13 @@ export class ShopComponent implements OnInit, OnDestroy {
   searchInput = new Subject<string>();  //Subject che rappresenti l'evento di input per il debounce
 
   ngOnInit(): void {
-    this.loadListGames(); // Carica tutti i giochi all'avvio
     this.loadListCategories(); // Carica tutte le categorie all'avvio
+    this.loadListGames(); // Carica tutti i giochi all'avvio
     //aggiungo il debounce all'evento di input per la ricerca
     this.searchInput.pipe(
       debounceTime(500) // Adjust the debounce time (in milliseconds) as needed
     ).subscribe((searchTerm: string) => {
-      this.searchByTyping(searchTerm)
+      this.searchByTypingGames(searchTerm)
     });
   }//ngOnInit
 
@@ -62,7 +62,7 @@ export class ShopComponent implements OnInit, OnDestroy {
      this.searchInput.next(searchTerm);
   }//onSearch
 
-  searchByTyping(searchTerm:String):void{
+  searchByTypingGames(searchTerm:String):void{
     console.log(searchTerm);
     let params: any = {};
 
@@ -74,7 +74,7 @@ export class ShopComponent implements OnInit, OnDestroy {
       params.categoriesId = this.selectedCategory.id;
     }
 
-    this.serv.searchByTyping(params).subscribe(
+    this.serv.searchByTypingGames(params).subscribe(
       (resp: any) => {
         this.listGames = resp.data;
       },
@@ -84,53 +84,6 @@ export class ShopComponent implements OnInit, OnDestroy {
     );
   }//searchByTyping
 
-
-
-  //vecchio metodo search
-// searchByTyping(searchTerm:string): void {
-//     let params: any = {};
-
-//     if (searchTerm) {
-//       params.name = searchTerm;
-//     }
-
-//     if (this.selectedCategory) {
-//       params.categoriesId = this.selectedCategory.id;
-//     }
-
-//     this.serv.searchByTyping(params).subscribe(
-//       (resp: any) => {
-//         this.listGames = resp.data;
-//       },
-//       (error) => {
-//         console.error('Errore nella ricerca:', error);
-//       }
-//     );
-//   }//searchByTyping
-
-
-  
-  // onSubmit(): void {
-  //   let params: any = {};
-
-  //   if (this.searchTerm) {
-  //     params.name = this.searchTerm;
-  //   }
-
-  //   if (this.selectedCategory) {
-  //     params.categoriesId = this.selectedCategory.id;
-  //   }
-
-  //   this.serv.searchByTyping(params).subscribe(
-  //     (resp: any) => {
-  //       this.listGames = resp.data;
-  //     },
-  //     (error) => {
-  //       console.error('Errore nella ricerca:', error);
-  //     }
-  //   );
-  // }//onSubmit
-    
 
   // addToCart(gameId: number, cartId: number, quantity: number):void {
   //   console.log("add ", gameId + " " + cartId + " " + quantity)
@@ -144,10 +97,11 @@ export class ShopComponent implements OnInit, OnDestroy {
   //   })
   // }
 
+  
+
   //chiude il servizio di ricerca
   ngOnDestroy(): void {
     this.searchInput.complete();
   }
-
 
 }

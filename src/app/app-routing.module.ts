@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AccountComponent } from './pages/account/account.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { AdminComponent } from './pages/admin/admin.component';
 import { OrdiniComponent } from './components/ordini/ordini.component';
 import { FormCartComponent } from './components/form-cart/form-cart.component';
 import { InfoProfiloComponent } from './components/info-profilo/info-profilo.component';
@@ -13,8 +14,8 @@ import { RegistrazioneComponent } from './components/registrazione/registrazione
 import { guardGuard } from './auth/auth.guard';
 import { adminGuard } from './auth/admin.guard';
 
-
 const routes: Routes = [
+
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'login', component: SigninComponent },
   { path: 'home', component: HomeComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'gamesuser', component: GamesUserComponent },
     ],
   },
+
 ];
 
 @NgModule({

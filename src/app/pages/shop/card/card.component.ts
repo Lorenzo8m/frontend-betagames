@@ -13,6 +13,7 @@ export class CardComponent implements OnInit {
   @Input() game: any;
   quoteUser:number=0;
 
+
   constructor(private serv:ApiService,
           private quote:SubjectServiceService
   ){}  
@@ -21,7 +22,8 @@ export class CardComponent implements OnInit {
 
   }
 
-  
+  mainSuffixImg: String = ".webp"
+
   
   addToCart(gameId: number, quantity: number):void {
       const cartId = this.quote.getValueCurrentQuote().data[0].carts.id;
@@ -34,5 +36,12 @@ export class CardComponent implements OnInit {
         resp.msg;
         console.log(resp.msg);
       })
-  }
-}
+  }//addToCart
+
+  correctImageName(gameName: string): string {
+    return gameName.replace(/\s+/g, ''); // Sostituisci gli spazi con caratteri di sottolineatura
+  }//correctImageName
+  
+
+
+}//class
