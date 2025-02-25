@@ -32,7 +32,7 @@ export class OrdiniComponent implements OnInit {
         .subscribe((r:any)=>{
           this.listOrdini = r.data;
         });
-    }
+    }  
   }
 
   onDelete(id: number){
