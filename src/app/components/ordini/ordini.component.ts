@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-import { SubjectServiceService } from '../../services/subject-service.service';
 
 @Component({
   selector: 'app-ordini',
@@ -13,25 +12,27 @@ export class OrdiniComponent implements OnInit {
   
   constructor(private service:ApiService,
               private router:Router,
-              private quote:SubjectServiceService
   ){}
 
   listOrdini: any;
   currenteQuote:any;
 
+  
+
   ngOnInit(): void {
-    this.quote.currenteQuote.subscribe(
-      quote =>  this . currenteQuote = quote 
-    )
     this.loadListOrdini();
   }
 
   loadListOrdini():void{
-    this.service.listOrderByUser(this.currenteQuote.data[0].id).subscribe(
-      (resp:any)=>{
-        this.listOrdini = resp.data;
-      }
-    )
+    const id = localStorage.getItem('idUser');
+    if (id !== null) {
+      const numericId = parseInt(id);
+      console.log("cart", numericId,  typeof numericId)
+      this.service.listOrderByUser(numericId)
+        .subscribe((r:any)=>{
+          this.listOrdini = r.data;
+        });
+    }  
   }
 
   onDelete(id: number){

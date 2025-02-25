@@ -1,4 +1,3 @@
-import { SubjectServiceService } from './../../services/subject-service.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
@@ -16,9 +15,7 @@ export class SigninComponent {
   constructor(
     private user: ApiService,
     private auth: AuthService,
-    private router: Router,
-    private quote: SubjectServiceService
-  ) {}
+    private router: Router  ) {}
 
     
   logged: boolean = true;
@@ -37,7 +34,6 @@ export class SigninComponent {
           if (resp.data?.logged) {
             console.log('utente loggato role: ' + resp.data.role);
             this.auth.setAutentificate(resp.data?.id);
-            console.log(this.quote.currenteQuote);
             if (resp.data.role === 'ADMIN') {
               this.auth.setRoleAdmin();
             } else {
@@ -50,8 +46,6 @@ export class SigninComponent {
       .subscribe(
         (resp: any) => {
           console.log('Informazioni utente:', resp.data);
-          this.quote.updateQuote(resp);
-          console.log(this.quote.currenteQuote);
           // Gestisci i dati dell'utente qui
         },
         (error) => {

@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { SubjectServiceService } from '../../services/subject-service.service';
 import { switchMap } from 'rxjs';
 
 @Component({
@@ -12,8 +11,7 @@ import { switchMap } from 'rxjs';
 export class CartComponent implements OnInit{
 
   constructor(
-    private detailsCart:ApiService,
-    private quote:SubjectServiceService
+    private detailsCart:ApiService
   ){}
   
     listDetailsCart: any[]=[];
@@ -43,7 +41,6 @@ export class CartComponent implements OnInit{
     ngOnInit(): void {
       this.loadListDetailsCart()
       //this.loadListDetailsCart();
-      console.log(typeof this.quote.getValueCurrentQuote().data[0].carts.id)
     }
 
     updateQuantity(quantity: number, id: number){

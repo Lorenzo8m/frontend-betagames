@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { SubjectServiceService } from '../../services/subject-service.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-games-user',
@@ -8,30 +8,32 @@ import { SubjectServiceService } from '../../services/subject-service.service';
   templateUrl: './games-user.component.html',
   styleUrl: './games-user.component.scss'
 })
-export class GamesUserComponent {
+export class GamesUserComponent implements OnInit{
 
    constructor(private service:ApiService,
-              private quote:SubjectServiceService
+              
   
     ){}
+  ngOnInit(): void {
+    this.loadListInfo();
+  }
   
     listUser:any[]=[];
     rc: any;
     msg = "";
-  
+    userId: number = 0;
+
     loadListInfo():void{
-      this.service.listInfoUsersById(this.quote.getValueCurrentQuote().data[0].id)
-      .subscribe(
-        (resp:any)=>{
-          this.listUser = resp.data;
-        }
-      )
-    }
-  
-    ngOnInit(): void {
-      this.loadListInfo();
-    }
-  
+      const id = localStorage.getItem('idUser');
+      if (id !== null) {
+        const numericId = parseInt(id);
+        console.log("cart", numericId,  typeof numericId)
+        this.service.listInfoUsersById(numericId)
+          .subscribe((r:any)=>{
+            this.listUser = r.data;
+          });
+    }}
+
     onDelete(body:{}){
       this.service.deleteUser(body)
       .subscribe(
@@ -51,5 +53,5 @@ export class GamesUserComponent {
     };
     hasActiveUsers(): boolean {
       return this.listUser && Array.isArray(this.listUser) && this.listUser.some(user => user.active);
-    }
+    };
 }

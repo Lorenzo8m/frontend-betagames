@@ -1,8 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../auth/auth.service';
-import { SubjectServiceService } from '../../services/subject-service.service';
 
 @Component({
   selector: 'app-navbar',

@@ -1,6 +1,6 @@
-import { SubjectServiceService } from './../../services/subject-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-info-profilo',
@@ -12,30 +12,30 @@ import { ApiService } from '../../services/api.service';
 export class InfoProfiloComponent implements OnInit {
 
   constructor(private service:ApiService,
-          private quote:SubjectServiceService
+          
 
   ){}
 
   listUser:any[]=[];
   rc: any;
   msg = "";
+ 
 
   loadListInfo():void{
-    let valore = this.quote.getValueCurrentQuote();
-    console.log(this.quote.getValueCurrentQuote())
-    console.log(valore.data[0].carts.id)
-    this.service.listInfoUsersById(valore.data[0].id)
-    .subscribe(
-      (resp:any)=>{
-        this.listUser = resp.data;
-      }
-    )
+    const id = localStorage.getItem('idUser');
+    if (id !== null) {
+      const numericId = parseInt(id);
+      console.log("cart", numericId,  typeof numericId)
+      this.service.listInfoUsersById(numericId)
+        .subscribe((r:any)=>{
+          this.listUser = r.data;
+        });
+    }
+
   }
 
   ngOnInit(): void {
     this.loadListInfo();
-    console.log(this.quote.getValueCurrentQuote())
-
   }
 
   onDelete(body:{}){
@@ -59,3 +59,4 @@ export class InfoProfiloComponent implements OnInit {
     return this.listUser && Array.isArray(this.listUser) && this.listUser.some(user => user.active);
   }
 }
+

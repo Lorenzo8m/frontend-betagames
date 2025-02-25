@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
-import { SubjectServiceService } from '../../../services/subject-service.service';
 import { switchMap } from 'rxjs';
 
 @Component({
