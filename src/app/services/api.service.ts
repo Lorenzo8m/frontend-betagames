@@ -33,11 +33,10 @@ export class ApiService {
     let httpParams = new HttpParams();
     // Aggiungi i parametri solo se sono presenti
     if (params.name)            httpParams = httpParams.set('name', params.name);
-    if (params.authorsId)       httpParams = httpParams.set('authorsId', params.authorsId.toString()); // con conversioen in stringa che poi vedremo se necessaria
+    if (params.authorsId)       httpParams = httpParams.set('authorsId', params.authorsId.toString()); // con conversione in stringa che poi vedremo se necessaria
     if (params.categoriesId)    httpParams = httpParams.set('categoriesId', params.categoriesId.toString());
     if (params.editorId)        httpParams = httpParams.set('editorId', params.editorId.toString());
     return this.http.get(this.url + "public/games/searchByTyping", { params: httpParams });
-
   }
 
   //=======DETAILS CART==================
@@ -81,11 +80,30 @@ export class ApiService {
 
   //=======User==================
   listInfoUsersById(id:number){
-    return this.http.get(this.url + "admin/users/searchByTyping");//Ricordare a prendere ID
+    return this.http.get(this.url + "admin/users/searchByTyping?id="+id);
   }
+
   deleteUser(body:{}){
     return this.http.post(this.url +"user/users/delete", body);
   }
+
+  createUser(body:{}){
+    return this.http.post(this.url + "public/users/signin", body)
+  }
+
+  login(body:{}){
+    return this.http.post(this.url + "public/users/login", body)
+  }
+  listUser() {
+    return this.http.get(this.url + "admin/users/list");
+  }
+  updateUser(body:{}) {
+    return this.http.post(this.url + "users/update",body)
+  }
+  SearchByTypingUser(id: number) {
+    return this.http.get(this.url + "admin/users/searchByTyping?id="+id + "&active=true")
+  }
+
   //=======ORDER==================
   createOrder(body: {}){
     return this.http.post(this.url + "orders/createOrders", body)
@@ -96,16 +114,7 @@ export class ApiService {
   searchByTypingOrder(id:number) {
     return this.http.get(this.url + "admin/orders/searchByTyping?id=" + id);
   }
-  //=======USER=========
-  listUser() {
-    return this.http.get(this.url + "admin/users/list");
-  }
-  updateUser(body:{}) {
-    return this.http.post(this.url + "users/update",body)
-  }
-  SearchByTypingUser(id: number) {
-    return this.http.get(this.url + "admin/users/searchByTyping?id="+id + "&active=true")
-  }
+
   //======EDITORS======
   listEditors() {
     return this.http.get(this.url + "public/editors/list");

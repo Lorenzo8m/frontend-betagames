@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { SubjectServiceService } from '../../services/subject-service.service';
 
 @Component({
   selector: 'app-form-cart',
@@ -13,10 +14,11 @@ export class FormCartComponent {
 
   msg : string = '';
   rc : any;
- // expirationDate: Date = new Date();
+  //expirationDate: any;
 
   constructor(private service:ApiService,
-            private router:Router
+            private router:Router,
+            private  quote:SubjectServiceService
   ){}
 
   onSubmit(cardform:NgForm){
@@ -31,7 +33,7 @@ export class FormCartComponent {
     this.service.createPayCard({
       cardNumber: cardform.form.value.cardNumber,
       cvv: cardform.form.value.cvv,
-      userId: cardform.form.value.userId,
+      userId: this.quote.getValueCurrentQuote().data[0].id,
       billingAddress: cardform.form.value.billingAddress,
       cardHolderName: cardform.form.value.cardHolderName,
       expirationDate: cardform.form.value.expirationDate,

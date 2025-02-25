@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { SubjectServiceService } from '../../services/subject-service.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,19 +11,21 @@ import { ApiService } from '../../services/api.service';
 export class CartComponent implements OnInit{
 
   constructor(
-    private detailsCart:ApiService
+    private detailsCart:ApiService,
+    private quote:SubjectServiceService
   ){}
   
     listDetailsCart: any[]=[];
 
     loadListDetailsCart(): void{
-      this.detailsCart.listByCart(1).subscribe((resp:any)=>{
+      this.detailsCart.listByCart(this.quote.getValueCurrentQuote().data[0].carts.id).subscribe((resp:any)=>{
         this.listDetailsCart = resp.data;
       })
     }
   
     ngOnInit(): void {
       this.loadListDetailsCart();
+      console.log(typeof this.quote.getValueCurrentQuote().data[0].carts.id)
     }
 
     updateQuantity(quantity: number, id: number){

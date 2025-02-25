@@ -1,1 +1,88 @@
-<p>home works!</p>
+
+<!--HOME-->
+<!-- NAV BAR- SCURA??? -->
+<!-- Vediamo se tutto scuro a partire dallo sfondo e testi chiari o sfondo scuro, elementi chiari e testi scuri -->
+<!-- Forse ci sta anche chiaro ma con colori un po' pi caldi -->
+<!-- Come lo vogliamo graficamente? Morbido e arrotondato o squadrato, linee dritte più moderno/tech? -->
+<!-- direi tutto centrato, no side bar da nessuna parte-->
+
+<!-- Carousel bello grosso con foto di giochi e gente che gioca. (16 o 21)/9
+    Non a schermo intero comunque, 70/80% in larghezza da pc, full width da tablet in giù (?) -->
+<div style="height: 2rem;"></div> <!-- Spacer -->
+
+<div style="width: 70vw; margin: 0 auto;">
+<div id="homeCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div style="background-color: #f0f0f0; padding-bottom: 40%; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #888;">Placeholder 1 - Deve essere 21/9 l'immagine</div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="background-color: #e0e0e0; padding-bottom: 40%; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #888;">Placeholder 2 - Deve essere 21/9 l'immagine</div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="background-color: #d0d0d0; padding-bottom: 40%; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #888;">Placeholder 3 - Deve essere 21/9 l'immagine</div>
+            </div>
+        </div>
+      </div>
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button> -->
+</div>
+</div>
+
+<div style="height: 2rem;"></div> <!-- Spacer -->
+<!-- Breve testo sul tipo di giochi che vendiamo, modalità di gioco e altre robe che si possono trovare da noi-->
+    <!-- centrato sulla pagina, come tutto il resto -->
+<h1 style="text-align: center;"> Betagames</h1>
+<h2 style="text-align: center;"> Giochi da tavolo dal 1492!</h2>
+
+<div style="height: 2rem;"></div> <!-- Spacer -->
+<!-- "Carousel" di card di giochi(?) che girano con solo il pulsante ispect (se si può) che apre il modal dal quale si può aggiungere al carrello in caso. UNA SOLA RIGA DIREI-->
+<div style="width: 70vw; margin: 0 auto;">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div style="display: flex; align-items: center;">
+                    <button class="btn btn-outline-primary me-2" (click)="scrollLeft()"><</button>
+                    <ul class="list-group list-group-horizontal overflow-auto" #listGroup style="width: 100%;">
+                        <li *ngFor="let game of listGames; let i = index" class="list-group-item" style="width: 250px; flex-shrink: 0;">
+                            <app-card [game]="game"></app-card>
+                        </li>
+                    </ul>
+                    <button class="btn btn-outline-primary ms-2" (click)="scrollRight()">></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height: 2rem;"></div> <!-- Spacer -->
+<!-- Breve testo che spiega se siamo un'azienda che produce e vende giochi o se vendiamo e basta-->
+<!-- Altra galleria di immagini quadrate piccole di giochi/raduni/eventi/gente che gioca -->
+<p style="text-align: center; width: 70vw; margin: 0 auto;">Dal 1492 <b>BetaGames</b> crea e distribuisce giochi da tavolo in tutto il mondo,<br>
+    dalla vendita per corrispondenza e il trasporto navale e a cavallo<br>
+    fino alle moderne consegne con droni militari in zone di guerra (speriamo di non aver lanciato i pacchi troppo forte. Ops!)<br>
+    Da noi puoi trovare giochi da tavolo di tutti i tipi (tavoli di legno, metallo, plastica e chi più ne ha più ne metta).<br>
+    <br>
+    Che siate strateghi esperti o giocatori occasionali, <br>
+    BetaGames ha il gioco perfetto per voi.<br>
+</p>
+
+<div style="height: 2rem;"></div> <!-- Spacer -->
+<!-- Footer con informazioni e form di contatti? - anche solo qualche info se non abbiamo tempo-->
+
