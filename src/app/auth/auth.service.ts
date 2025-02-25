@@ -1,6 +1,5 @@
 
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { SubjectServiceService } from '../services/subject-service.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -14,7 +13,6 @@ export class AuthService {
   
 
   constructor(@Inject(PLATFORM_ID) private platformID:object,
-    private quote:SubjectServiceService,
     private router:Router
   ) {
     if (isPlatformBrowser(this.platformID)) {
