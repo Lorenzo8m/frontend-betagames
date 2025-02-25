@@ -30,6 +30,8 @@ export class ShopComponent implements OnInit, OnDestroy {
   searchTerm: any=[];  // variabile per il termine di ricerca del nome
   searchInput = new Subject<string>();  //Subject che rappresenti l'evento di input per il debounce
 
+  cId: number | undefined;
+
   ngOnInit(): void {
     this.loadListCategories(); // Carica tutte le categorie all'avvio
     this.loadListGames(); // Carica tutti i giochi all'avvio
@@ -39,6 +41,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     ).subscribe((searchTerm: string) => {
       this.searchByTypingGames(searchTerm)
     });
+    this.getCartId();
   }//ngOnInit
 
   loadListCategories(): void {
@@ -84,24 +87,21 @@ export class ShopComponent implements OnInit, OnDestroy {
     );
   }//searchByTyping
 
-
-  // addToCart(gameId: number, cartId: number, quantity: number):void {
-  //   console.log("add ", gameId + " " + cartId + " " + quantity)
-  //   this.serv.createDetailsCart({
-  //     gameId,
-  //     cartId,
-  //     quantity
-  //   }).subscribe((resp:any)=>{
-  //     resp.msg;
-  //     console.log(resp.msg);
-  //   })
-  // }
-
-  
-
   //chiude il servizio di ricerca
   ngOnDestroy(): void {
     this.searchInput.complete();
+  }
+
+  getCartId():void{
+    const id = localStorage.getItem('idUser');
+    if (id !== null) {
+      const numericId = parseInt(id);
+      this.serv.listInfoUsersById(numericId)
+        .subscribe((res:any)=>{
+          console.log("shop->cardId : ", res.data[0].carts.id)
+          this.cId = res.data[0].cart.id
+        })
+    }
   }
 
 }

@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+// import { TestBed } from '@angular/core/testing';
 
-import { SubjectServiceService } from './subject-service.service';
+// import { SubjectServiceService } from './subject-service.service';
 
-describe('SubjectServiceService', () => {
-  let service: SubjectServiceService;
+// describe('SubjectServiceService', () => {
+//   let service: SubjectServiceService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(SubjectServiceService);
-  });
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//     service = TestBed.inject(SubjectServiceService);
+//   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
+// });

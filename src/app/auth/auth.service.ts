@@ -2,6 +2,7 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { SubjectServiceService } from '../services/subject-service.service';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class AuthService {
   
 
   constructor(@Inject(PLATFORM_ID) private platformID:object,
-    private quote:SubjectServiceService
+    private quote:SubjectServiceService,
+    private router:Router
   ) {
     if (isPlatformBrowser(this.platformID)) {
       
@@ -46,12 +48,25 @@ export class AuthService {
     localStorage.setItem('isLoggedIn', '1');
   }
 
+  // setLoggedOut() {
+  //   this.isLoggedIn = false;
+  //   localStorage.setItem('isLoggedIn', '0');
+  //   localStorage.setItem('isAdmin', '0');
+  //   localStorage.setItem("idUser","0");
+  //   // this.quote.updateQuote({data:[]});
+  // }
+
   setLoggedOut() {
     this.isLoggedIn = false;
-    localStorage.setItem('isLoggedIn', '0');
-    localStorage.setItem('isAdmin', '0');
-    localStorage.setItem("idUser","0");
-    this.quote.updateQuote({data:[]});
+    this.isAdmin = false;
+    this.idUser = null;
+
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('idUser');
+
+    this.router.navigate(['home']);
+
   }
 
   setRoleAdmin() {
@@ -65,7 +80,12 @@ export class AuthService {
   }
 
   isAutentificated() {
-    return this.isLoggedIn;
+    
+    if (isPlatformBrowser(this.platformID)) {
+      if (localStorage.getItem("isLoggedIn") == '1')
+        return true;
+    }
+    return false;
   }
 
   isRoleAdmin() {

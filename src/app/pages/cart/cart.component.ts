@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { SubjectServiceService } from '../../services/subject-service.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -17,14 +18,31 @@ export class CartComponent implements OnInit{
   
     listDetailsCart: any[]=[];
 
-    loadListDetailsCart(): void{
-      this.detailsCart.listByCart(this.quote.getValueCurrentQuote().data[0].carts.id).subscribe((resp:any)=>{
-        this.listDetailsCart = resp.data;
-      })
+    // loadListDetailsCart(): void{
+    //   this.detailsCart.listByCart(this.quote.getValueCurrentQuote().data[0].carts.id).subscribe((resp:any)=>{
+    //     this.listDetailsCart = resp.data;
+    //   })
+    // }
+
+    loadListDetailsCart():void{
+      const id = localStorage.getItem('idUser');
+      if (id !== null) {
+        const numericId = parseInt(id);
+        console.log("cart", numericId,  typeof numericId)
+        this.detailsCart.listInfoUsersById(numericId)
+          .pipe(switchMap((res:any)=>{
+            console.log(res.data[0].carts.id)
+            return this.detailsCart.listByCart(res.data[0].carts.id);
+          }))
+          .subscribe((r:any)=>{
+            this.listDetailsCart = r.data;
+          });
+      }
     }
   
     ngOnInit(): void {
-      this.loadListDetailsCart();
+      this.loadListDetailsCart()
+      //this.loadListDetailsCart();
       console.log(typeof this.quote.getValueCurrentQuote().data[0].carts.id)
     }
 
