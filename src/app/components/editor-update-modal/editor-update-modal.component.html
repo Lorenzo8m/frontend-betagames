@@ -1,0 +1,29 @@
+<div class="modal fade" id="staticBackdrop{{editorData.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">You are changing the editor {{editorData.name}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #editorUpdate>
+                    <div class="mb-3">
+                        <label for="EditorsName" class="form-label">Editor name:</label>
+                        <input type="text" class="form-control" id="EditorsName"
+                            name="editorsName">
+                        <div id="emailHelp" class="form-text">Actual name: {{editorData.name}}</div>
+                        <label for="WebName" class="form-label">Sito Web</label>
+                        <input type="text" class="form-control" id="WebName" name="webName">
+                        <div id="emailHelp" class="form-text">Actual website{{editorData.website}}</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary"
+                    (click)="saveModifyEditors(editorData.id)" data-bs-dismiss="modal">Modify</button>
+            </div>
+        </div>
+    </div>
+</div>

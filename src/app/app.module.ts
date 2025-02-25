@@ -31,6 +31,19 @@ import { GamesUserComponent } from './components/games-user/games-user.component
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { HomeAdminCardComponent } from './components/home-admin-card/home-admin-card.component';
+import { SinglegameCardComponent } from './components/singlegame-card/singlegame-card.component';
+import { GameModifyModalComponent } from './components/game-modify-modal/game-modify-modal.component';
+import { GameDeleteModalComponent } from './components/game-delete-modal/game-delete-modal.component';
+import { GameCreateModalComponent } from './components/game-create-modal/game-create-modal.component';
+import { EditorCreateModalComponent } from './components/editor-create-modal/editor-create-modal.component';
+import { EditorDeleteModalComponent } from './components/editor-delete-modal/editor-delete-modal.component';
+import { EditorUpdateModalComponent } from './components/editor-update-modal/editor-update-modal.component';
+import { EditorSingleCardComponent } from './components/editor-single-card/editor-single-card.component';
+import { AuthoeSingleCardComponent } from './components/author-single-card/authoe-single-card.component';
+import { AuthorDeleteModalComponent } from './components/author-delete-modal/author-delete-modal.component';
+import { AuthorCreateModalComponent } from './components/author-create-modal/author-create-modal.component';
+import { AuthorUpdateModalComponent } from './components/author-update-modal/author-update-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -52,6 +65,19 @@ import { HomeAdminCardComponent } from './components/home-admin-card/home-admin-
     FormCartComponent,
     InfoProfiloComponent,
     GamesUserComponent,
+    HomeAdminCardComponent,
+    SinglegameCardComponent,
+    GameModifyModalComponent,
+    GameDeleteModalComponent,
+    GameCreateModalComponent,
+    EditorCreateModalComponent,
+    EditorDeleteModalComponent,
+    EditorUpdateModalComponent,
+    EditorSingleCardComponent,
+    AuthoeSingleCardComponent,
+    AuthorCreateModalComponent,
+    AuthorDeleteModalComponent,
+    AuthorUpdateModalComponent,
     RegistrazioneComponent,
     SigninComponent,
     HomeAdminCardComponent
