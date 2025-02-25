@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'cart', component: CartComponent, canActivate:[guardGuard] },
   { path: 'register', component:RegistrazioneComponent},
+  { path: 'admin', component:AdminComponent},
   {
     path: 'account',
     component: AccountComponent,
