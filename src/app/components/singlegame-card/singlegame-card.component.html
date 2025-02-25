@@ -1,0 +1,51 @@
+<div class="card mb-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <strong>Game {{gameData.id}}</strong>
+        <div class="d-flex">
+            <i class="bi bi-pencil-square me-3" data-bs-toggle="modal"
+                [attr.data-bs-target]="'#staticBackdrop' + gameData.id"></i>
+            <i class="bi bi-trash3-fill ms-2" data-bs-toggle="modal"
+                [attr.data-bs-target]="'#deleteStaticBackdrop' + gameData.id"></i>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row d-flex align-items-start flex-nowrap">
+            <div class="col-md-3 text-center">
+                <img [src]="'/assets/'+correctImageName(gameData.name)+'/'+ correctImageName(gameData.name) +1+ mainSuffixImg"
+                    class="img-fluid rounded" style="max-width: 100%; height: auto; object-fit: contain;" alt="Game Image">
+            </div>
+            <div class="col-md-3">
+                <h4>General info:</h4>
+                <p class="mb-1"><strong>Game name:</strong> {{gameData.name}}</p>
+                <p class="mb-1"><strong>Publication date:</strong> {{gameData.date | date: 'fullDate'}}</p>
+                <p class="mb-1"><strong>Game time:</strong> {{gameData.minGameTime}} - {{gameData.maxGameTime}} hours</p>
+                <p class="mb-1"><strong>Players:</strong> {{gameData.minPlayerNumber}} - {{gameData.maxPlayerNumber}}</p>
+                <p class="mb-1"><strong>Minimum Age:</strong> {{gameData.minAge}}</p>
+                <p class="mb-1"><strong>Price:</strong> {{gameData.price | currency: 'EUR'}}</p>
+            </div>
+            <div class="col-md-3">
+                <h4>Editor:</h4>
+                <p class="mb-1">{{gameData.editorDTO.name}}</p>
+                <h4 class="mb-1">Authors:</h4>
+                <div *ngFor="let a of gameData.listAuthorsDTO">
+                    <p class="mb-1">{{a.name}} {{a.lastname}}</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h4>Categories:</h4>
+                <div *ngFor="let c of gameData.listCategoryDTO">
+                    <p><span class="badge text-bg-light border border-primary">{{c.name}}</span></p>
+                </div>
+            </div>
+        </div>
+        <a class="d-block mt-3 text-decoration-none" data-bs-toggle="collapse" href="#collapseExample{{gameData.id}}">
+            <strong>Description</strong> <i class="bi bi-caret-down-fill"></i>
+        </a>
+        <div class="collapse mt-2" id="collapseExample{{gameData.id}}">
+            <div class="card card-body">
+                <p class="card-text">{{gameData.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,98 +4,24 @@
         [attr.data-bs-target]="'#createModal'">Create <i class="bi bi-plus"></i></button>
 </div>
 <div *ngFor="let e of listEditors; index as i">
-    <div class="card mb-3">
-        <div class="card-header d-flex flex-row justify-content-between">
-            Editor {{e.id}}
-            <div class="d-flex flex-row">
-                <i class="bi bi-pencil-square me-2" data-bs-toggle="modal"[attr.data-bs-target]="'#staticBackdrop' + i"></i>
-                <i class="bi bi-trash3-fill ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteStaticBackdrop' + i"></i>
-            </div>
-        </div>
-        <div class="d-flex flrx-row card-body justify-content-around">
-            <p class="card-text">Editor: {{e.name}}</p>
-            <p class="card-text">Website: {{e.website}}</p>
-        </div>
-    </div>
+    <app-editor-single-card [editorData]="e"></app-editor-single-card>
     <!--Modal-->
-    <div class="modal fade" id="staticBackdrop{{i}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">You are changing the editor {{e.name}}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="EditorsName" class="form-label">Editor name:</label>
-                            <input type="text" class="form-control" id="EditorsName" [(ngModel)]="editorName" name="editorsName">
-                            <div id="emailHelp" class="form-text">Actual name: {{e.name}}</div>
-                            <label for="WebName" class="form-label">Sito Web</label>
-                            <input type="text" class="form-control" id="WebName" [(ngModel)]="editorWebsite" name="webName" >
-                            <div id="emailHelp" class="form-text">Actual website{{e.website}}</div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" (click)="saveModifyEditors(e.id, editorName, editorWebsite)" data-bs-dismiss="modal">Modify</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-editor-update-modal [editorData]="e"></app-editor-update-modal>
     <!--Delete Modal-->
-    <div class="modal fade" id="deleteStaticBackdrop{{i}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Editor?</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body d-flex flex-column justify-content-center">
-                        <i class="bi bi-exclamation-octagon display-3 text-danger text-center"></i>
-                        Attention! You really want to delete the Editor {{e.name}}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                            (click)="deleteEditors(e.id)">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-editor-delete-modal [editorData]="e"></app-editor-delete-modal>
 </div>
 <!--Create Modal-->
-<div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create new Editor</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="EditorsName" class="form-label">Editor name</label>
-                        <input type="text" class="form-control" id="EditorsName" [(ngModel)]="name" name="editorsName"
-                            #editorsName>
-                        <label for="WebName" class="form-label">Website</label>
-                        <input type="text" class="form-control" id="WebName" [(ngModel)]="website" name="webName"
-                            #webName>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" (click)="createEditors(name, website)"
-                    data-bs-dismiss="modal">Confirm</button>
+<app-editor-create-modal (creationResult)="handleResult($event)"></app-editor-create-modal>
 
-            </div>
-        </div>
+<div *ngIf="flag === true"> 
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+<div *ngIf="flag === false">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 </div>

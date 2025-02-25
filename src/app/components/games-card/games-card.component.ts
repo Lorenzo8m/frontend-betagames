@@ -9,7 +9,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class GamesCardComponent {
 
-  name: string = "";
+  name: string ="" ;
   date: string ="";
   description: string="";
   minGameTime: number = 0;
@@ -20,17 +20,17 @@ export class GamesCardComponent {
   price: number = 0.00;
   stockQuantity: number = 0;
   editorsId: number = 0;
-gameName: string="";
-gameDate: string="";
-gameDescription: string="";
-gameMinTime: number = 0;
-gameMaxTime: number = 0;
-gameMinPlayerNumber: number = 0;
-gameMaxPlayerNumber: number = 0;
-gameMinAge: number = 0;
-gamePrice: number = 0;
-gameEditorsId: number = 0;
-gameStockQuantity: any;
+  gameName: string="";
+  gameDate: string="";
+  gameDescription: string="";
+  gameMinTime: number = 0;
+  gameMaxTime: number = 0;
+  gameMinPlayerNumber: number = 0;
+  gameMaxPlayerNumber: number = 0;
+  gameMinAge: number = 0;
+  gamePrice: number = 0;
+  gameEditorsId: number = 0;
+  gameStockQuantity: any;
 
   constructor(private GameService: ApiService) {
     
@@ -44,27 +44,7 @@ gameStockQuantity: any;
     })
   }
 
-  saveUpdateGame(id: number, name:string, date: string, description: string, minGameTime: number, maxGameTime: number, minPlayerNumber: number, maxPlayerNumber: number, minAge: number, price: number,stockQuantity:number, editorsId: number) {
 
-    this.GameService.updateGames({
-      "id":id,
-      "name":name,
-      "date":date,
-      "description": description,
-      "minGameTime":minGameTime,
-      "maxGameTime": maxGameTime,
-      "minPlayerNumber":minPlayerNumber,
-      "maxPlayerNumber":maxPlayerNumber,
-      "minAge":minAge,
-      "price": price,
-      "stockQuantity":stockQuantity,
-      "editorsId":editorsId
-    }).subscribe((resp: any) => {
-      console.log(resp);
-      this.loadListGames();
-    })
-
-  }
 
   createGames(name:string, date: string, description: string, minGameTime: number, maxGameTime: number, minPlayerNumber: number, maxPlayerNumber: number, minAge: number, stockQuantity:number, price: number, editorsId: number) {
     this.GameService.createGames({
@@ -84,16 +64,7 @@ gameStockQuantity: any;
       this.loadListGames();
     })
   }
-
-  deleteGame(id: number) {
-    console.log("cancello gioco");
-    this.GameService.deleteGames({
-      "id":id
-    }).subscribe((resp: any) => {
-      console.log(resp);
-      this.loadListGames();
-    })
-  }
+  
   ngOnInit() {
     this.loadListGames();
   }
