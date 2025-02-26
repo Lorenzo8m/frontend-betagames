@@ -3,7 +3,7 @@
   }
   
   .list-group-horizontal > .list-group-item {
-    margin-right: 10px; /* Aggiungi un po' di spazio tra gli elementi */
+    margin-right: 5px; /* Aggiungi un po' di spazio tra gli elementi */
   }
 
   .list-group.list-group-horizontal.overflow-auto::-webkit-scrollbar {
@@ -14,4 +14,9 @@
 .list-group.list-group-horizontal.overflow-auto {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+
+  pre {
+    line-height: 1.175; /* standard è tipo 1.5 ...? */
+    font-size: 1.15vw; /* Dimensione di base */
   }
