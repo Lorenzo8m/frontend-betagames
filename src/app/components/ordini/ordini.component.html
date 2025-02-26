@@ -1,27 +1,30 @@
-<p>ordini works!</p>
-<div class="container">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">id Pay Cards</th>
-            <th scope="col">Total Ammount</th>
-            <th scope="col">Order Status</th>
-            <th scope="col">Created at</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let ordine of listOrdini ; index as i">
-            <th scope="row">{{ordine.id}}</th>
-            <td>{{ordine.payCardsDTO.id}}</td>
-            <td>{{ordine.totalAmount | currency: 'EUR'}}</td>
-            <td>{{ordine.orderStatus}}</td>
-            <td>{{ordine.createdAt | date: 'yyyy/MM/dd'}}</td>
-            <td>
-                <button type="button" class="btn btn-danger" (click)="onDelete(ordine.id)">X</button>
-            </td>
-          </tr>
-        </tbody>
+<div class="orders-wrapper">
+  <h1>Orders</h1>
+  <div class="table-container">
+    <table class="table" *ngIf="listOrdini.length > 0; else noOrders">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ID Pay Cards</th>
+          <th scope="col">Total Amount</th>
+          <th scope="col">Order Status</th>
+          <th scope="col">Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ordine of listOrdini; index as i">
+          <th scope="row">{{ ordine.id }}</th>
+          <td>{{ ordine.payCardsDTO.id }}</td>
+          <td>{{ ordine.totalAmount | currency: 'EUR' }}</td>
+          <td>{{ ordine.orderStatus }}</td>
+          <td>{{ ordine.createdAt | date: 'yyyy/MM/dd' }}</td>
+        </tr>
+      </tbody>
     </table>
+
+    <!-- Mensaje cuando no hay órdenes -->
+    <ng-template #noOrders>
+      <p class="no-orders-message">No orders have been placed by this user.</p>
+    </ng-template>
+  </div>
 </div>
