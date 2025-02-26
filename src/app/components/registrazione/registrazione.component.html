@@ -1,15 +1,14 @@
-<h1>Registrazione</h1>
-<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+<div class="register-wrapper">
+  <h1>Sign Up</h1>
+  <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
     <div class="mb-2">
       <label for="username" class="form-label">Username</label>
-      <input
-      type="text" name="username" ngModel required
-      />
+      <input type="text" name="username" ngModel required />
     </div>
     <div class="mb-2">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" ngModel required />
-      </div>
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" ngModel required />
+    </div>
     <div class="mb-2">
       <label for="password" class="form-label">Password</label>
       <input type="password" name="password" ngModel required />
@@ -20,12 +19,11 @@
     </div>
 
     <p *ngIf="!rc">{{msg}}</p>
+
     <div>
-        <button
-        color="primary" type="submit" [disabled]="!signupForm.valid"
-        >
-          Registra
-        </button>
+      <button color="primary" type="submit" [disabled]="!signupForm.valid">
+        Sign Up
+      </button>
     </div>
   </form>
-
+</div>
