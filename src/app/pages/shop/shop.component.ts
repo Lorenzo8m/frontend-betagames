@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Subject } from 'rxjs/internal/Subject';
-import { debounceTime } from 'rxjs/operators';
+import { concatMap, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shop',
@@ -30,19 +30,45 @@ export class ShopComponent implements OnInit, OnDestroy {
   searchTerm: any=[];  // variabile per il termine di ricerca del nome
   searchInput = new Subject<string>();  //Subject che rappresenti l'evento di input per il debounce
 
-  cId: number | undefined;
+  cId: number | undefined ;
 
   ngOnInit(): void {
-    this.loadListCategories(); // Carica tutte le categorie all'avvio
-    this.loadListGames(); // Carica tutti i giochi all'avvio
+    this.getCartId()
+      .pipe(
+        concatMap(() => this.loadListCategories()),
+        concatMap(() => this.loadListGames())
+      )
+      .subscribe(
+        () => {
+          // Operazioni da eseguire dopo aver caricato le categorie e i giochi
+        },
+        (error: any) => {
+          console.error('Errore:', error);
+        }
+      );
+
     //aggiungo il debounce all'evento di input per la ricerca
     this.searchInput.pipe(
-      debounceTime(500) // Adjust the debounce time (in milliseconds) as needed
+      debounceTime(500) // Regola il tempo di debounce (in millisecondi) se necessario
     ).subscribe((searchTerm: string) => {
-      this.searchByTypingGames(searchTerm)
+      this.searchByTypingGames(searchTerm);
     });
-    this.getCartId();
+
+    console.log("shop: ", this.cId);
   }//ngOnInit
+
+  // ngOnInit(): void {
+  //   this.getCartId();
+  //   this.loadListCategories(); // Carica tutte le categorie all'avvio
+  //   this.loadListGames(); // Carica tutti i giochi all'avvio
+  //   //aggiungo il debounce all'evento di input per la ricerca
+  //   this.searchInput.pipe(
+  //     debounceTime(500) // Adjust the debounce time (in milliseconds) as needed
+  //   ).subscribe((searchTerm: string) => {
+  //     this.searchByTypingGames(searchTerm)
+  //   });
+  //   console.log("shoop: ", this.cId)
+  // }//ngOnInit
 
   loadListCategories(): void {
     this.serv.listCategories().subscribe((resp: any) => {
