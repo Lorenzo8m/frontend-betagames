@@ -36,9 +36,9 @@
                 </span>
             </div>
             <div style="height: 2rem;"></div> <!-- Spacer -->
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3" >
                 <div *ngFor="let game of listGames">
-                    <app-card *ngIf="cId === undefined" [game]="game" [cId]="cId"></app-card>
+                    <app-card *ngIf="cId !== undefined" [game]="game" [cId]="cId"></app-card>
                 </div>
             </div>
         </div>

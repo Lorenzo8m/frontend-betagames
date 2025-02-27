@@ -13,16 +13,6 @@ export class ShopComponent implements OnInit, OnDestroy {
   
   constructor(private serv:ApiService){}
 
-  /*
-  listGames: any=[];
-  
-  ngOnInit(): void {
-    this.serv.listGames().subscribe((resp:any)=>{
-      this.listGames = resp.data;
-    })
-  }
-  */
-
   listCategories: any = [];
   selectedCategory: any = null;
   listGames: any = [];
@@ -33,42 +23,17 @@ export class ShopComponent implements OnInit, OnDestroy {
   cId: number | undefined ;
 
   ngOnInit(): void {
-    this.getCartId()
-      .pipe(
-        concatMap(() => this.loadListCategories()),
-        concatMap(() => this.loadListGames())
-      )
-      .subscribe(
-        () => {
-          // Operazioni da eseguire dopo aver caricato le categorie e i giochi
-        },
-        (error: any) => {
-          console.error('Errore:', error);
-        }
-      );
-
+    this.getCartId();
+    this.loadListCategories(); // Carica tutte le categorie all'avvio
+    this.loadListGames(); // Carica tutti i giochi all'avvio
     //aggiungo il debounce all'evento di input per la ricerca
     this.searchInput.pipe(
-      debounceTime(500) // Regola il tempo di debounce (in millisecondi) se necessario
+      debounceTime(500) // Adjust the debounce time (in milliseconds) as needed
     ).subscribe((searchTerm: string) => {
-      this.searchByTypingGames(searchTerm);
+      this.searchByTypingGames(searchTerm)
     });
-
-    console.log("shop: ", this.cId);
+    console.log("shoop: ", this.cId)
   }//ngOnInit
-
-  // ngOnInit(): void {
-  //   this.getCartId();
-  //   this.loadListCategories(); // Carica tutte le categorie all'avvio
-  //   this.loadListGames(); // Carica tutti i giochi all'avvio
-  //   //aggiungo il debounce all'evento di input per la ricerca
-  //   this.searchInput.pipe(
-  //     debounceTime(500) // Adjust the debounce time (in milliseconds) as needed
-  //   ).subscribe((searchTerm: string) => {
-  //     this.searchByTypingGames(searchTerm)
-  //   });
-  //   console.log("shoop: ", this.cId)
-  // }//ngOnInit
 
   loadListCategories(): void {
     this.serv.listCategories().subscribe((resp: any) => {
@@ -118,16 +83,25 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.searchInput.complete();
   }
 
-  getCartId():void{
+  getCartId(): void {
     const id = localStorage.getItem('idUser');
     if (id !== null) {
       const numericId = parseInt(id);
-      this.serv.listInfoUsersById(numericId)
-        .subscribe((res:any)=>{
-          console.log("shop->cardId : ", res.data[0].carts.id)
-          this.cId = res.data[0].cart.id
-        })
+      this.serv.listInfoUsersById(numericId).subscribe({
+        next: (res: any) => {
+          if (res && res.data && res.data[0] && res.data[0].carts && res.data[0].carts.id) {
+            console.log("shop->cardId : ", res.data[0].carts.id);
+            this.cId = res.data[0].carts.id;
+          } else {
+            console.error(res);
+          }
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
     }
   }
+  
 
 }
