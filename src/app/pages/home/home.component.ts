@@ -9,26 +9,36 @@ import { ApiService } from '../../services/api.service';
 })
 export class HomeComponent implements OnInit{
 
-  constructor(private games:ApiService,
-  ){}
+  constructor(private serv:ApiService){}
 
   listGames: any;
   @ViewChild('listGroup') listGroup!: ElementRef;//Ottiene un riferimento all'elemento <ul> con la classe list-group
 
   ngOnInit(): void {
-    this.games.listGames().subscribe((resp:any)=>{
-      this.listGames = resp.data;
-    })
+    this.loadListGames();
   }//ngOnInit
 
+  loadListGames():void{
+    this.serv.listGames().subscribe((resp:any)=>{
+      this.listGames = resp.data;
+    })
+  }//loadListGames
+
   scrollLeft() {
-    this.listGroup.nativeElement.scrollLeft -= 150; //La card è larga 250px
+    const container = this.listGroup.nativeElement;
+    container.scrollBy({
+      left: -200,
+      behavior: 'smooth'
+    });
   }//scrollLeft
 
   scrollRight() {
-    this.listGroup.nativeElement.scrollLeft += 150;
+    const container = this.listGroup.nativeElement;
+    container.scrollBy({
+      left: 200,
+      behavior: 'smooth'
+    });
   }//scrollRight
 
 
-
-}
+}//class

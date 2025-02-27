@@ -1,0 +1,25 @@
+<div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a new author</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #orderCreate="ngForm" (ngSubmit)="onSubmit(orderCreate)">
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Select Paycard" [(ngModel)]="orderCreate.value.payCardId" name="payCardId" ngModel required>
+                          <option selected>Select Paycard</option>
+                          <option *ngFor="let payCard of listUser" [value]="payCard.id">{{payCard.cardNumber}}</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" data-bs-dismiss="modal" class="btn btn-success" data-bs-dismiss="modal" [disabled]="!orderCreate.valid">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,20 @@
+<div style="height: 2rem;"></div> <!-- Spacer -->
+
+<div style="display: flex; justify-content: center;">
+  <pre class="d-none d-md-block" style="font-weight: bold;">
+___________/\\\\\\\\\_____/\\\\\\\\\_______/\\\\\\\\\______/\\\\\\\\\\\\\\\_________
+_________/\\\////////____/\\\\\\\\\\\\\___/\\\///////\\\___\///////\\\/////_________
+________/\\\/____________/\\\/////////\\\_\/\\\_____\/\\\_________\/\\\_____________
+________/\\\_____________\/\\\_______\/\\\_\/\\\\\\\\\\\/__________\/\\\____________
+________\/\\\_____________\/\\\\\\\\\\\\\\\_\/\\\//////\\\__________\/\\\___________
+_________\//\\\____________\/\\\/////////\\\_\/\\\____\//\\\_________\/\\\__________
+___________\///\\\__________\/\\\_______\/\\\_\/\\\_____\//\\\________\/\\\_________
+______________\////\\\\\\\\\_\/\\\_______\/\\\_\/\\\______\//\\\_______\/\\\________
+__________________\/////////__\///________\///__\///________\///________\///________
+  </pre>
+</div>
+<div style="height: 2rem;"></div> <!-- Spacer -->
+
 <div class="container">
     <table class="table">
         <thead class="table-light">
@@ -7,35 +24,37 @@
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Price at time</th>
-            <th scope="col"></th>
             <th scope="col">
-              <button type="button" class="btn btn-danger" (click)="deleteAll(2)">clear</button>
+              <button type="button" class="btn btn-danger" (click)="deleteAll()">clear</button>
             </th>
           </tr>
         </thead>
-        <tbody class="align-middle">
-          <tr *ngFor="let dc of listDetailsCart ; index as i">
-            <th scope="row">{{i+1}}</th>
-            <td>{{dc.gamesDTO.name}}</td>
-            <td>{{dc.gamesDTO.price | currency: 'EUR'}}</td>
-            <td>
-                <input type="number" class="form-control text-center" [(ngModel)]="dc.quantity"  (change)="updateQuantity(dc.quantity,dc.id)"  aria-label="quantity" aria-describedby="basic-addon1">
-            </td>
-            <td>{{dc.gamesDTO.price * dc.quantity | currency: 'EUR'}}</td>
-            <td>
-                <button type="button" class="btn" (click)="onDelete(dc.id)"><i class="bi bi-x-lg"></i></button>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th colspan="4" scope="row"></th>
-            <td>{{ totalAmount() | currency: 'EUR' }}</td>
-            <td>
-              <!-- <button type="button" class="btn btn-primary" (click)="checkout(dc.id)">Chekout</button> -->
-            </td>
-          </tr>
-        </tfoot>
-    </table>
+          <tbody class="align-middle">
+            <tr *ngFor="let dc of listDetailsCart ; index as i">
+              <th scope="row">{{i+1}}</th>
+              <td>{{dc.gamesDTO.name}}</td>
+              <td>{{dc.gamesDTO.price | currency: 'EUR'}}</td>
+              <td>
+                  <input type="number" class="form-control text-center" [(ngModel)]="dc.quantity"  (change)="updateQuantity(dc.quantity,dc.id)"  aria-label="quantity" aria-describedby="basic-addon1">
+              </td>
+              <td>{{dc.gamesDTO.price * dc.quantity | currency: 'EUR'}}</td>
+              <td>
+                  <button type="button" class="btn" (click)="onDelete(dc.id)"><i class="bi bi-x-lg"></i></button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="listDetailsCart && listDetailsCart.length > 0">
+            <tr>
+              <th colspan="4" scope="row"></th>
+              <td>{{ totalAmount() | currency: 'EUR' }}</td>
+              <td >
+                <button type="button" class="btn btn-success h-50" data-bs-toggle="modal" [attr.data-bs-target]="'#createModal'">Chekout</button>
+              </td>
+            </tr>
+          </tfoot>
+      </table>
+      <div *ngIf="listDetailsCart && listDetailsCart.length <= 0">
+          <h3 class="text-center">Your cart is empty</h3>
+      </div>
 </div>
-
+<app-checkout-modal></app-checkout-modal>

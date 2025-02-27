@@ -17,7 +17,7 @@
         <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-inner">
+    <div class="carousel-inner rounded">
         <div class="carousel-item active">
             <div style="background-color: #f0f0f0; padding-bottom: 40%; position: relative; overflow: hidden;">
                 <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #888;">Placeholder 1 - Deve essere 21/9 l'immagine</div>
@@ -46,25 +46,39 @@
 </div>
 
 <div style="height: 2rem;"></div> <!-- Spacer -->
-<!-- Breve testo sul tipo di giochi che vendiamo, modalità di gioco e altre robe che si possono trovare da noi-->
+<!-- Titolo / logo e 4 parole-->
     <!-- centrato sulla pagina, come tutto il resto -->
-<h1 style="text-align: center;"> Betagames</h1>
+<div style="display: flex; justify-content: center;">
+    <pre class="d-none d-md-block" style="font-weight: bold;">
+▀█████████▄     ▄████████     ███        ▄████████    ▄██████▄     ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████    ▄████████ 
+  ███    ███   ███    ███ ▀█████████▄   ███    ███   ███    ███   ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███   ███    ███ 
+  ███    ███   ███    █▀     ▀███▀▀██   ███    ███   ███    █▀    ███    ███ ███   ███   ███   ███    █▀    ███    █▀  
+ ▄███▄▄▄██▀   ▄███▄▄▄         ███   ▀   ███    ███  ▄███          ███    ███ ███   ███   ███  ▄███▄▄▄       ███        
+▀▀███▀▀▀██▄  ▀▀███▀▀▀         ███     ▀███████████ ▀▀███ ████▄  ▀███████████ ███   ███   ███ ▀▀███▀▀▀     ▀███████████ 
+  ███    ██▄   ███    █▄      ███       ███    ███   ███    ███   ███    ███ ███   ███   ███   ███    █▄           ███ 
+  ███    ███   ███    ███     ███       ███    ███   ███    ███   ███    ███ ███   ███   ███   ███    ███    ▄█    ███ 
+▄█████████▀    ██████████    ▄████▀     ███    █▀    ████████▀    ███    █▀   ▀█   ███   █▀    ██████████  ▄████████▀  
+    </pre>
+</div>
+<h1 class="d-md-none" style="text-align: center;"> Betagames</h1><!-- Visibile solo su schermi piccoli-->
 <h2 style="text-align: center;"> Giochi da tavolo dal 1492!</h2>
+
+
 
 <div style="height: 2rem;"></div> <!-- Spacer -->
 <!-- "Carousel" di card di giochi(?) che girano con solo il pulsante ispect (se si può) che apre il modal dal quale si può aggiungere al carrello in caso. UNA SOLA RIGA DIREI-->
-<div style="width: 70vw; margin: 0 auto;">
+<div style="width: 80vw; margin: 0 auto;">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div style="display: flex; align-items: center;">
-                    <button class="btn btn-outline-primary me-2" (click)="scrollLeft()"><</button>
+                    <button class="btn btn-outline-primary me-2 d-none d-sm-block" (click)="scrollLeft()"><</button>
                     <ul class="list-group list-group-horizontal overflow-auto" #listGroup style="width: 100%;">
                         <li *ngFor="let game of listGames; let i = index" class="list-group-item" style="width: 250px; flex-shrink: 0;">
                             <app-card [game]="game"></app-card>
                         </li>
                     </ul>
-                    <button class="btn btn-outline-primary ms-2" (click)="scrollRight()">></button>
+                    <button class="btn btn-outline-primary ms-2 d-none d-sm-block" (click)="scrollRight()">></button>
                 </div>
             </div>
         </div>
@@ -72,17 +86,42 @@
 </div>
 
 <div style="height: 2rem;"></div> <!-- Spacer -->
-<!-- Breve testo che spiega se siamo un'azienda che produce e vende giochi o se vendiamo e basta-->
-<!-- Altra galleria di immagini quadrate piccole di giochi/raduni/eventi/gente che gioca -->
+<!-- Breve testo che spiega se siamo un'azienda che produce e vende giochi o se vendiamo e basta etc. etc.-->
 <p style="text-align: center; width: 70vw; margin: 0 auto;">Dal 1492 <b>BetaGames</b> crea e distribuisce giochi da tavolo in tutto il mondo,<br>
     dalla vendita per corrispondenza e il trasporto navale e a cavallo<br>
-    fino alle moderne consegne con droni militari in zone di guerra (speriamo di non aver lanciato i pacchi troppo forte. Ops!)<br>
-    Da noi puoi trovare giochi da tavolo di tutti i tipi (tavoli di legno, metallo, plastica e chi più ne ha più ne metta).<br>
+    fino alle moderne consegne con droni militari in zone di guerra (speriamo di non aver lanciato i pacchi in testa a qualcuno. Ops!)<br>
+    Qui puoi trovare giochi da tavolo di tutti i tipi (tavoli di legno, metallo, plastica e chi più ne ha più ne metta).<br>
     <br>
     Che siate strateghi esperti o giocatori occasionali, <br>
     BetaGames ha il gioco perfetto per voi.<br>
 </p>
 
 <div style="height: 2rem;"></div> <!-- Spacer -->
-<!-- Footer con informazioni e form di contatti? - anche solo qualche info se non abbiamo tempo-->
+<!-- Galleria di 3 immagini in formato diverso, più piccole di: giochi/raduni/eventi/gente che gioca -->
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div style="width: 70vw; margin: 0 auto;">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-12 col-md-6 col-xl-4">
+                <div style="background-color: #f0f0f0; padding-bottom: 75%; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #888;">Placeholder 1</div>
+                </div>
+                <div style="height: 1rem;"></div> <!-- Spacer -->
+            </div>
+            <div class="col-12 col-md-6 col-xl-4">
+                <div style="background-color: #e0e0e0; padding-bottom: 75%; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #888;">Placeholder 2</div>
+                </div>
+            </div>
+            <div class="col-4 d-none d-xl-block">
+                <div style="background-color: #d0d0d0; padding-bottom: 75%; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #888;">Placeholder 3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div style="height: 2rem;"></div> <!-- Spacer -->
+<!-- Footer con informazioni e form di contatti? - anche solo qualche info se non abbiamo tempo-->
+<app-footer></app-footer>
