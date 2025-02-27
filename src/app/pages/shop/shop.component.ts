@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Subject } from 'rxjs/internal/Subject';
 import { concatMap, debounceTime } from 'rxjs/operators';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-shop',
@@ -11,7 +12,10 @@ import { concatMap, debounceTime } from 'rxjs/operators';
 })
 export class ShopComponent implements OnInit, OnDestroy {
   
-  constructor(private serv:ApiService){}
+  constructor(
+    private serv:ApiService,
+    private auth:AuthService
+  ){}
 
   listCategories: any = [];
   selectedCategory: any = null;
@@ -22,7 +26,20 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   cId: number | undefined ;
 
+  isAutentificated: boolean = false;
+
   ngOnInit(): void {
+    console.log("is authentificated?  ",this.auth.isAutentificated())
+
+    try {
+      this.isAutentificated = this.auth.isAutentificated();
+      console.log('Autenticato:', this.isAutentificated);
+    } catch (error) {
+      console.error('Errore durante la verifica dell\'autenticazione:', error);
+    }
+
+
+
     this.getCartId();
     this.loadListCategories(); // Carica tutte le categorie all'avvio
     this.loadListGames(); // Carica tutti i giochi all'avvio
