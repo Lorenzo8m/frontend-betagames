@@ -43,6 +43,7 @@ import { AuthoeSingleCardComponent } from './components/author-single-card/autho
 import { AuthorDeleteModalComponent } from './components/author-delete-modal/author-delete-modal.component';
 import { AuthorCreateModalComponent } from './components/author-create-modal/author-create-modal.component';
 import { AuthorUpdateModalComponent } from './components/author-update-modal/author-update-modal.component';
+import { DetailModalComponent } from './components/detail-modal/detail-modal.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { AuthorUpdateModalComponent } from './components/author-update-modal/aut
     AuthorUpdateModalComponent,
     RegistrazioneComponent,
     SigninComponent,
-    HomeAdminCardComponent
+    HomeAdminCardComponent,
+    DetailModalComponent
   ],
   imports: [
     BrowserModule,

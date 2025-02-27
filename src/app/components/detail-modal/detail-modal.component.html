@@ -1,0 +1,33 @@
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalLabel">Order Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="order">
+            <h3>Order ID: {{ order.id }}</h3>
+            <p><strong>Total Amount:</strong> {{ order.totalAmount | currency: 'EUR' }}</p>
+            <p><strong>Status:</strong> {{ order.orderStatus }}</p>
+            <p><strong>Created At:</strong> {{ order.createdAt | date: 'dd/MM/yyyy' }}</p>
+  
+            <h4>Games in this order:</h4>
+            <div *ngFor="let detail of order.listDetailsOrderDTO" class="game-info mb-3">
+              <h3 class="game-name">{{ detail.gameDTO.name }}</h3>
+              <p><strong>Price at Time:</strong> €{{ detail.totalPrice }}</p>
+              <p><strong>Total Quantity:</strong> {{ detail.totalQuantity }}</p>
+              <p><strong>Description:</strong> {{ detail.gameDTO.description }}</p>
+              <p><strong>Game Time:</strong> {{ detail.gameDTO.minGameTime }} - {{ detail.gameDTO.maxGameTime }} hours</p>
+              <p><strong>Players:</strong> {{ detail.gameDTO.minPlayerNumber }} - {{ detail.gameDTO.maxPlayerNumber }}</p>
+              <p><strong>Age:</strong> {{ detail.gameDTO.minAge }}+</p>
+              <p><strong>Price:</strong> {{ detail.gameDTO.price | currency: 'EUR' }}</p>
+              <p><strong>Stock Quantity:</strong> {{ detail.gameDTO.stockQuantity }}</p>
+              <p><small><strong>Editor:</strong> {{ detail.gameDTO.editorDTO.name }} ({{ detail.gameDTO.editorDTO.website }})</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

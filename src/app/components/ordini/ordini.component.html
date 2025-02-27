@@ -9,6 +9,7 @@
           <th scope="col">Total Amount</th>
           <th scope="col">Order Status</th>
           <th scope="col">Created At</th>
+          <th scope="col">Details Order</th>
         </tr>
       </thead>
       <tbody>
@@ -18,13 +19,25 @@
           <td>{{ ordine.totalAmount | currency: 'EUR' }}</td>
           <td>{{ ordine.orderStatus }}</td>
           <td>{{ ordine.createdAt | date: 'yyyy/MM/dd' }}</td>
+          <td>
+            <button 
+              type="button" 
+              class="btn btn-primary"
+              data-bs-toggle="modal" 
+              data-bs-target="#detailModal"
+              (click)="loadOrderDetails(ordine)">
+              View Details
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
 
-    <!-- Mensaje cuando no hay órdenes -->
     <ng-template #noOrders>
       <p class="no-orders-message">No orders have been placed by this user.</p>
     </ng-template>
   </div>
 </div>
+
+<!-- Modal per i dettagli dell'ordine -->
+<app-detail-modal [order]="selectedOrder"></app-detail-modal>
