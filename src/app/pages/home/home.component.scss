@@ -1,22 +1,21 @@
 .list-group-item {
     border: none; /* Rimuovi i bordi degli elementi della lista */
-  }
-  
-  .list-group-horizontal > .list-group-item {
-    margin-right: 5px; /* Aggiungi un po' di spazio tra gli elementi */
-  }
-
-  .list-group.list-group-horizontal.overflow-auto::-webkit-scrollbar {
-    display: none;
 }
+.list-group-horizontal > .list-group-item {
+  margin-right: 5px; /* Aggiungi un po' di spazio tra gli elementi */
+}
+//nasconde la barra di scorrimento della lista
+// .list-group.list-group-horizontal.overflow-auto::-webkit-scrollbar {
+//   display: none;
+// }
 
 /* Nascondi la barra di scorrimento anche su Firefox ---- SUGGERITO DALL'AI. idk*/
 .list-group.list-group-horizontal.overflow-auto {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  }
+}
 
-  pre {
+pre {
     line-height: 1.175; /* standard è tipo 1.5 ...? */
     font-size: 1.15vw; /* Dimensione di base */
-  }
+}
