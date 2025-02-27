@@ -13,9 +13,7 @@ export class ApiService {
 
   //=======GAMES==================
   listGames(){
-
     return this.http.get(this.url + "public/games/list")
-
   }
   listGamesById(id: number){
     return this.http.get(this.url + "public/games/listById?id=" + id)
