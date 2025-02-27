@@ -16,7 +16,6 @@ export class SigninComponent {
     private user: ApiService,
     private auth: AuthService,
     private router: Router  ) {}
-
     
   logged: boolean = true;
   convert: string | null = '';
@@ -52,6 +51,9 @@ export class SigninComponent {
           console.error('Errore nelle chiamate API:', error);
         }
       );
+      if (this.auth.isLoggedIn) {
+        this.router.navigate(['home']);
+      }
   }
 
   // onSubmit(loginForm: NgForm) {
