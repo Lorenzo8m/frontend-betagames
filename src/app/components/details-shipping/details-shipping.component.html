@@ -1,0 +1,41 @@
+<p>details-shipping works!</p>
+
+<div class="container">
+    <div *ngIf="listUser && hasActiveUsers()">
+      <ng-container *ngFor="let user of listUser">
+        <div *ngIf="user.active" class="user-info mb-4">
+          <div class="user-header">
+            <h4>Username: {{ user.username }}</h4>
+          </div>
+          <div class="user-details-shipping">
+            <p><strong>Email:</strong> {{ user.email }}</p>           
+                    <table class="table">
+                      <tbody>
+                        <tr *ngFor="let detail of user.detailsShipping">
+                          <td>
+                            <strong>Name:</strong> {{ detail.name }} <br>
+                            <strong>Lastname:</strong> {{ detail.lastname }} <br>
+                            <strong>Country:</strong> {{ detail.country }} <br>
+                            <strong>State Region:</strong> {{ detail.stateRegion }}<br>
+                            <strong>Cap:</strong> {{ detail.cap }} <br>
+                            <strong>City:</strong> {{ detail.city }} <br>
+                            <strong>Address:</strong> {{ detail.address }} <br>
+                          </td>
+                        </tr>
+                        <tr *ngIf="user.detailsShipping.length === 0">
+                          <td class="text-muted">No registered Details Shipping.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+  
+            <button type="button" class="btn btn-danger" (click)="onDelete(user)">Delete</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <hr>
+    <p *ngIf="listUser && !hasActiveUsers()" class="text-center text-muted fs-4">
+      Non ci sono utenti attivi.
+    </p>
+  </div>
+  
