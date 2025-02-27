@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,8 @@ export class NavbarComponent implements OnInit{
 
   constructor(
       private detailsCart:ApiService,
-      private auth:AuthService
+      private auth:AuthService,
+      private router:Router
 
   ){}
 
@@ -30,6 +32,7 @@ export class NavbarComponent implements OnInit{
 
   logout(){
    this.auth.setLoggedOut();
+   this.router.navigate(['/home']);
   }
 
 }

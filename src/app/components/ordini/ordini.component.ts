@@ -16,9 +16,7 @@ export class OrdiniComponent implements OnInit {
 
   listOrdini: any;
   currenteQuote:any;
-
-  
-
+  selectedOrder: any = null; 
   ngOnInit(): void {
     this.loadListOrdini();
   }
@@ -33,6 +31,11 @@ export class OrdiniComponent implements OnInit {
           this.listOrdini = r.data;
         });
     }  
+  }
+
+  loadOrderDetails(order: any) {
+    this.selectedOrder = order;
+    console.log("Pedido seleccionado:", this.selectedOrder);
   }
 
   onDelete(id: number){

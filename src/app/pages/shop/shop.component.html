@@ -16,31 +16,41 @@
                 <!-- filtro in stock - out of stock ? - non c'è più tempo-->
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="container">
-                <div style="display: flex; justify-content: center;">
-                    <pre class="d-block" style="font-weight: bold;">
-                                                
-  ▄▀▀▀▀▄  ▄▀▀▀█▀▀▄  ▄▀▀▀▀▄   ▄▀▀▄▀▀▀▄  ▄▀▀█▄▄▄▄ 
- █ █   ▐ █    █  ▐ █      █ █   █   █ ▐  ▄▀   ▐ 
-    ▀▄   ▐   █     █      █ ▐  █▀▀█▀    █▄▄▄▄▄  
- ▀▄   █     █      ▀▄    ▄▀  ▄▀    █    █    ▌  
-  █▀▀▀    ▄▀         ▀▀▀▀   █     █    ▄▀▄▄▄▄   
-  ▐      █                  ▐     ▐    █    ▐   
-         ▐                             ▐        
-                                                </pre>
-                </div>
-                <div style="display: flex; justify-content: center;">
-                    <span>
-                        Explore our catalog of games and discover new adventures! <!-- Vedremo dimensioni e se aggiungere altro dopo aver scelto il font-->
-                    </span>
-                </div>
-                <div style="height: 2rem;"></div> <!-- Spacer -->
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+
+    <div class="col-lg-9">
+        <div class="container">
+            <div style="display: flex; justify-content: center;">
+                <pre class="d-block" style="font-weight: bold;">
+
+ ▄▀▀▀▀▄  ▄▀▀▄ ▄▄   ▄▀▀▀▀▄   ▄▀▀▄▀▀▀▄ 
+█ █   ▐ █  █   ▄▀ █      █ █   █   █ 
+   ▀▄   ▐  █▄▄▄█  █      █ ▐  █▀▀▀▀  
+▀▄   █     █   █  ▀▄    ▄▀    █      
+ █▀▀▀     ▄▀  ▄▀    ▀▀▀▀    ▄▀       
+ ▐       █   █             █         
+         ▐   ▐             ▐         
+                </pre>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <span>
+                    Explore our catalog of games and discover new adventures! <!-- Vedremo dimensioni e se aggiungere altro dopo aver scelto il font-->
+                </span>
+            </div>
+            <div style="height: 2rem;"></div> <!-- Spacer -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3" >
+            
+                <ng-template *ngIf="isAutentificated; then bloccoTrue else bloccoFalse"></ng-template>
+                <ng-template #bloccoTrue>
+                    <div *ngFor="let game of listGames">
+                        <app-card *ngIf="cId !== undefined" [game]="game" [cId]="cId"></app-card>
+                    </div>
+                </ng-template>
+                <ng-template #bloccoFalse>
                     <div *ngFor="let game of listGames">
                         <app-card [game]="game" [cId]="cId"></app-card>
                     </div>
-                </div>
+                </ng-template>
+
             </div>
         </div>
     </div>

@@ -22,10 +22,10 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'cart', component: CartComponent, canActivate:[guardGuard] },
   { path: 'register', component:RegistrazioneComponent},
-  { path: 'admin', component:AdminComponent},
+  { path: 'admin', component:AdminComponent, canActivate:[adminGuard]},
   {
     path: 'account',
-    component: AccountComponent,
+    component: AccountComponent , canActivate:[guardGuard],
     children: [
       { path: '', redirectTo: 'ordini', pathMatch: 'full' },
       { path: 'ordini', component: OrdiniComponent },
