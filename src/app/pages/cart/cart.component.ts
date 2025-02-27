@@ -15,12 +15,7 @@ export class CartComponent implements OnInit{
   ){}
   
     listDetailsCart: any[]=[];
-
-    // loadListDetailsCart(): void{
-    //   this.detailsCart.listByCart(this.quote.getValueCurrentQuote().data[0].carts.id).subscribe((resp:any)=>{
-    //     this.listDetailsCart = resp.data;
-    //   })
-    // }
+    cartId: number | null = 0;
 
     loadListDetailsCart():void{
       const id = localStorage.getItem('idUser');
@@ -29,7 +24,8 @@ export class CartComponent implements OnInit{
         console.log("cart", numericId,  typeof numericId)
         this.detailsCart.listInfoUsersById(numericId)
           .pipe(switchMap((res:any)=>{
-            console.log(res.data[0].carts.id)
+            console.log(res.data[0].carts.id);
+            this.cartId = res.data[0].carts.id;
             return this.detailsCart.listByCart(res.data[0].carts.id);
           }))
           .subscribe((r:any)=>{
@@ -40,7 +36,6 @@ export class CartComponent implements OnInit{
   
     ngOnInit(): void {
       this.loadListDetailsCart()
-      //this.loadListDetailsCart();
     }
 
     updateQuantity(quantity: number, id: number){
@@ -61,20 +56,14 @@ export class CartComponent implements OnInit{
         this.loadListDetailsCart();
       })
     }
-    deleteAll(cartId: number){
+    deleteAll(){
       this.detailsCart.deleteAllByCart({
-        cartId
+        cartId : this.cartId
       })
       .subscribe((resp:any)=>{
         this.loadListDetailsCart();
       })
     }
-
-    checkout(userId: number, payCardId: number){
-      
-    }
-    // "userId": 2,
-    // "payCardId": 1
 
     totalAmount(): number {
       return this.listDetailsCart.reduce((acc: any, dc:any) => acc + (dc.gamesDTO.price * dc.quantity), 0);

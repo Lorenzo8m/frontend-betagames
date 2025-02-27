@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Subject } from 'rxjs/internal/Subject';
-import { debounceTime } from 'rxjs/operators';
+import { concatMap, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shop',
@@ -13,16 +13,6 @@ export class ShopComponent implements OnInit, OnDestroy {
   
   constructor(private serv:ApiService){}
 
-  /*
-  listGames: any=[];
-  
-  ngOnInit(): void {
-    this.serv.listGames().subscribe((resp:any)=>{
-      this.listGames = resp.data;
-    })
-  }
-  */
-
   listCategories: any = [];
   selectedCategory: any = null;
   listGames: any = [];
@@ -30,9 +20,10 @@ export class ShopComponent implements OnInit, OnDestroy {
   searchTerm: any=[];  // variabile per il termine di ricerca del nome
   searchInput = new Subject<string>();  //Subject che rappresenti l'evento di input per il debounce
 
-  cId: number | undefined;
+  cId: number | undefined ;
 
   ngOnInit(): void {
+    this.getCartId();
     this.loadListCategories(); // Carica tutte le categorie all'avvio
     this.loadListGames(); // Carica tutti i giochi all'avvio
     //aggiungo il debounce all'evento di input per la ricerca
@@ -41,7 +32,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     ).subscribe((searchTerm: string) => {
       this.searchByTypingGames(searchTerm)
     });
-    this.getCartId();
+    console.log("shoop: ", this.cId)
   }//ngOnInit
 
   loadListCategories(): void {
@@ -92,16 +83,25 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.searchInput.complete();
   }
 
-  getCartId():void{
+  getCartId(): void {
     const id = localStorage.getItem('idUser');
     if (id !== null) {
       const numericId = parseInt(id);
-      this.serv.listInfoUsersById(numericId)
-        .subscribe((res:any)=>{
-          console.log("shop->cardId : ", res.data[0].carts.id)
-          this.cId = res.data[0].cart.id
-        })
+      this.serv.listInfoUsersById(numericId).subscribe({
+        next: (res: any) => {
+          if (res && res.data && res.data[0] && res.data[0].carts && res.data[0].carts.id) {
+            console.log("shop->cardId : ", res.data[0].carts.id);
+            this.cId = res.data[0].carts.id;
+          } else {
+            console.error(res);
+          }
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
     }
   }
+  
 
 }

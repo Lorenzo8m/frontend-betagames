@@ -17,28 +17,29 @@ export class CardComponent implements OnInit {
   ){}  
 
   ngOnInit(): void {
-    this.getCartId()
+    //this.getCartId()
+    console.log(this.cId)
   }
 
   mainSuffixImg: String = ".webp"
 
-  getCartId():void{
-    const id = localStorage.getItem('idUser');
-    if (id !== null) {
-      const numericId = parseInt(id);
-      this.serv.listInfoUsersById(numericId)
-        .subscribe((res:any)=>{
-          this.cId = res.data[0].carts.id
-        })
-    }
-  }
+  // getCartId():void{
+  //   const id = localStorage.getItem('idUser');
+  //   if (id !== null) {
+  //     const numericId = parseInt(id);
+  //     this.serv.listInfoUsersById(numericId)
+  //       .subscribe((res:any)=>{
+  //         this.cId = res.data[0].carts.id
+  //       })
+  //   }
+  // }
   
   addToCart(gameId: number, quantity: number):void {
       let cartId = this.cId;
       console.log("add ", gameId  + " " + quantity + " " + cartId)
       this.serv.createDetailsCart({
         gameId,
-        cartId,
+        cartId: this.cId,
         quantity
       }).subscribe((resp:any)=>{
         resp.msg;

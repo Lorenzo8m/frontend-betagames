@@ -44,6 +44,7 @@ import { AuthorDeleteModalComponent } from './components/author-delete-modal/aut
 import { AuthorCreateModalComponent } from './components/author-create-modal/author-create-modal.component';
 import { AuthorUpdateModalComponent } from './components/author-update-modal/author-update-modal.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CheckoutModalComponent } from './components/checkout-modal/checkout-modal.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { FooterComponent } from './components/footer/footer.component';
     RegistrazioneComponent,
     SigninComponent,
     HomeAdminCardComponent,
-    FooterComponent
+    FooterComponent,
+    CheckoutModalComponent
   ],
   imports: [
     BrowserModule,
