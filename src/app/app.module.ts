@@ -46,6 +46,7 @@ import { AuthorUpdateModalComponent } from './components/author-update-modal/aut
 import { DetailModalComponent } from './components/detail-modal/detail-modal.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CheckoutModalComponent } from './components/checkout-modal/checkout-modal.component';
+import { DetailsShippingComponent } from './components/details-shipping/details-shipping.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { CheckoutModalComponent } from './components/checkout-modal/checkout-mod
     HomeAdminCardComponent,
     DetailModalComponent,
     FooterComponent,
-    CheckoutModalComponent
+    CheckoutModalComponent,
+    DetailsShippingComponent
   ],
   imports: [
     BrowserModule,
