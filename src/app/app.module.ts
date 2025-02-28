@@ -56,6 +56,7 @@ import { SidecartComponent } from './components/sidecart/sidecart.component';
 
 import { CheckoutModalComponent } from './components/checkout-modal/checkout-modal.component';
 import { DetailsShippingComponent } from './components/details-shipping/details-shipping.component';
+import { UserDropdownComponent } from './components/user-dropdown/user-dropdown.component';
 import { HomeCardComponent } from './pages/home/home-card/home-card.component';
 
 
@@ -107,9 +108,8 @@ import { HomeCardComponent } from './pages/home/home-card/home-card.component';
     FooterComponent,
     CheckoutModalComponent,
     DetailsShippingComponent,
-    HomeCardComponent,
-
-
+    UserDropdownComponent,
+    HomeCardComponent
   ],
   imports: [
     BrowserModule,

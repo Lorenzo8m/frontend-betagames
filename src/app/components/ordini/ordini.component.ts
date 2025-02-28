@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-ordini',
@@ -15,7 +16,7 @@ export class OrdiniComponent implements OnInit {
   ){}
 
   listOrdini: any;
-  currenteQuote:any;
+  user:any;
   selectedOrder: any = null; 
   ngOnInit(): void {
     this.loadListOrdini();
@@ -26,10 +27,23 @@ export class OrdiniComponent implements OnInit {
     if (id !== null) {
       const numericId = parseInt(id);
       console.log("cart", numericId,  typeof numericId)
-      this.service.listOrderByUser(numericId)
-        .subscribe((r:any)=>{
-          this.listOrdini = r.data;
-        });
+
+          this.service.SearchByTypingUser(numericId).pipe(
+      switchMap((resp: any) => {
+        this.user = resp.data[0]; // Salva l'utente
+        console.log("Utente trovato:", this.user);
+
+        // Se l'utente è attivo, esegui la richiesta degli ordini
+        if (this.user && this.user.active) {
+          return this.service.listOrderByUser(numericId);
+        } else {
+          return of({ data: [] }); // Se l'utente è inattivo, restituisci un array vuoto
+        }
+      })
+    ).subscribe((r: any) => {
+      this.listOrdini = r.data;
+      console.log("Ordini trovati:", this.listOrdini);
+    });
     }  
   }
 
