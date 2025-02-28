@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
@@ -156,9 +157,14 @@ export class ApiService {
     return this.http.get(this.url + 'public/categories/list');
   }
   //=======REVIEWS==================
+  // listReview(id: number) {
+  //   return this.http.get<any[]>(this.url + `public/reviews/listByGameId?id=` + id);
+  // }
   listReview(id: number) {
-    return this.http.get<any[]>(this.url + `public/reviews/listByGameId?id=` + id);
-  }  
+    return this.http
+      .get<any>(this.url + `public/reviews/listByGameId?id=` + id)
+      .pipe(map((response) => response.data)); // Estrai direttamente `data`
+  }
   createReview(body: {}) {
     return this.http.post(this.url + 'user/reviews/create', body);
   }

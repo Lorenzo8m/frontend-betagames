@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
-import { Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+
 
 @Component({
   selector: 'app-card',
@@ -18,13 +17,13 @@ export class CardComponent implements OnInit {
   userId: any  = "";
   
 
-  constructor(private serv: ApiService, private router: Router) {}
+  constructor(private serv: ApiService) {}
 
   ngOnInit(): void {
     console.log(this.cId);
     const storedUserId = localStorage.getItem('idUser'); // Ottieni l'ID dal localStorage
     this.userId = storedUserId ? parseInt(storedUserId, 10) : null; // Converte in numero
-    //this.loadReviews();
+    this.loadReviews();
 
     console.log("User ID from localStorage:", this.userId);
   }
@@ -51,6 +50,22 @@ export class CardComponent implements OnInit {
     return gameName.replace(/\s+/g, ''); // Sostituisci gli spazi con caratteri di sottolineatura
   }
 
+  // reviews
+  reviews: any[] = []; // Nuovo array per le recensioni
+  
+  loadReviews(): void {
+    this.serv.listReview(this.game.id).subscribe(
+      (response: any[]) => {  
+        console.log("Dati ricevuti prima dell'assegnazione:", response);
+        this.reviews = response || []; 
+        console.log("Valore aggiornato di reviews:", this.reviews);
+      },
+      (error) => {
+        console.error("Errore nel caricamento delle recensioni:", error);
+      }
+    );
+  }
+
   // Metodo per inviare una nuova recensione
   submitReview(): void {
     if (!this.userId) {
@@ -70,10 +85,8 @@ export class CardComponent implements OnInit {
           this.showReviewForm = false;
           this.reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };
   
-          // Aggiorna la lista delle recensioni chiamando il metodo del servizio
-          this.serv.listReview(this.game.id).subscribe((reviews) => {
-            this.game.listReviewsDTO = reviews; // Aggiorna la lista visibile delle recensioni
-          });
+          // Aggiorna la lista delle recensioni chiamando `loadReviews()`
+          this.loadReviews();
         }
       },
       (error) => {
@@ -83,10 +96,7 @@ export class CardComponent implements OnInit {
     );
   }
   
-
   deleteReview(reviewId: number, reviewUserId: number): void {
-    // const userId = localStorage.getItem('idUser'); // Ottieni l'ID dell'utente dal localStorage
-  
     if (!this.userId) {
       alert("You must be logged in to delete a review.");
       return;
@@ -103,10 +113,8 @@ export class CardComponent implements OnInit {
     this.serv.deleteReview({ id: reviewId }).subscribe(
       (response: any) => {
         console.log("Review deleted:", response);
-        //alert("Review deleted successfully!");
-  
-        // Aggiorna la lista delle recensioni rimuovendo quella eliminata
-        this.game.listReviewsDTO = this.game.listReviewsDTO.filter((review: any) => review.id !== reviewId);
+        // Aggiorna la lista ricaricandola dal backend
+        this.loadReviews();
       },
       (error) => {
         console.error("Error deleting review:", error);
@@ -114,20 +122,5 @@ export class CardComponent implements OnInit {
       }
     );
   }
-
-  loadReviews(): void {
-    this.serv.listReview(this.game.id).subscribe(
-      (reviews) => {
-        this.game.listReviewsDTO = reviews;
-        console.log("Recensioni caricate:", reviews); // Mostra i dati nel console log
-        //alert("Recensioni caricate con successo!"); // Alert dopo il caricamento
-      },
-      (error) => {
-        console.error("Errore nel caricamento delle recensioni:", error);
-        //alert("Errore nel caricamento delle recensioni.");
-      }
-    );
-  }
-  
   
 }

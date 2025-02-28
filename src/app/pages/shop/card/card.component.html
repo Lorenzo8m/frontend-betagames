@@ -275,32 +275,31 @@
                   <br />
 
                   <!-- LISTA RECENSIONI -->
-                  <ng-container *ngFor="let review of game.listReviewsDTO">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <h6 class="mb-0">
-                          <i class="bi bi-person fs-5" style="padding-right: 10px;"></i>
-                          {{ review.username.username }}
-                        </h6>
+                  <ng-container *ngIf="reviews && reviews.length">
+                    <ng-container *ngFor="let review of reviews">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <h6 class="mb-0">
+                            <i class="bi bi-person fs-5" style="padding-right: 10px;"></i>
+                            {{ review.username.username }}
+                          </h6>
+                        </div>
+                        <div class="col-auto d-flex">
+                          <ng-container *ngFor="let star of [].constructor(review.score); let i = index">
+                            <i class="bi bi-star-fill text-warning"></i>
+                          </ng-container>
+                        </div>
+                        <div class="col-auto ms-auto" *ngIf="+review.username.id === +userId">
+                          <button class="btn btn-danger btn-sm" (click)="deleteReview(review.id, review.username.id)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </div>
                       </div>
-                      <div class="col-auto d-flex">
-                        <ng-container *ngFor="let star of [].constructor(review.score); let i = index">
-                          <i class="bi bi-star-fill text-warning"></i>
-                        </ng-container>
-                      </div>
-                      <!-- PULSANTE DI ELIMINAZIONE (VISIBILE SOLO SE L'UTENTE È IL PROPRIETARIO DELLA RECENSIONE) -->
-                      <div class="col-auto ms-auto" *ngIf="+review.username.id === +userId">
-                        <button class="btn btn-danger btn-sm" (click)="deleteReview(review.id, review.username.id)">
-                          <i class="bi bi-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-                    <p>{{ review.description }}</p>
-                    <hr>
+                      <p>{{ review.description }}</p>
+                      <hr>
+                    </ng-container>
                   </ng-container>
                   
-                  
-
                   <!-- FORM DI RECENSIONE (VISIBILE SOLO SE showReviewForm = true) -->
                   <div *ngIf="showReviewForm">
                     <form (ngSubmit)="submitReview()">
