@@ -1,4 +1,19 @@
-pre {
-    line-height: 1.15; /* standard è tipo 1.5 ...? */
-    font-size: 1.75vw; /* Dimensione di base */
+.jumbotron {
+  background-image: url('/assets/banners/BannerShop2.jpg');
+  background-size: cover; /* Copre l'intera area del jumbotron */
+  background-position: center; /* Centra l'immagine*/
+  height: 275px;
+  color: white; /* Rende il testo bianco per contrasto */
+  padding-top: 5rem; /* Regola il padding superiore per centrare il testo verticalmente */
+  margin-bottom: 0; /* Rimuove il margine inferiore predefinito del jumbotron */
+  position: relative; /* Necessario per l'effetto parallax (vediamo se farlo) */
+  overflow: hidden; /* Per nascondere parti dell'immagine se si estende oltre il contenitore */
+  
+  h1 {
+    font-size: 3rem; /* Regola la dimensione del titolo */
   }
+
+  h5 {
+    font-size: 1.5rem; /* Regola la dimensione del sottotitolo */
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 declare var bootstrap: any;
 @Component({
@@ -8,8 +8,8 @@ declare var bootstrap: any;
   styleUrl: './categories-create-modal.component.scss'
 })
 export class CategoriesCreateModalComponent {
-
-   @ViewChild("categoryCreate") categoryCreate!: ElementRef;
+  @Output() updateListCategory: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @ViewChild("categoryCreate") categoryCreate!: ElementRef;
   
   constructor(private categoriesService: ApiService) { }
 
@@ -21,6 +21,7 @@ export class CategoriesCreateModalComponent {
     loadListCategories() {
       this.categoriesService.listCategories().subscribe((resp: any) => {
         this.listCategories = resp.data;
+        this.updateListCategory.emit(this.listCategories);
       })
   }
   
@@ -45,12 +46,12 @@ export class CategoriesCreateModalComponent {
       let modalElement = document.getElementById(`createModal`); 
       let modalInstance = bootstrap.Modal.getInstance(modalElement); 
       modalInstance.hide(); 
-    }, 3000);
+    }, 500);
   }
 
   hideFlag():void {
     setTimeout(() => {
       this.flag = null;
-    }, 5000)
+    }, 1000)
   }
 }

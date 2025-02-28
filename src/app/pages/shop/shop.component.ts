@@ -121,5 +121,4 @@ export class ShopComponent implements OnInit, OnDestroy {
     }
   }
   
-
-}
+}//class

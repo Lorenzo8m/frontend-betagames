@@ -6,9 +6,9 @@
 <div *ngFor="let a of listAuthors; index as i">
     <app-authoe-single-card [authorData]="a"></app-authoe-single-card>
     <!--Modal-->
-    <app-author-update-modal [authorData]="a"></app-author-update-modal>
+    <app-author-update-modal [authorData]="a" (updateListAuthor)="updateListAuthor($event)"></app-author-update-modal>
     <!--Delete Modal-->
-    <app-author-delete-modal [authorData]="a"></app-author-delete-modal>
+    <app-author-delete-modal [authorData]="a" (updateListAuthor)="updateListAuthor($event)"></app-author-delete-modal>
 </div>
 <!--Create Modal-->
-<app-author-create-modal></app-author-create-modal>
+<app-author-create-modal (updateListAuthor)="updateListAuthor($event)"></app-author-create-modal>

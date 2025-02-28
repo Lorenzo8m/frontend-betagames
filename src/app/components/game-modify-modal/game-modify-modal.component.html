@@ -55,11 +55,25 @@
                         </div>
                         <div>
                             <label for="editorsId" class="form-label">Id editor</label>
-                            <input type="number" class="form-control" id="editorsId" name="editorsId">
-                            <label for="editorsId" class="form-label">Id category</label>
-                            <input type="number" class="form-control" id="categoryId" name="categoryId">
-                            <label for="editorsId" class="form-label">Id author</label>
-                            <input type="number" class="form-control" id="authorId" name="authorId">
+                            <select name="editorsId" class="form-control">
+                            <option *ngFor="let editor of listEditor" [value]="editor.id">
+                                {{ editor.name }}
+                            </option>
+                            </select>
+    
+                            <label for="categoryId" class="form-label">Id category</label>
+                            <select name="categoryId" class="form-control">
+                                <option *ngFor="let category of listCategory" [value]="category.id">
+                                    {{ category.name }}
+                                </option>
+                            </select>
+    
+                            <label for="authorId" class="form-label">Id author</label>
+                            <select name="editorsId" class="form-control">
+                                <option *ngFor="let author of listAuthor" [value]="author.id">
+                                    {{ author.name }} {{author.lastname}}
+                                </option>
+                            </select>
                         </div>
 
                     </div>

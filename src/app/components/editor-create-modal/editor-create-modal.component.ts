@@ -2,7 +2,6 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular
 import { ApiService } from '../../services/api.service';
 declare var bootstrap: any;
 
-
 @Component({
   selector: 'app-editor-create-modal',
   standalone: false,
@@ -10,6 +9,7 @@ declare var bootstrap: any;
   styleUrl: './editor-create-modal.component.scss'
 })
 export class EditorCreateModalComponent { 
+  @Output() updateListEditor: EventEmitter<any[]> = new EventEmitter<any[]>();
   @ViewChild('createEditor') editor!: ElementRef;
 
   flag: boolean | null = null;
@@ -21,9 +21,9 @@ export class EditorCreateModalComponent {
   loadListEditors() {
     this.editorsService.listEditors().subscribe((resp: any) => {
       this.listEditors = resp.data;
+      this.updateListEditor.emit(this.listEditors);
     });
   }
-
 
   createEditors() {
     console.log(this.editor)  
@@ -42,8 +42,6 @@ export class EditorCreateModalComponent {
         this.message = resp.msg;
         this.hideFlag();
       }
-
-
     })
   }
 
@@ -53,13 +51,13 @@ export class EditorCreateModalComponent {
       let modalElement = document.getElementById('createModal'); 
       let modalInstance = bootstrap.Modal.getInstance(modalElement); 
       modalInstance.hide(); 
-    }, 3000);
+    }, 500);
   }
 
   hideFlag():void {
     setTimeout(() => {
       this.flag = null;
-    }, 5000)
+    }, 1000)
   }
 
 }

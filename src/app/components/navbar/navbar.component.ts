@@ -13,10 +13,13 @@ export class NavbarComponent implements OnInit{
 
 
   constructor(
+
     private detailsCart:ApiService,
     private auth: AuthService,
     private SharedService: SharedService,
     private serv:ApiService,
+    private router:Router
+
   ){}
 
   listDetailsCart: any[]=[];
