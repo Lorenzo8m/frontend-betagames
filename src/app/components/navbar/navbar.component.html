@@ -44,4 +44,4 @@
     </div>
   </div>
 </nav>
-<app-sidecart [isOpen]="isCartOpen" (cartChanged)="onRecieveNumber($event)"></app-sidecart>
+<app-sidecart [isOpen]="isCartOpen" [cartId]="cId"(cartChanged)="onRecieveNumber($event)"></app-sidecart>

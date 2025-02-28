@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { switchMap } from 'rxjs';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-card',
@@ -13,8 +14,7 @@ export class CardComponent implements OnInit {
   @Input() game: any;
   @Input() cId: number | undefined;
 
-  constructor(private serv:ApiService
-  ){}  
+  constructor(private serv:ApiService,private sharedService:SharedService ){}  
 
   ngOnInit(): void {
     //this.getCartId()
@@ -44,6 +44,7 @@ export class CardComponent implements OnInit {
       }).subscribe((resp:any)=>{
         resp.msg;
         console.log(resp.msg);
+        this.sharedService.updateCount(1);
       })
   }//addToCart
 
