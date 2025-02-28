@@ -51,25 +51,32 @@ export class CardComponent implements OnInit {
 
   // Metodo per inviare una nuova recensione
   submitReview(): void {
-
     if (!this.userId) {
       alert("You must be logged in to add a review.");
       return;
     }
-
+  
     this.reviewData.usersId = parseInt(this.userId);
     this.reviewData.gameId = this.game.id;
-
+  
     this.serv.createReview(this.reviewData).subscribe(
       (response: any) => {
-        console.log("Review response:", response);
-
         if (response.rc === false && response.msg) {
-          alert(response.msg); // Mostra l'errore del backend (es. "Hai già recensito questo gioco")
+          alert(response.msg); // Mostra l'errore del backend
         } else {
-          alert("Your review has been submitted!");
+          // Aggiungi manualmente la nuova recensione all'array esistente
+          const newReview = {
+            id: response.reviewId, // Assicurati che il backend restituisca l'ID
+            username: { id: this.userId, username: "YourUsername" }, // Aggiorna con il nome dell'utente loggato
+            score: this.reviewData.score,
+            description: this.reviewData.description,
+          };
+  
+          this.game.listReviewsDTO = [...this.game.listReviewsDTO, newReview];
+  
+          // Reset del form
           this.showReviewForm = false;
-          this.reviewData = { score: 1, description: '', usersId: 0, gameId: 0 }; // Reset del form
+          this.reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };
         }
       },
       (error) => {
@@ -78,7 +85,8 @@ export class CardComponent implements OnInit {
       }
     );
   }
-
+  
+  
   deleteReview(reviewId: number, reviewUserId: number): void {
     // const userId = localStorage.getItem('idUser'); // Ottieni l'ID dell'utente dal localStorage
   
@@ -98,7 +106,7 @@ export class CardComponent implements OnInit {
     this.serv.deleteReview({ id: reviewId }).subscribe(
       (response: any) => {
         console.log("Review deleted:", response);
-        alert("Review deleted successfully!");
+        //alert("Review deleted successfully!");
   
         // Aggiorna la lista delle recensioni rimuovendo quella eliminata
         this.game.listReviewsDTO = this.game.listReviewsDTO.filter((review: any) => review.id !== reviewId);
