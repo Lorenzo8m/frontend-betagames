@@ -1,13 +1,14 @@
-<div class="modal fade" id="staticBackdrop{{authorData.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop{{authorData.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Author: {{authorData.name}} {{authorData.lastname}}</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Author: {{authorData.name}}
+                    {{authorData.lastname}}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form #authorUpdate>
                     <div class="mb-3">
                         <label for="EditorsName" class="form-label">Author name</label>
                         <input type="text" class="form-control" id="authorsName" name="authorsName">
@@ -16,18 +17,20 @@
                         <input type="text" class="form-control" id="authorsLastname" name="authorsLastname">
                         <div id="emailHelp" class="form-text">Actual lastname: {{authorData.lastname}}</div>
                         <label for="EditorsName" class="form-label">Country: </label>
-                        <input type="text" class="form-control" id="country" name="country" >
+                        <input type="text" class="form-control" id="country" name="country">
                         <div id="emailHelp" class="form-text">Actual country{{authorData.country}}</div>
-                        <label for="EditorsName" class="form-label" id="biography" name="biography">Biography</label>
+                        <label for="EditorsName" class="form-label" name="biography">Biography</label>
                         <input type="text" class="form-control" id="biography" name="biography">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
+                <div class="d-flex w-50 h-50">
+                    <app-alert *ngIf="flag === true" [flag]="flag" [message]="message"></app-alert>
+                    <app-alert *ngIf="flag === false" [flag]="flag" [message]="message"></app-alert>
+                </div>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" data-bs-dismiss="modal" class="btn btn-primary"
-                    (click)="saveUpdateAuthors(authorData.id)"
-                    data-bs-dismiss="modal">Modify</button>
+                <button type="button" class="btn btn-primary" (click)="saveUpdateAuthors(authorData.id)">Modify</button>
 
             </div>
         </div>

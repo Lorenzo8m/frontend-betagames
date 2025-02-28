@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-author-delete-modal',
   standalone: false,
@@ -13,7 +13,8 @@ export class AuthorDeleteModalComponent {
 
   constructor(private authorsService: ApiService) { }
 
-
+  flag: boolean | null = null;
+  message: string = "";
   listAuthors: any[] = [];
 
   loadListAuthors() {
@@ -28,8 +29,32 @@ export class AuthorDeleteModalComponent {
     this.authorsService.deleteAuthors({
       "id":id
     }).subscribe((resp: any) => {
-      console.log(resp);
-      this.loadListAuthors();
+      if (resp.rc) {
+        this.flag = resp.rc;
+        this.message = resp.msg;
+        this.hideModal(id);
+        this.loadListAuthors();
+      } else {
+        this.flag = resp.rc;
+        this.message = resp.msg;
+        this.hideFlag();
+      }
+      
     })
+  }
+
+  hideModal(id:number): void {
+    setTimeout(() => {
+      this.flag = null;
+      let modalElement = document.getElementById(`deleteStaticBackdrop${id}`); 
+      let modalInstance = bootstrap.Modal.getInstance(modalElement); 
+      modalInstance.hide(); 
+    }, 3000);
+  }
+
+  hideFlag():void {
+    setTimeout(() => {
+      this.flag = null;
+    }, 5000)
   }
 }

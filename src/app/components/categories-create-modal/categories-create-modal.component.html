@@ -1,0 +1,28 @@
+<div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a new category</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #categoryCreate>
+                    <div class="mb-3">
+                        <label for="EditorsName" class="form-label">Category name</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex w-50 h-50">
+                    <app-alert *ngIf="flag === true" [flag]="flag" [message]="message"></app-alert>
+                    <app-alert *ngIf="flag === false" [flag]="flag" [message]="message"></app-alert>
+                </div>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancella</button>
+                <button type="button" class="btn btn-success" (click)="createCategory()">Confirm</button>
+
+            </div>
+        </div>
+    </div>
+</div>
