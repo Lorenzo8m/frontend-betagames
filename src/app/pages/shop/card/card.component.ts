@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 
+import { switchMap } from 'rxjs';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-card',
@@ -12,12 +14,13 @@ export class CardComponent implements OnInit {
   @Input() game: any;
   @Input() cId: number | undefined;
 
+
+  constructor(private serv:ApiService,private sharedService:SharedService ){}  
+
   showReviewForm: boolean = false; // Mostra/nasconde il form
   reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };
   userId: any  = "";
   
-
-  constructor(private serv: ApiService) {}
 
   ngOnInit(): void {
     console.log(this.cId);
@@ -43,8 +46,10 @@ export class CardComponent implements OnInit {
       .subscribe((resp: any) => {
         resp.msg;
         console.log(resp.msg);
-      });
-  }
+        this.sharedService.updateCount(1);
+      })
+  }//addToCart
+
 
   correctImageName(gameName: string): string {
     return gameName.replace(/\s+/g, ''); // Sostituisci gli spazi con caratteri di sottolineatura

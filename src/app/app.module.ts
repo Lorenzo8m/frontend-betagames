@@ -56,6 +56,7 @@ import { SidecartComponent } from './components/sidecart/sidecart.component';
 
 import { CheckoutModalComponent } from './components/checkout-modal/checkout-modal.component';
 import { DetailsShippingComponent } from './components/details-shipping/details-shipping.component';
+import { HomeCardComponent } from './pages/home/home-card/home-card.component';
 
 
 @NgModule({
@@ -102,11 +103,12 @@ import { DetailsShippingComponent } from './components/details-shipping/details-
     CategoriesUpdateModalComponent,
     AlertComponent,
     SidecartComponent,
-
     DetailModalComponent,
     FooterComponent,
     CheckoutModalComponent,
-    DetailsShippingComponent
+    DetailsShippingComponent,
+    HomeCardComponent,
+
 
   ],
   imports: [
