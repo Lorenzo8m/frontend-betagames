@@ -156,6 +156,9 @@ export class ApiService {
     return this.http.get(this.url + 'public/categories/list');
   }
   //=======REVIEWS==================
+  listReview(id: number) {
+    return this.http.get<any[]>(this.url + `public/reviews/listByGameId?id=` + id);
+  }  
   createReview(body: {}) {
     return this.http.post(this.url + 'user/reviews/create', body);
   }

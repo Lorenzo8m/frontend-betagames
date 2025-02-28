@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
+import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 
 @Component({
@@ -17,13 +18,14 @@ export class CardComponent implements OnInit {
   userId: any  = "";
   
 
-  constructor(private serv: ApiService) {}
+  constructor(private serv: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     console.log(this.cId);
     const storedUserId = localStorage.getItem('idUser'); // Ottieni l'ID dal localStorage
     this.userId = storedUserId ? parseInt(storedUserId, 10) : null; // Converte in numero
-  
+    //this.loadReviews();
+
     console.log("User ID from localStorage:", this.userId);
   }
   
@@ -62,21 +64,16 @@ export class CardComponent implements OnInit {
     this.serv.createReview(this.reviewData).subscribe(
       (response: any) => {
         if (response.rc === false && response.msg) {
-          alert(response.msg); // Mostra l'errore del backend
+          alert(response.msg);
         } else {
-          // Aggiungi manualmente la nuova recensione all'array esistente
-          const newReview = {
-            id: response.reviewId, // Assicurati che il backend restituisca l'ID
-            username: { id: this.userId, username: "YourUsername" }, // Aggiorna con il nome dell'utente loggato
-            score: this.reviewData.score,
-            description: this.reviewData.description,
-          };
-  
-          this.game.listReviewsDTO = [...this.game.listReviewsDTO, newReview];
-  
           // Reset del form
           this.showReviewForm = false;
           this.reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };
+  
+          // Aggiorna la lista delle recensioni chiamando il metodo del servizio
+          this.serv.listReview(this.game.id).subscribe((reviews) => {
+            this.game.listReviewsDTO = reviews; // Aggiorna la lista visibile delle recensioni
+          });
         }
       },
       (error) => {
@@ -86,7 +83,7 @@ export class CardComponent implements OnInit {
     );
   }
   
-  
+
   deleteReview(reviewId: number, reviewUserId: number): void {
     // const userId = localStorage.getItem('idUser'); // Ottieni l'ID dell'utente dal localStorage
   
@@ -117,5 +114,20 @@ export class CardComponent implements OnInit {
       }
     );
   }
+
+  loadReviews(): void {
+    this.serv.listReview(this.game.id).subscribe(
+      (reviews) => {
+        this.game.listReviewsDTO = reviews;
+        console.log("Recensioni caricate:", reviews); // Mostra i dati nel console log
+        //alert("Recensioni caricate con successo!"); // Alert dopo il caricamento
+      },
+      (error) => {
+        console.error("Errore nel caricamento delle recensioni:", error);
+        //alert("Errore nel caricamento delle recensioni.");
+      }
+    );
+  }
+  
   
 }
