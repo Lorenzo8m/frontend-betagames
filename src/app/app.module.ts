@@ -101,7 +101,7 @@ import { DetailsShippingComponent } from './components/details-shipping/details-
     CategoriesDeleteModalComponent,
     CategoriesUpdateModalComponent,
     AlertComponent,
-    SidecartComponent
+    SidecartComponent,
 
     DetailModalComponent,
     FooterComponent,

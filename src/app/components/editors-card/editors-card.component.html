@@ -6,9 +6,9 @@
 <div *ngFor="let e of listEditors; index as i">
     <app-editor-single-card [editorData]="e"></app-editor-single-card>
     <!--Modal-->
-    <app-editor-update-modal [editorData]="e"></app-editor-update-modal>
+    <app-editor-update-modal [editorData]="e" (updateListEditor)="updateListEditor($event)"></app-editor-update-modal>
     <!--Delete Modal-->
-    <app-editor-delete-modal [editorData]="e"></app-editor-delete-modal>
+    <app-editor-delete-modal [editorData]="e" (updateListEditor)="updateListEditor($event)"></app-editor-delete-modal>
 </div>
 <!--Create Modal-->
-<app-editor-create-modal></app-editor-create-modal>
+<app-editor-create-modal (updateListEditor)="updateListEditor($event)"></app-editor-create-modal>
