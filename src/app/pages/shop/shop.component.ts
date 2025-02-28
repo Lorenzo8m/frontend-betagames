@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { Subject } from 'rxjs/internal/Subject';
 import { concatMap, debounceTime } from 'rxjs/operators';
 import { AuthService } from '../../auth/auth.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-shop',
@@ -14,7 +15,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   
   constructor(
     private serv:ApiService,
-    private auth:AuthService
+    private auth: AuthService
   ){}
 
   listCategories: any = [];
@@ -120,5 +121,4 @@ export class ShopComponent implements OnInit, OnDestroy {
     }
   }
   
-
-}
+}//class

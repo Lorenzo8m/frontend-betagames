@@ -4,11 +4,12 @@
         [attr.data-bs-target]="'#createModal'">Create <i class="bi bi-plus"></i></button>
 </div>
 <!-- create Modal-->
-<app-game-create-modal></app-game-create-modal>
+<app-game-create-modal (updateListGames)="updateListGames($event)"></app-game-create-modal>
+
 <div *ngFor="let g of listGame; index as i">
     <app-singlegame-card [gameData]="g"></app-singlegame-card>
     <!--Modal-->
-    <app-game-modify-modal [gameData]="g"></app-game-modify-modal>
+    <app-game-modify-modal [gameData]="g" (updateListGames)="updateListGames($event)"></app-game-modify-modal>
     <!--Delete Modal-->
-    <app-game-delete-modal [gameData]="g"></app-game-delete-modal>
+    <app-game-delete-modal [gameData]="g" (updateListGames)="updateListGames($event)"></app-game-delete-modal>
 </div>

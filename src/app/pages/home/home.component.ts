@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit{
   constructor(private serv:ApiService){}
 
   listGames: any;
-  @ViewChild('listGroup') listGroup!: ElementRef;//Ottiene un riferimento all'elemento <ul> con la classe list-group
+
+  @ViewChild('listGroup') listGroup!: ElementRef; //Ottiene un riferimento all'elemento <ul> con la classe list-group
 
   ngOnInit(): void {
     this.loadListGames();
@@ -20,14 +21,14 @@ export class HomeComponent implements OnInit{
 
   loadListGames():void{
     this.serv.listGames().subscribe((resp:any)=>{
-      this.listGames = resp.data;
+      this.listGames = resp.data.filter((game: any) => game.stockQuantity > 0); //Filtro i soli giochi in stock. (è più giusto farlo qua o sul backend?)
     })
   }//loadListGames
 
   scrollLeft() {
     const container = this.listGroup.nativeElement;
     container.scrollBy({
-      left: -200,
+      left: -150,
       behavior: 'smooth'
     });
   }//scrollLeft
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit{
   scrollRight() {
     const container = this.listGroup.nativeElement;
     container.scrollBy({
-      left: 200,
+      left: 150,
       behavior: 'smooth'
     });
   }//scrollRight

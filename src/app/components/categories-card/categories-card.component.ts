@@ -24,4 +24,8 @@ export class CategoriesCardComponent {
     ngOnInit() {
       this.loadListCategories();
     }
+
+    updateListCategory(updatedCategories: any[]){
+      this.listCategories = updatedCategories;
+    }
 }

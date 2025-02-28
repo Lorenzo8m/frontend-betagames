@@ -1,118 +1,386 @@
 <!-- Card -->
 <div class="col">
-    <div class="card border-light h-100 shadow-sm" >
-        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg> -->
-        <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +1+ mainSuffixImg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{game.name}}</h5>
-          <p>Price: {{game.price | currency: 'EUR'}}</p>
-          
-          <a class="btn btn-inspect" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + game.id">Inspect</a>
-          <div style="display: inline-block;"> <!-- BLOCCO PULSANTE ADD TO CART--> <!-- VEDERE SE FARLO SPARIRE QUANDO LA CARD DIVENTA TROPPO PICCOLA, RIMANE DISPONIBILE NEL MODAL-->
-            <div *ngIf="game.stockQuantity <= 0; else elseBlock">
-              <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
-            </div>
-            <ng-template #elseBlock>
-                <a class="btn btn-primary" (click)="addToCart(game.id, 1)">add cart</a>
-            </ng-template>
-          </div>
+  <div class="card border-light h-100 shadow-sm">
+    <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg> -->
+    <img
+      [src]="
+        '/assets/' +
+        correctImageName(game.name) +
+        '/' +
+        correctImageName(game.name) +
+        1 +
+        mainSuffixImg
+      "
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ game.name }}</h5>
+      <p>Price: {{ game.price | currency : "EUR" }}</p>
+      <a
+        class="btn btn-inspect"
+        data-bs-toggle="modal"
+        [attr.data-bs-target]="'#modal' + game.id"
+        >See more</a
+      >
+      <div style="display: inline-block">
+        <!-- BLOCCO PULSANTE ADD TO CART-->
+        <!-- VEDERE SE FARLO SPARIRE QUANDO LA CARD DIVENTA TROPPO PICCOLA, RIMANE DISPONIBILE NEL MODAL-->
+        <div *ngIf="game.stockQuantity <= 0; else elseBlock">
+          <a class="btn btn-primary disabled" role="button" aria-disabled="true"
+            >Out of stock</a
+          >
+
         </div>
+        <ng-template #elseBlock>
+          <a class="btn btn-primary" (click)="addToCart(game.id, 1)"
+            >add cart</a
+          >
+        </ng-template>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Modal -->
-<div class="modal modal-xl modal-fullscreen-lg-down" [id]="'modal' + game.id" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal modal-xl modal-fullscreen-lg-down"
+  [id]="'modal' + game.id"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <!-- Da capire bene come funziona il responsive sul modal - quando farlo andare full page -->
+
   <div class="modal-dialog">
     <div class="modal-content">
-<!-- Modal Header -->
+      <!-- Modal Header -->
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{game.name}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          {{ game.name }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-<!-- Modal Body -->       
+      <!-- Modal Body -->
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-5"> <!-- COLONNA CON LE IMMAGINI / CAROSELLO DI IMMAGINI-->
-              <div id="gameCarousel{{game.id}}" class="carousel slide">
-                
+            <div class="col-6">
+              <!-- COLONNA CON LE IMMAGINI / CAROSELLO DI IMMAGINI-->
+              <div id="gameCarousel{{ game.id }}" class="carousel slide">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +1+ mainSuffixImg" class="d-block w-100" alt="...">
-                  </div> 
-                  <div class="carousel-item"> 
-                    <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +2+ mainSuffixImg" class="d-block w-100" alt="...">
-                  </div> 
-                  <div class="carousel-item"> 
-                    <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +3+ mainSuffixImg" class="d-block w-100" alt="...">
+                    <img
+                      [src]="
+                        '/assets/' +
+                        correctImageName(game.name) +
+                        '/' +
+                        correctImageName(game.name) +
+                        1 +
+                        mainSuffixImg
+                      "
+                      class="d-block w-100"
+                      alt="..."
+                    />
                   </div>
-                  <div class="carousel-item"> 
-                    <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +4+ mainSuffixImg" class="d-block w-100" alt="...">
+                  <div class="carousel-item">
+                    <img
+                      [src]="
+                        '/assets/' +
+                        correctImageName(game.name) +
+                        '/' +
+                        correctImageName(game.name) +
+                        2 +
+                        mainSuffixImg
+                      "
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      [src]="
+                        '/assets/' +
+                        correctImageName(game.name) +
+                        '/' +
+                        correctImageName(game.name) +
+                        3 +
+                        mainSuffixImg
+                      "
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      [src]="
+                        '/assets/' +
+                        correctImageName(game.name) +
+                        '/' +
+                        correctImageName(game.name) +
+                        4 +
+                        mainSuffixImg
+                      "
+                      class="d-block w-100"
+                      alt="..."
+                    />
                   </div>
                 </div>
-                <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#gameCarousel' + game.id" data-bs-slide="prev"> <!-- Attribute bindig per il passaggio dell'id [attr. ..] indica ad angular che si usa il valore di un attributo html-->
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  [attr.data-bs-target]="'#gameCarousel' + game.id"
+                  data-bs-slide="prev"
+                >
+                  <!-- Attribute bindig per il passaggio dell'id [attr. ..] indica ad angular che si usa il valore di un attributo html-->
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#gameCarousel' + game.id" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  [attr.data-bs-target]="'#gameCarousel' + game.id"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
             </div>
-            <div class="col"> <!-- COLONNA CON LE INFORMAZIONI DEL GIOCO - NO PREZZO CHE STA SUL FOOTER (per ora) -->
-              <div class="row">
-                <p>{{game.description}}</p>
+            <div class="col-6">
+              <!-- COLONNA CON LE INFORMAZIONI DEL GIOCO - NO PREZZO CHE STA SUL FOOTER (per ora) -->
+              <div
+                class="row"
+                style="width: auto; word-wrap: break-word; white-space: normal"
+              >
+                <p>{{ game.description }}</p>
               </div>
+
               <div class="row">
-                <p>Publication year: {{game.date | date:'yyyy'}}</p> <!-- SISTEMARE LE CHIAMATE DA POSTMAN!!! -->
-              </div>
-              <div class="row">
-                <p>Min - Max player number: {{game.minPlayerNumber}} - {{game.maxPlayerNumber}}</p>
-              </div>
-              <div class="row">
-                <p>Game time: {{game.minGameTime}} - {{game.maxGameTime}}</p>
-              </div>
-              <div class="row">
-                <p>Min age: {{game.minAge}}</p>
-              </div>
-              <div class="row">
-                <p>Editor: {{game.editorDTO.name}} - <a href="https://{{game.editorDTO.website}}" target="_blank" rel="noopener noreferrer">{{game.editorDTO.website}}</a></p>
-              </div>
-              <div class="row">
-                <p>{{ game.listAuthorsDTO.length === 1 ? 'Author: ' : 'Authors: ' }} 
-                  <ng-container *ngFor="let author of game.listAuthorsDTO; let last = last">{{author.name}}{{ !last ? ', ' : '' }}</ng-container>
+                <p>
+                  <i
+                    class="bi bi-calendar-event fs-5"
+                    style="padding-right: 10px"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Release date"
+                  ></i>
+                  {{ game.date | date : "MM/yyyy" }}
                 </p>
               </div>
               <div class="row">
-                <p>{{ game.listCategoryDTO.length === 1 ? 'Category: ' : 'Categories: ' }} 
-                  <ng-container *ngFor="let category of game.listCategoryDTO; let last = last">{{category.name}}{{ !last ? ', ' : '' }}</ng-container>
+                <p>
+                  <i
+                    class="bi bi-people-fill fs-5"
+                    style="padding-right: 10px"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Number of players (min - max)"
+                  ></i>
+                  {{ game.minPlayerNumber }} min -
+                  {{ game.maxPlayerNumber }} max
                 </p>
               </div>
+              <div class="row">
+                <p>
+                  <i
+                    class="bi bi-hourglass-split fs-5"
+                    style="padding-right: 10px"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Playtime"
+                  ></i
+                  >{{ game.minGameTime }}h - {{ game.maxGameTime }}h
+                </p>
+              </div>
+              <div class="row">
+                <p>
+                  <i
+                    class="bi bi-backpack fs-5"
+                    style="padding-right: 10px"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Recommended age"
+                  ></i
+                  >{{ game.minAge }}+
+                </p>
+              </div>
+              <div class="row">
+                <p>
+                  <i
+                    class="bi-pencil-square fs-5"
+                    style="padding-right: 10px"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Game Publisher"
+                  ></i>
+                  {{ game.editorDTO.name }}
+                </p>
+              </div>
+              <div class="row">
+                <p>
+                  <i
+                    class="bi bi-palette fs-5"
+                    style="padding-right: 10px"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Game Designer"
+                  ></i>
+                  <ng-container
+                    *ngFor="let author of game.listAuthorsDTO; let last = last"
+                    >{{ author.name }}</ng-container
+                  >
+                </p>
+              </div>
+              <div class="row">
+                <p>
+                  <i
+                    class="bi bi-book fs-5"
+                    style="padding-right: 10px"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Game Category"
+                  ></i>
+                  <ng-container
+                    *ngFor="
+                      let category of game.listCategoryDTO;
+                      let last = last
+                    "
+                    >{{ category.name }}</ng-container
+                  >
+                </p>
+              </div>
+
               <!-- DATA DI USCITA, NUMERO MINIMO E MASSIMO DI GIOCATORI, TEMPO MINIMO E MASSIMO, ETà - con icone se si riesce -->
               <!-- EDITORE - AUTORI - CATEGORIE (CLICCABILI???) -->
             </div>
-            
+          </div>
+          <br />
+          <div class="row">
+            <div align="center">
+              <div class="card" style="width: auto" align="left">
+                <div class="card-body">
+                  <h5 class="card-title">Reviews</h5>
+                  <br />
+
+                  <!-- LISTA RECENSIONI -->
+                  <ng-container *ngIf="reviews && reviews.length">
+                    <ng-container *ngFor="let review of reviews">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <h6 class="mb-0">
+                            <i class="bi bi-person fs-5" style="padding-right: 10px;"></i>
+                            {{ review.username.username }}
+                          </h6>
+                        </div>
+                        <div class="col-auto d-flex">
+                          <ng-container *ngFor="let star of [].constructor(review.score); let i = index">
+                            <i class="bi bi-star-fill text-warning"></i>
+                          </ng-container>
+                        </div>
+                        <div class="col-auto ms-auto" *ngIf="+review.username.id === +userId">
+                          <button class="btn btn-danger btn-sm" (click)="deleteReview(review.id, review.username.id)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <p>{{ review.description }}</p>
+                      <hr>
+                    </ng-container>
+                  </ng-container>
+                  
+                  <!-- FORM DI RECENSIONE (VISIBILE SOLO SE showReviewForm = true) -->
+                  <div *ngIf="showReviewForm">
+                    <form (ngSubmit)="submitReview()">
+                      <div class="mb-3">
+                        <label for="reviewScore" class="form-label"
+                          >Score (1-5)</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="reviewScore"
+                          [(ngModel)]="reviewData.score"
+                          name="score"
+                          min="1"
+                          max="5"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="reviewDescription" class="form-label"
+                          >Review</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="reviewDescription"
+                          [(ngModel)]="reviewData.description"
+                          name="description"
+                          required
+                        ></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-success">
+                        Submit Review
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary ms-2"
+                        (click)="showReviewForm = false"
+                      >
+                        Cancel
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="card-footer" align="right">
+                  <button
+                    class="btn btn-warning"
+                    (click)="showReviewForm = !showReviewForm"
+                  >
+                    <i class="bi bi-plus-lg fs-6"></i> Add Review
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-<!-- Modal Footer -->    
-        <div class="modal-footer">
-          <!-- Vedere come impaginare stock quantity, prezzo (se qui o nel body), e i pulsanti-->
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <div class="ms-auto">
-            <span class="me-3">Price: {{game.price | currency: 'EUR'}}</span>
-            <div style="display: inline-block;"> <!-- BLOCCO PULSANTE ADD TO CART-->
-              <div *ngIf="game.stockQuantity <= 0; else elseBlock">
-                <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
-              </div>
-              <ng-template #elseBlock>
-                <a class="btn btn-primary" (click)="addToCart(game.id, 1)">add cart</a>
-              </ng-template>
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <!-- Vedere come impaginare stock quantity, prezzo (se qui o nel body), e i pulsanti-->
+        <div class="ms-auto">
+          <span class="me-3">Price: {{ game.price | currency : "EUR" }}</span>
+          <div style="display: inline-block">
+            <!-- BLOCCO PULSANTE ADD TO CART-->
+            <div *ngIf="game.stockQuantity <= 0; else elseBlock">
+              <a
+                class="btn btn-primary disabled"
+                role="button"
+                aria-disabled="true"
+                >Out of stock</a
+              >
             </div>
+            <ng-template #elseBlock>
+              <a class="btn btn-primary" (click)="addToCart(game.id, 1)">
+                Add to cart -
+                <span class="fw-bold">{{ game.price | currency : "EUR" }}</span>
+              </a>
+            </ng-template>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 declare var bootstrap: any;
 
@@ -9,7 +9,7 @@ declare var bootstrap: any;
   styleUrl: './author-create-modal.component.scss'
 })
 export class AuthorCreateModalComponent {
-
+  @Output() updateListAuthor: EventEmitter<any[]> = new EventEmitter<any[]>();
   @ViewChild("authorCreate") authorCreate!: ElementRef;
 
   constructor(private authorsService: ApiService) {
@@ -22,6 +22,7 @@ export class AuthorCreateModalComponent {
   loadListAuthors() {
     this.authorsService.listAuthors().subscribe((resp: any) => {
       this.listAuthors = resp.data;
+      this.updateListAuthor.emit(this.listAuthors);
     })
   }
 
@@ -51,13 +52,13 @@ export class AuthorCreateModalComponent {
       let modalElement = document.getElementById('createModal'); 
       let modalInstance = bootstrap.Modal.getInstance(modalElement); 
       modalInstance.hide(); 
-    }, 3000);
+    }, 500);
   }
 
   hideFlag():void {
     setTimeout(() => {
       this.flag = null;
-    }, 5000)
+    }, 1000)
   }
 
 }

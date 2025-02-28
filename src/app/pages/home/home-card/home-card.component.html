@@ -1,0 +1,14 @@
+<!-- Card -->
+<div class="col">
+    <div class="card border-light h-100 shadow-sm">
+        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg> -->
+        <img [src]="'/assets/'+correctImageName(game.name)+'/'+ correctImageName(game.name) +1+ mainSuffixImg"
+            class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{game.name}}</h5>
+            <p>Price: {{game.price | currency: 'EUR'}}</p>
+
+            <a [routerLink]="['/shop']" class="btn btn-inspect align-items-center w-100">Go to shop</a>
+        </div>
+    </div>
+</div>

@@ -10,11 +10,11 @@ import { ApiService } from '../../services/api.service';
 export class SidecartComponent implements  OnChanges{
 
 
-
+  @Input() cartId: number = 0;
   @Input() isOpen: boolean = false;
   @Output() cartChanged = new EventEmitter<number>();
 
-  constructor(private detailsCartService: ApiService){}
+  constructor(private detailsCartService: ApiService, private serv:ApiService,){}
   mainSuffixImg: String = ".webp"
   listDetailsCart: any[] = [];
   total: number = 0;
@@ -31,7 +31,8 @@ export class SidecartComponent implements  OnChanges{
   }
   
   loadCartItems() {
-    this.detailsCartService.listByCart(5).subscribe((resp: any) => {
+    console.log(this.cartId);
+    this.detailsCartService.listByCart(this.cartId).subscribe((resp: any) => {      
       let tempTotal = 0
       this.listDetailsCart = resp.data;
       resp.data.forEach((element: any) => {
