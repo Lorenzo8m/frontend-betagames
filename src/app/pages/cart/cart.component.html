@@ -1,33 +1,32 @@
-<div style="height: 2rem;"></div> <!-- Spacer -->
+<div class="container-fluid">
+  <div class="row justify-content-center my-2">
+    <div class="col-lg-9">
 
-<div style="display: flex; justify-content: center;">
-  <pre class="d-block" style="font-weight: bold;">
- /$$     /$$ /$$$$$$  /$$   /$$ /$$$$$$$         /$$$$$$   /$$$$$$  /$$$$$$$  /$$$$$$$$
-|  $$   /$$//$$__  $$| $$  | $$| $$__  $$       /$$__  $$ /$$__  $$| $$__  $$|__  $$__/
- \  $$ /$$/| $$  \ $$| $$  | $$| $$  \ $$      | $$  \__/| $$  \ $$| $$  \ $$   | $$   
-  \  $$$$/ | $$  | $$| $$  | $$| $$$$$$$/      | $$      | $$$$$$$$| $$$$$$$/   | $$   
-   \  $$/  | $$  | $$| $$  | $$| $$__  $$      | $$      | $$__  $$| $$__  $$   | $$   
-    | $$   | $$  | $$| $$  | $$| $$  \ $$      | $$    $$| $$  | $$| $$  \ $$   | $$   
-    | $$   |  $$$$$$/|  $$$$$$/| $$  | $$      |  $$$$$$/| $$  | $$| $$  | $$   | $$   
-    |__/    \______/  \______/ |__/  |__/       \______/ |__/  |__/|__/  |__/   |__/       
-  </pre>
-</div>
-<div style="height: 2rem;"></div> <!-- Spacer -->
+      <!-- BLOCCO BANNER E TITOLI-->
+      <div class="jumbotron rounded text-center my-5">
+        <h1>
+          Your Cart
+        </h1>
+        <h5>
+          Your chosen adventures await! Review your cart and get ready to play! <!-- Vedremo dimensioni e se aggiungere altro dopo aver scelto il font-->
+        </h5>
+      </div>
 
-<div class="container">
-    <table class="table">
-        <thead class="table-light">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price at time</th>
-            <th scope="col">
-              <button type="button" class="btn btn-danger" (click)="deleteAll()">clear</button>
-            </th>
-          </tr>
-        </thead>
+      <!-- CART TABLE BLOCK -->
+      <div class="container justify-content-center text-center m-5">
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price at time</th>
+              <th scope="col">
+                <button type="button" class="btn btn-danger" (click)="deleteAll()">clear</button>
+              </th>
+            </tr>
+          </thead>
           <tbody class="align-middle">
             <tr *ngFor="let dc of listDetailsCart ; index as i">
               <th scope="row">{{i+1}}</th>
@@ -51,9 +50,13 @@
               </td>
             </tr>
           </tfoot>
-      </table>
-      <div *ngIf="listDetailsCart && listDetailsCart.length <= 0">
-          <h3 class="text-center">Your cart is empty</h3>
+        </table>
+        <div *ngIf="listDetailsCart && listDetailsCart.length <= 0">
+            <h3 class="text-center">Your cart is empty</h3>
+        </div>
       </div>
+    </div>
+  </div>
 </div>
+
 <app-checkout-modal></app-checkout-modal>
