@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit{
     private SharedService: SharedService,
     private serv:ApiService,
     private router:Router
+
   ){}
 
   listDetailsCart: any[]=[];
