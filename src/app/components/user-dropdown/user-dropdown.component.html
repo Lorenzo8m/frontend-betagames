@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-around">
+    <!-- Mostra "Account" solo su schermi piccoli -->
+    <div class="d-lg-none">
+      <a class="nav-link" routerLink="/account">Account</a>
+    </div>
+    <div class="d-none d-lg-block dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        role="button"
+        id="userDropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="bi bi-person-fill"></i>
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="userDropdown"
+      >
+        <li><a class="dropdown-item" routerLink="/account">Profile</a></li>
+        <li><a class="dropdown-item" routerLink="/account/ordini">Orders</a></li>
+        <li><a class="dropdown-item" routerLink="/account/infoUser">My Info</a></li>
+        <li><a class="dropdown-item" routerLink="/account/formcard">New Pay Card</a></li>
+        <li><a class="dropdown-item" routerLink="/account/gamesuser">My Games</a></li>
+        <li><a class="dropdown-item" routerLink="/account/detailsShipping">Details My Shipping</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+</div>

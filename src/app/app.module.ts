@@ -56,6 +56,7 @@ import { SidecartComponent } from './components/sidecart/sidecart.component';
 
 import { CheckoutModalComponent } from './components/checkout-modal/checkout-modal.component';
 import { DetailsShippingComponent } from './components/details-shipping/details-shipping.component';
+import { UserDropdownComponent } from './components/user-dropdown/user-dropdown.component';
 
 
 @NgModule({
@@ -101,12 +102,12 @@ import { DetailsShippingComponent } from './components/details-shipping/details-
     CategoriesDeleteModalComponent,
     CategoriesUpdateModalComponent,
     AlertComponent,
-    SidecartComponent
-
+    SidecartComponent,
     DetailModalComponent,
     FooterComponent,
     CheckoutModalComponent,
-    DetailsShippingComponent
+    DetailsShippingComponent,
+    UserDropdownComponent
 
   ],
   imports: [
