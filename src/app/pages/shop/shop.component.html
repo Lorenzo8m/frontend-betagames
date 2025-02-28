@@ -1,25 +1,9 @@
-<div class="row my-2">
-    <div class="col-lg-3 d-none d-lg-block shadow-sm">
-        <div class="container p-3">
-            <!--filtro sul titolo-->
-            <input type="text" class="form-control text-center" [(ngModel)]="searchTerm" (input)="onSearch($event)" placeholder="type...">
-            <!--filtro sulle categorie-->
-            <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group"> 
-                <input type="radio" class="btn-check" name="categoryRadio" id="categoryRadio{{null}}" autocomplete="off" (click)="selectCategory(null); searchByTypingGames(searchTerm)" checked>
-                <label class="btn btn-outline-primary" for="categoryRadio{{null}}">Tutte le categorie</label>  
-                <div *ngFor="let category of listCategories; let i = index">
-                    <input type="radio" class="btn-check" name="categoryRadio" id="categoryRadio{{i}}" autocomplete="off" [value]="category.id" (click)="selectCategory(category); searchByTypingGames(searchTerm)">
-                    <label class="btn btn-outline-primary" for="categoryRadio{{i}}">{{ category.name }}</label>
-                </div>
-            </div>
-            <!-- filtro in stock - out of stock-->
-             
-        </div>
-    </div>
-    <div class="col-lg-9">
-        <div class="container">
-            <div style="display: flex; justify-content: center;">
-                <pre class="d-block" style="font-weight: bold;">
+<div class="container-fluid">
+    <div class="row justify-content-center my-2">
+        <div class="col-lg-9">
+            <div class="container">
+                <div style="display: flex; justify-content: center;">
+                    <pre class="d-block" style="font-weight: bold;">
 
  ▄▀▀▀▀▄  ▄▀▀▄ ▄▄   ▄▀▀▀▀▄   ▄▀▀▄▀▀▀▄ 
 █ █   ▐ █  █   ▄▀ █      █ █   █   █ 
@@ -27,21 +11,64 @@
 ▀▄   █     █   █  ▀▄    ▄▀    █      
  █▀▀▀     ▄▀  ▄▀    ▀▀▀▀    ▄▀       
  ▐       █   █             █         
-         ▐   ▐             ▐         
-                </pre>
-            </div>
-            <div style="display: flex; justify-content: center;">
-                <span>
-                    Explore our catalog of games and discover new adventures! <!-- Vedremo dimensioni e se aggiungere altro dopo aver scelto il font-->
-                </span>
-            </div>
-            <div style="height: 2rem;"></div> <!-- Spacer -->
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
-                <div *ngFor="let game of listGames">
-                    <app-card [game]="game" [cId]="cId"></app-card>
+         ▐   ▐             ▐         </pre>
                 </div>
+
+                <div style="display: flex; justify-content: center;">
+                    <span>
+                        Explore our catalog of games and discover new adventures! <!-- Vedremo dimensioni e se aggiungere altro dopo aver scelto il font-->
+                    </span>
+                </div>
+
+                <!-- BLOCCO FILTRI Type e categories-->
+                <div class="container-fluid my-3">
+                    <div class="row">
+                        <div class="col-3">
+                            <!--filtro sul titolo-->
+                            <input type="text" class="form-control text-center" [(ngModel)]="searchTerm" (input)="onSearch($event)" placeholder="Search...">
+                        </div>
+                        <div class="col-3">
+                            <!--filtro sulle categorie-->
+                            <!-- <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group"> 
+                            <input type="radio" class="btn-check" name="categoryRadio" id="categoryRadio{{null}}" autocomplete="off" (click)="selectCategory(null); searchByTypingGames(searchTerm)" checked>
+                            <label class="btn btn-outline-primary" for="categoryRadio{{null}}">Tutte le categorie</label>  
+                            <div *ngFor="let category of listCategories; let i = index">
+                                <input type="radio" class="btn-check" name="categoryRadio" id="categoryRadio{{i}}" autocomplete="off" [value]="category.id" (click)="selectCategory(category); searchByTypingGames(searchTerm)">
+                                <label class="btn btn-outline-primary" for="categoryRadio{{i}}">{{ category.name }}</label>
+                            </div>
+                        </div> -->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{!selectedCategory ? 'Filter Categories:' : selectedCategory.name}}
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"  (click)="selectCategory(null); searchByTypingGames(searchTerm)">All</a></li>
+                                    <li *ngFor="let category of listCategories; let i = index">
+                                        <a class="dropdown-item"  (click)="selectCategory(category); searchByTypingGames(searchTerm)">{{ category.name }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- filtro in stock - out of stock ? - non c'è più tempo-->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCCO CARD-->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3" >
+                    <ng-template *ngIf="isAutentificated; then bloccoTrue else bloccoFalse"></ng-template>
+                    <ng-template #bloccoTrue>
+                        <div *ngFor="let game of listGames">
+                            <app-card *ngIf="cId !== undefined" [game]="game" [cId]="cId"></app-card>
+                        </div>
+                    </ng-template>
+                    <ng-template #bloccoFalse>
+                        <div *ngFor="let game of listGames">
+                            <app-card [game]="game" [cId]="cId"></app-card>
+                        </div>
+                    </ng-template>
+                </div>
+                
             </div>
         </div>
     </div>
 </div>
-<!-- <app-modal></app-modal> -->

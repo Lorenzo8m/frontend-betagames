@@ -13,9 +13,7 @@ export class ApiService {
 
   //=======GAMES==================
   listGames(){
-
     return this.http.get(this.url + "public/games/list")
-
   }
   listGamesById(id: number){
     return this.http.get(this.url + "public/games/listById?id=" + id)
@@ -106,7 +104,7 @@ export class ApiService {
 
   //=======ORDER==================
   createOrder(body: {}){
-    return this.http.post(this.url + "orders/createOrders", body)
+    return this.http.post(this.url + "user/orders/createOrders", body)
   }
   listOrder() {
     return this.http.get(this.url + "admin/orders/allOrders");

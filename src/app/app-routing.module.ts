@@ -13,6 +13,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 import { guardGuard } from './auth/auth.guard';
 import { adminGuard } from './auth/admin.guard';
+import { DetailsShippingComponent } from './components/details-shipping/details-shipping.component';
 
 const routes: Routes = [
 
@@ -22,16 +23,17 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'cart', component: CartComponent, canActivate:[guardGuard] },
   { path: 'register', component:RegistrazioneComponent},
-  { path: 'admin', component:AdminComponent},
+  { path: 'admin', component:AdminComponent, canActivate:[adminGuard]},
   {
     path: 'account',
-    component: AccountComponent,
+    component: AccountComponent , canActivate:[guardGuard],
     children: [
       { path: '', redirectTo: 'ordini', pathMatch: 'full' },
       { path: 'ordini', component: OrdiniComponent },
       { path: 'formcard', component: FormCartComponent },
       { path: 'infoUser', component: InfoProfiloComponent },
       { path: 'gamesuser', component: GamesUserComponent },
+      { path: 'detailsShipping', component: DetailsShippingComponent},
     ],
   },
 

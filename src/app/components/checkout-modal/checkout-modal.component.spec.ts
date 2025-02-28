@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SinglegameCardComponent } from './singlegame-card.component';
+import { CheckoutModalComponent } from './checkout-modal.component';
 
-describe('SinglegameCardComponent', () => {
-  let component: SinglegameCardComponent;
-  let fixture: ComponentFixture<SinglegameCardComponent>;
+describe('CheckoutModalComponent', () => {
+  let component: CheckoutModalComponent;
+  let fixture: ComponentFixture<CheckoutModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SinglegameCardComponent]
+      declarations: [CheckoutModalComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SinglegameCardComponent);
+    fixture = TestBed.createComponent(CheckoutModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,17 +1,19 @@
-<p>games-user works!</p>
-
-<div class="container">
-  <div *ngIf="listUser && hasActiveUsers()">
-    <ng-container *ngFor="let user of listUser">
-      <div *ngIf="user.active" class="user-info mb-4">
-        
-        <div *ngIf="uniqueGames.length === 0" class="no-games text-center">
-          <p>The user has not bought any games yet.</p>
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalLabel">Order Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <div class="user-orders">
-          <div class="order-details">
-            <div *ngFor="let detail of uniqueGames; trackBy: trackByGameId" class="game-info mb-3">
+        <div class="modal-body">
+          <div *ngIf="order">
+            <h3>Order ID: {{ order.id }}</h3>
+            <p><strong>Total Amount:</strong> {{ order.totalAmount | currency: 'EUR' }}</p>
+            <p><strong>Status:</strong> {{ order.orderStatus }}</p>
+            <p><strong>Created At:</strong> {{ order.createdAt | date: 'dd/MM/yyyy' }}</p>
+  
+            <h4>Games in this order:</h4>
+            <div *ngFor="let detail of order.listDetailsOrderDTO" class="game-info mb-3">
               <h3 class="game-name">{{ detail.gameDTO.name }}</h3>
               <p><strong>Price at Time:</strong> €{{ detail.totalPrice }}</p>
               <p><strong>Total Quantity:</strong> {{ detail.totalQuantity }}</p>
@@ -25,16 +27,7 @@
             </div>
           </div>
         </div>
-
-        <button type="button" class="btn btn-danger" (click)="onDelete(user)">
-          Delete
-        </button>
       </div>
-      <hr />
-    </ng-container>
+    </div>
   </div>
-
-  <p *ngIf="listUser && !hasActiveUsers()" class="text-center text-muted fs-4">
-    Non ci sono utenti attivi.
-  </p>
-</div>
+  

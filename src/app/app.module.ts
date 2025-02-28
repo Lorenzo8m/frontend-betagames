@@ -43,7 +43,9 @@ import { AuthoeSingleCardComponent } from './components/author-single-card/autho
 import { AuthorDeleteModalComponent } from './components/author-delete-modal/author-delete-modal.component';
 import { AuthorCreateModalComponent } from './components/author-create-modal/author-create-modal.component';
 import { AuthorUpdateModalComponent } from './components/author-update-modal/author-update-modal.component';
+import { DetailModalComponent } from './components/detail-modal/detail-modal.component';
 import { FooterComponent } from './components/footer/footer.component';
+
 import { CategoriesCardComponent } from './components/categories-card/categories-card.component';
 import { CategoriesSingleCardComponent } from './components/categories-single-card/categories-single-card.component';
 import { CategoriesCreateModalComponent } from './components/categories-create-modal/categories-create-modal.component';
@@ -51,6 +53,9 @@ import { CategoriesDeleteModalComponent } from './components/categories-delete-m
 import { CategoriesUpdateModalComponent } from './components/categories-update-modal/categories-update-modal.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { SidecartComponent } from './components/sidecart/sidecart.component';
+
+import { CheckoutModalComponent } from './components/checkout-modal/checkout-modal.component';
+import { DetailsShippingComponent } from './components/details-shipping/details-shipping.component';
 
 
 @NgModule({
@@ -97,6 +102,12 @@ import { SidecartComponent } from './components/sidecart/sidecart.component';
     CategoriesUpdateModalComponent,
     AlertComponent,
     SidecartComponent
+
+    DetailModalComponent,
+    FooterComponent,
+    CheckoutModalComponent,
+    DetailsShippingComponent
+
   ],
   imports: [
     BrowserModule,

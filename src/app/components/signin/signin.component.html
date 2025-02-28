@@ -1,4 +1,5 @@
-<p>loginForm works!</p>
+<div class="login-wrapper">
+<h1>Login</h1>
 <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
   <div class="mb-2">
     <label for="username" class="form-label">Username</label>
@@ -9,9 +10,10 @@
     <input type="password" name="password" ngModel required />
   </div>
   <div>
-    <button color="primary" type="submit" [disabled]="!loginForm.valid" >
+    <button color="primary" type="submit" [disabled]="!loginForm.valid">
       Login
     </button>
   </div>
 </form>
+</div>
 
