@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit{
   constructor(
       private detailsCart:ApiService,
       private auth: AuthService,
-      private auth:AuthService,
       private router:Router
 
 
