@@ -21,9 +21,12 @@
                 </form>
             </div>
             <div class="modal-footer">
+                <div class="d-flex w-50 h-50">
+                    <app-alert *ngIf="flag === true" [flag]="flag" [message]="message"></app-alert>
+                    <app-alert *ngIf="flag === false" [flag]="flag" [message]="message"></app-alert>
+                </div>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancella</button>
-                <button type="button" data-bs-dismiss="modal" class="btn btn-success"
-                    (click)="createAuthors()" data-bs-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-success" (click)="createAuthors()">Confirm</button>
 
             </div>
         </div>

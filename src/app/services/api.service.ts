@@ -156,10 +156,16 @@ export class ApiService {
   listCategories() {
     return this.http.get(this.url + 'public/categories/list');
   }
+  updateCategories(body: {}) {
+    return this.http.post(this.url + "admin/categories/update", body);
+  }
+  deleteCategories(body: {}) {
+    return this.http.post(this.url + "admin/categories/delete", body);
+  }
+  createCategories(body: {}) {
+    return this.http.post(this.url + "admin/categories/create", body);
+  }
   //=======REVIEWS==================
-  // listReview(id: number) {
-  //   return this.http.get<any[]>(this.url + `public/reviews/listByGameId?id=` + id);
-  // }
   listReview(id: number) {
     return this.http
       .get<any>(this.url + `public/reviews/listByGameId?id=` + id)
@@ -174,4 +180,5 @@ export class ApiService {
   deleteReview(body: {}) {
     return this.http.post(this.url + 'user/reviews/delete', body);
   }
-} //class
+
+}//class
