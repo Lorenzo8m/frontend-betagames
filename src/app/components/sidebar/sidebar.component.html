@@ -5,43 +5,55 @@
 <div class="d-flex">
     <nav *ngIf="isSidebarOpen" class="d-flex flex-column flex-shrink-0 p-3 bg-light shadow-lg"
         style="width: 250px; height: 90vh; position: relative;">
-    <div class="d-flex flex-row">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <span class="fs-4">Sidebar</span>
-        </a>
-        <button class="btn btn-danger btn-sm align-self-end" (click)="closeSidebar()">
-            <i class="bi bi-x"></i>
-        </button>
-    </div>
+        <div class="d-flex flex-row">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <span class="fs-4">Sidebar</span>
+            </a>
+            <button class="btn btn-danger btn-sm align-self-end" (click)="closeSidebar()">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a class="nav-link" [class.active]="activeContent === 'home'" (click)="setActiveContent('home')" aria-current="page">
+                <a class="nav-link text-dark pe-auto" [class.active]="activeContent === 'home'"
+                    (click)="setActiveContent('home')" aria-current="page">
                     <i class="bi bi-house-door"></i> Home
                 </a>
             </li>
             <li>
-                <a class="nav-link text-dark" [class.active]="activeContent === 'dashboard'" (click)="setActiveContent('games')">
-                    <i class="bi bi-speedometer2"></i> Games
+                <a class="nav-link text-dark pe-auto" [class.active]="activeContent === 'games'"
+                    (click)="setActiveContent('games')">
+                    <i class="bi bi-dice-5-fill"></i> Games
                 </a>
             </li>
             <li>
-                <a class="nav-link text-dark" [class.active]="activeContent === 'dashboard'" (click)="setActiveContent('editors')">
-                    <i class="bi bi-speedometer2"></i> Editors
+                <a class="nav-link text-dark pe-auto" [class.active]="activeContent === 'categories'"
+                    (click)="setActiveContent('categories')">
+                    <i class="bi bi-clipboard-fill"></i> Categories
                 </a>
             </li>
             <li>
-                <a class="nav-link text-dark" [class.active]="activeContent === 'dashboard'" (click)="setActiveContent('authors')">
-                    <i class="bi bi-speedometer2"></i> Authors
+                <a class="nav-link text-dark pe-auto" [class.active]="activeContent === 'editors'"
+                    (click)="setActiveContent('editors')">
+                    <i class="bi bi-pencil-fill"></i> Editors
                 </a>
             </li>
             <li>
-                <a class="nav-link text-dark" [class.active]="activeContent === 'orders'" (click)="setActiveContent('orders')">
+                <a class="nav-link text-dark pe-auto" [class.active]="activeContent === 'authors'"
+                    (click)="setActiveContent('authors')">
+                    <i class="bi bi-fingerprint"></i> Authors
+                </a>
+            </li>
+            <li>
+                <a class="nav-link text-dark pe-auto" [class.active]="activeContent === 'orders'"
+                    (click)="setActiveContent('orders')">
                     <i class="bi bi-table"></i> Orders
                 </a>
             </li>
             <li>
-                <a class="nav-link text-dark" [class.active]="activeContent === 'customers'" (click)="setActiveContent('customers')">
+                <a class="nav-link text-dark pe-auto" [class.active]="activeContent === 'customers'"
+                    (click)="setActiveContent('customers')">
                     <i class="bi bi-people"></i> Customers
                 </a>
             </li>
@@ -69,6 +81,9 @@
         </div>
         <div *ngIf="activeContent === 'games'">
             <app-games-card></app-games-card>
+        </div>
+        <div *ngIf="activeContent === 'categories'">
+            <app-categories-card></app-categories-card>
         </div>
         <div *ngIf="activeContent === 'editors'">
             <app-editors-card></app-editors-card>

@@ -1,9 +1,10 @@
-<div class="modal fade" id="staticBackdrop{{gameData.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop{{gameData.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">You are trying to modify game: {{gameData.name}}</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">You are trying to modify game: {{gameData.name}}
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -55,15 +56,22 @@
                         <div>
                             <label for="editorsId" class="form-label">Id editor</label>
                             <input type="number" class="form-control" id="editorsId" name="editorsId">
+                            <label for="editorsId" class="form-label">Id category</label>
+                            <input type="number" class="form-control" id="categoryId" name="categoryId">
+                            <label for="editorsId" class="form-label">Id author</label>
+                            <input type="number" class="form-control" id="authorId" name="authorId">
                         </div>
 
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
+                <div class="d-flex w-50 h-50">
+                    <app-alert *ngIf="flag === true" [flag]="flag" [message]="message"></app-alert>
+                    <app-alert *ngIf="flag === false" [flag]="flag" [message]="message"></app-alert>
+                </div>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" data-bs-dismiss="modal" class="btn btn-primary" data-bs-dismiss="modal"
-                    (click)="saveUpdateGame(gameData.id)">Update</button>
+                <button type="button" class="btn btn-primary" (click)="saveUpdateGame(gameData.id)">Update</button>
             </div>
         </div>
     </div>

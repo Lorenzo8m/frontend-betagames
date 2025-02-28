@@ -12,8 +12,6 @@ import { switchMap } from 'rxjs';
 export class InfoProfiloComponent implements OnInit {
 
   constructor(private service:ApiService,
-          
-
   ){}
 
   listUser:any[]=[];

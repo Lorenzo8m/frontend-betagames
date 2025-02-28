@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+declare var bootstrap: any;
 
 
 @Component({
@@ -9,10 +10,12 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './editor-create-modal.component.scss'
 })
 export class EditorCreateModalComponent { 
-  @Output() creationResult = new EventEmitter<boolean>();
   @ViewChild('createEditor') editor!: ElementRef;
 
+  flag: boolean | null = null;
+  message: string = "";
   listEditors: any[] = [];
+
   constructor(private editorsService: ApiService) { }
 
   loadListEditors() {
@@ -30,15 +33,33 @@ export class EditorCreateModalComponent {
       "website": this.editor.nativeElement[1].value,
     }).subscribe((resp: any) => {
       if (resp.rc === true) {
-        this.creationResult.emit(true);
+        this.flag = true;
+        this.message = resp.msg;
+        this.hideModal();
         this.loadListEditors();
       } else {
-        this.creationResult.emit(false);
+        this.flag = false;
+        this.message = resp.msg;
+        this.hideFlag();
       }
 
 
     })
   }
 
+  hideModal(): void {
+    setTimeout(() => {
+      this.flag = null;
+      let modalElement = document.getElementById('createModal'); 
+      let modalInstance = bootstrap.Modal.getInstance(modalElement); 
+      modalInstance.hide(); 
+    }, 3000);
+  }
+
+  hideFlag():void {
+    setTimeout(() => {
+      this.flag = null;
+    }, 5000)
+  }
 
 }
