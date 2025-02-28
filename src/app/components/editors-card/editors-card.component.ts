@@ -24,5 +24,8 @@ export class EditorsCardComponent {
     this.loadListEditors();
   }
 
+  updateListEditor(updateEditor: any[]){
+    this.listEditors = updateEditor;
+  }
 
 }

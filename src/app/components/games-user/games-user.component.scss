@@ -1,3 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center; /* Centra orizzontalmente */
+  align-items: center; /* Centra verticalmente */
+  flex-direction: column; /* Dispone gli elementi in colonna */
+  min-height: 100vh; /* Usa tutta l'altezza della viewport */
+}
+
+.content-wrapper {
+  max-width: 800px; /* Limita la larghezza del contenuto */
+  width: 100%;
+  text-align: center;
+}
+
 .user-info {
     border: 1px solid #ddd;
     padding: 15px;
@@ -24,6 +38,7 @@
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    text-align: justify;
   }
   
   .game-name {
@@ -31,6 +46,7 @@
     font-weight: bold;
     color: #007bff;
     margin-bottom: 10px;
+    text-align: center;
   }
   
   button.btn-danger {
@@ -39,4 +55,9 @@
   
   hr {
     margin-top: 20px;
+  }
+
+  p {
+    width: 80%;
+    overflow-wrap: break-word;
   }

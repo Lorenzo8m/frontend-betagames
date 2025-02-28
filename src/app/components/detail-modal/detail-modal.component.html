@@ -15,15 +15,15 @@
             <h4>Games in this order:</h4>
             <div *ngFor="let detail of order.listDetailsOrderDTO" class="game-info mb-3">
               <h3 class="game-name">{{ detail.gameDTO.name }}</h3>
-              <p><strong>Price at Time:</strong> €{{ detail.totalPrice }}</p>
-              <p><strong>Total Quantity:</strong> {{ detail.totalQuantity }}</p>
-              <p><strong>Description:</strong> {{ detail.gameDTO.description }}</p>
-              <p><strong>Game Time:</strong> {{ detail.gameDTO.minGameTime }} - {{ detail.gameDTO.maxGameTime }} hours</p>
-              <p><strong>Players:</strong> {{ detail.gameDTO.minPlayerNumber }} - {{ detail.gameDTO.maxPlayerNumber }}</p>
-              <p><strong>Age:</strong> {{ detail.gameDTO.minAge }}+</p>
-              <p><strong>Price:</strong> {{ detail.gameDTO.price | currency: 'EUR' }}</p>
-              <p><strong>Stock Quantity:</strong> {{ detail.gameDTO.stockQuantity }}</p>
-              <p><small><strong>Editor:</strong> {{ detail.gameDTO.editorDTO.name }} ({{ detail.gameDTO.editorDTO.website }})</small></p>
+              <p class="game-p"><strong>Price at Time:</strong> €{{ detail.totalPrice }}</p>
+              <p class="game-p"><strong>Total Quantity:</strong> {{ detail.totalQuantity }}</p>
+              <p class="game-p"><strong>Description:</strong> {{ detail.gameDTO.description }}</p>
+              <p class="game-p"><strong>Game Time:</strong> {{ detail.gameDTO.minGameTime }} - {{ detail.gameDTO.maxGameTime }} hours</p>
+              <p class="game-p"><strong>Players:</strong> {{ detail.gameDTO.minPlayerNumber }} - {{ detail.gameDTO.maxPlayerNumber }}</p>
+              <p class="game-p"><strong>Age:</strong> {{ detail.gameDTO.minAge }}+</p>
+              <p class="game-p"><strong>Price:</strong> {{ detail.gameDTO.price | currency: 'EUR' }}</p>
+              <p class="game-p"><strong>Stock Quantity:</strong> {{ detail.gameDTO.stockQuantity }}</p>
+              <p class="game-p"><small><strong>Editor:</strong> {{ detail.gameDTO.editorDTO.name }} ({{ detail.gameDTO.editorDTO.website }})</small></p>
             </div>
           </div>
         </div>

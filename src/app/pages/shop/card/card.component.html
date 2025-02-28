@@ -196,9 +196,12 @@
                 </div>
 
                 <div class="card-footer" align="right">
-                  <button class="btn btn-warning" (click)="showReviewForm = !showReviewForm">
-                    <i class="bi bi-plus-lg fs-6"></i> Add Review
-                  </button>
+                  <div *ngIf="isAuth">
+                    <button class="btn btn-warning" (click)="showReviewForm = !showReviewForm">
+                      <i class="bi bi-plus-lg fs-6"></i> Add Review
+                    </button>
+                  </div>
+
                 </div>
               </div>
             </div>

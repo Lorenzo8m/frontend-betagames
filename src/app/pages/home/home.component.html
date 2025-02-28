@@ -59,7 +59,7 @@
                 <button class="btn btn-outline-primary me-2 d-none d-sm-block" (click)="scrollLeft()"><</button>
                 <ul class="list-group list-group-horizontal overflow-auto" #listGroup style="width: 100%;">
                     <li *ngFor="let game of listGames; let i = index" class="list-group-item" style="width: 250px; flex-shrink: 0;">
-                        <app-card [game]="game"></app-card>
+                        <app-home-card [game]="game"></app-home-card>
                     </li>
                 </ul>
                 <button class="btn btn-outline-primary ms-2 d-none d-sm-block" (click)="scrollRight()">></button>

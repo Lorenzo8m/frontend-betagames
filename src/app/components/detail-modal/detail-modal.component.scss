@@ -52,19 +52,25 @@
     background: #f8f9fa;
     margin-top: 10px;
     border-left: 5px solid #007bff;
+    text-align: justify;
   
     h3 {
       font-size: 1.3rem;
       color: #333;
       font-weight: bold;
       margin-bottom: 5px;
+      text-align: center;
     }
   
     p {
       font-size: 0.95rem;
       color: #666;
       margin-bottom: 5px;
+      width: 80%;
+      overflow-wrap: break-word;
     }
+
+    
   }
   
   @media (max-width: 768px) {

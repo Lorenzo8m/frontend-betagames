@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   isLoggedIn = false;
   isAdmin = false;
+  isAttivo = false;
   idUser: any;
   
 
@@ -46,6 +47,10 @@ export class AuthService {
     localStorage.setItem('isLoggedIn', '1');
   }
 
+/*   setNotAttived(){
+    this.isAttivo = false;
+  } */
+
   // setLoggedOut() {
   //   this.isLoggedIn = false;
   //   localStorage.setItem('isLoggedIn', '0');
@@ -69,13 +74,17 @@ export class AuthService {
 
   setRoleAdmin() {
     this.isAdmin = true;
+    //this.isAttivo = true;
     localStorage.setItem('isAdmin', '1');
   }
 
   setRoleUser() {
     this.isAdmin = false;
+    //this.isAttivo = true;
     localStorage.setItem('isAdmin', '0');
   }
+
+
 
   isAutentificated() {
     
@@ -89,6 +98,10 @@ export class AuthService {
   isRoleAdmin() {
     return this.isAdmin;
   }
+
+/*   isAttived(){
+    return this.isAttivo;
+  } */
 }
 
 

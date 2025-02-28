@@ -6,8 +6,8 @@
 <div *ngFor="let c of listCategories">
     <app-categories-single-card [categoriesData]="c"></app-categories-single-card>
     <!--Update Modal-->
-    <app-categories-update-modal [categoriesData]="c"></app-categories-update-modal>
+    <app-categories-update-modal [categoriesData]="c" (updateListCategory)="updateListCategory($event)"></app-categories-update-modal>
     <!--Delete Modal-->
-    <app-categories-delete-modal [categoriesData]="c"></app-categories-delete-modal>
+    <app-categories-delete-modal [categoriesData]="c" (updateListCategory)="updateListCategory($event)"></app-categories-delete-modal>
 </div>
-<app-categories-create-modal></app-categories-create-modal>
+<app-categories-create-modal (updateListCategory)="updateListCategory($event)"></app-categories-create-modal>

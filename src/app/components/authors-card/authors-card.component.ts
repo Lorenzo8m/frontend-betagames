@@ -25,4 +25,8 @@ export class AuthorsCardComponent {
   ngOnInit() {
     this.loadListAuthors();
   }
+
+  updateListAuthor(updateAuthor: any[]){
+    this.listAuthors = updateAuthor;
+  }
 }
