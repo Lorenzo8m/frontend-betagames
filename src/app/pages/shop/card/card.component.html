@@ -263,7 +263,6 @@
               </div>
 
               <!-- DATA DI USCITA, NUMERO MINIMO E MASSIMO DI GIOCATORI, TEMPO MINIMO E MASSIMO, ETà - con icone se si riesce -->
-              <!-- EDITORE - AUTORI - CATEGORIE (CLICCABILI???) -->
             </div>
           </div>
           <br />
@@ -345,12 +344,11 @@
                 </div>
 
                 <div class="card-footer" align="right">
-                  <button
-                    class="btn btn-warning"
-                    (click)="showReviewForm = !showReviewForm"
-                  >
-                    <i class="bi bi-plus-lg fs-6"></i> Add Review
-                  </button>
+                  <div *ngIf="isAuth">
+                    <button class="btn btn-warning" (click)="showReviewForm = !showReviewForm">
+                      <i class="bi bi-plus-lg fs-6"></i> Add Review
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

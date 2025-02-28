@@ -20,6 +20,7 @@ export class CardComponent implements OnInit {
   showReviewForm: boolean = false; // Mostra/nasconde il form
   reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };
   userId: any  = "";
+  isAuth :boolean = false; 
   
 
   ngOnInit(): void {
@@ -29,6 +30,10 @@ export class CardComponent implements OnInit {
     this.loadReviews();
 
     console.log("User ID from localStorage:", this.userId);
+
+    if(localStorage.getItem('isLoggedIn')){
+      this.isAuth = !this.isAuth;
+    }
   }
   
 
