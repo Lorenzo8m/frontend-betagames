@@ -11,17 +11,4 @@
     <app-editor-delete-modal [editorData]="e"></app-editor-delete-modal>
 </div>
 <!--Create Modal-->
-<app-editor-create-modal (creationResult)="handleResult($event)"></app-editor-create-modal>
-
-<div *ngIf="flag === true"> 
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
-<div *ngIf="flag === false">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
+<app-editor-create-modal></app-editor-create-modal>

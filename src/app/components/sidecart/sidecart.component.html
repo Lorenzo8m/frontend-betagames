@@ -1,0 +1,36 @@
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel" >
+    <div class="offcanvas-header">
+        <div class="d-flex flex-row justify-content-between align-items-center w-50">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrello</h5>
+            {{total | currency: 'EUR'}}
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div *ngFor="let dc of listDetailsCart" class="card m-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img [src]="'/assets/'+correctImageName(dc.gamesDTO.name)+'/'+ correctImageName(dc.gamesDTO.name) +1+ mainSuffixImg"
+                        class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="d-flex flex-row justify-content-between">
+                            <h5 class="card-title">{{dc.gamesDTO.name}}</h5>
+                            <i class="bi bi-trash-fill icon-trash" (click)="deleteGame(dc.id)"></i>
+                        </div>
+                        
+                        <p class="card-text">Price per piece: {{dc.gamesDTO.price}}</p> 
+                            <p class="card-text">
+                                Quantity
+                                <i class="bi bi-dash-circle-fill icon-minus" (click)="removeItem(dc)"></i>
+                                {{dc.quantity}}
+                                <i class="bi bi-plus-circle-fill icon-plus" (click)="addItem(dc)"></i>
+                            </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

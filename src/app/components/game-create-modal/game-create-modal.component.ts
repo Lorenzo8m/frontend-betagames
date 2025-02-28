@@ -1,6 +1,6 @@
 import { Component, ViewChild, Input, ElementRef } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-game-create-modal',
   standalone: false,
@@ -10,7 +10,8 @@ import { ApiService } from '../../services/api.service';
 export class GameCreateModalComponent {
 
   @ViewChild('inputCreate') inputCreate!: ElementRef;
-
+  flag: boolean | null = null;
+  message: string = "";
     listGame: any[] = [];
 
   constructor(private GameService:ApiService) {
@@ -37,10 +38,38 @@ export class GameCreateModalComponent {
       "minAge":this.inputCreate.nativeElement[7].value,
       "price": this.inputCreate.nativeElement[8].value,
       "stockQuantity":this.inputCreate.nativeElement[9].value,
-      "editorsId":this.inputCreate.nativeElement[10].value
+      "editorsId": this.inputCreate.nativeElement[10].value,
+      "categoryId": this.inputCreate.nativeElement[11].value,
+      "authorsId": this.inputCreate.nativeElement[12].value
     }).subscribe((resp: any) => {
-      console.log(resp);
-      this.loadListGames();
+       if (resp.rc === true) {
+        this.flag = true;
+        this.message = resp.msg;
+        this.hideModal();
+        this.loadListGames();
+      } else {
+        this.flag = false;
+        this.message = resp.msg;
+        this.hideFlag();
+      }
+
+
     })
   }
+
+  hideModal(): void {
+    setTimeout(() => {
+      this.flag = null;
+      let modalElement = document.getElementById('createModal'); 
+      let modalInstance = bootstrap.Modal.getInstance(modalElement); 
+      modalInstance.hide(); 
+    }, 3000);
+  }
+
+  hideFlag():void {
+    setTimeout(() => {
+      this.flag = null;
+    }, 5000)
+  }
+
 }

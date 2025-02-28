@@ -38,19 +38,9 @@
       </div>
     </div>
     <div class="position-relative"> <!-- Pulsante carrello - non collassa / il badge si nuoverà rispetto a questo elemento (position-relative)-->
-      <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRightLabel"><i class="bi bi-cart3"></i></a> <!-- button carrello / icona -->
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger p-1">{{listDetailsCart.length}}</span> <!-- Badge-->
+      <a (click)="toggleCart()" class="btn" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRightLabel"><i class="bi bi-cart3"></i></a> <!-- button carrello / icona -->
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger p-1" >{{cartItemCount}}</span> <!-- Badge-->
     </div>
   </div>
 </nav>
-
-<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrello</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-
-  </div>
-</div>
-  
+<app-sidecart [isOpen]="isCartOpen" (cartChanged)="onRecieveNumber($event)"></app-sidecart>
