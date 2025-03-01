@@ -1,5 +1,3 @@
-<p>Profile Info</p>
-
 <div class="container">
   <div *ngIf="listUser && hasActiveUsers()">
     <ng-container *ngFor="let user of listUser">
@@ -46,7 +44,7 @@
             </div>
           </div>
 
-          <button type="button" class="btn btn-danger" (click)="onDelete(user)">Delete</button>
+          <button type="button" class="btn btn-danger" (click)="onDelete(user)">Delete My Account</button>
         </div>
       </div>
     </ng-container>
