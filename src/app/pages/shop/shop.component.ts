@@ -39,8 +39,6 @@ export class ShopComponent implements OnInit, OnDestroy {
       console.error('Errore durante la verifica dell\'autenticazione:', error);
     }
 
-
-
     this.getCartId();
     this.loadListCategories(); // Carica tutte le categorie all'avvio
     this.loadListGames(); // Carica tutti i giochi all'avvio
