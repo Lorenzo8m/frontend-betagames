@@ -10,7 +10,7 @@
                 <form #categoriesUpdate>
                     <div class="mb-3">
                         <label for="EditorsName" class="form-label">Category name</label>
-                        <input type="text" class="form-control" id="authorsName" name="authorsName">
+                        <input type="text" class="form-control" id="authorsName" name="authorsName" [value]="categoriesData?.name">
                         <div id="emailHelp" class="form-text">Actual name: {{categoriesData.name}}</div>
                     </div>
                 </form>
