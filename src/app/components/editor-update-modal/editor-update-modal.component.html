@@ -11,10 +11,10 @@
                 <form #editorUpdate>
                     <div class="mb-3">
                         <label for="EditorsName" class="form-label">Editor name:</label>
-                        <input type="text" class="form-control" id="EditorsName" name="editorsName">
+                        <input type="text" class="form-control" id="EditorsName" name="editorsName" [value]="editorData?.name">
                         <div id="emailHelp" class="form-text">Actual name: {{editorData.name}}</div>
                         <label for="WebName" class="form-label">Sito Web</label>
-                        <input type="text" class="form-control" id="WebName" name="webName">
+                        <input type="text" class="form-control" id="WebName" name="webName" [value]="editorData?.website">
                         <div id="emailHelp" class="form-text">Actual website{{editorData.website}}</div>
                     </div>
                 </form>
