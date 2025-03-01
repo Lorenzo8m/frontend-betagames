@@ -52,9 +52,9 @@
 </div>
 
 <!-- "Carousel" / list di card di giochi(?) che apre il modal dal quale si può aggiungere al carrello in caso. UNA SOLA RIGA DIREI-->
-<div class="container-fluid my-3" style="width: 80vw; margin: 0 auto;">
-    <div class="row">
-        <div class="col">
+<div class="container-fluid my-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-9">
             <div style="display: flex; align-items: center;">
                 <button class="btn btn-outline-primary me-2 d-none d-sm-block" (click)="scrollLeft()"><</button>
                 <ul class="list-group list-group-horizontal overflow-auto" #listGroup style="width: 100%;">
@@ -70,7 +70,8 @@
 
 <!-- Breve testo che spiega se siamo un'azienda che produce e vende giochi o se vendiamo e basta etc. etc. -->
 <div class="container-fluid my-3">
-    <p style="text-align: center; width: 70vw; margin: 0 auto;">Since 1492, <b>BetaGames</b> has been creating and distributing board games worldwide,<br>
+    <p style="text-align: center; width: 70vw; margin: 0 auto;">
+        Since 1492, <b>BetaGames</b> has been creating and distributing board games worldwide,<br>
         from snail mail and carrier pigeons<br>
         to modern deliveries with pizza delivery guys and maybe the occasional rogue Roomba (hopefully, no one got a game in their salad!).<br>
         Here you can find board games of all kinds (wooden, metal, plastic tables, and everything in between).<br>
@@ -82,19 +83,17 @@
 
 <!-- Galleria di 3/4 immagini in formato diverso, più piccole di: giochi/raduni/eventi/gente che gioca -->
 <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-<div class="container-fluid mt-5" style="width: 70vw; margin: 0 auto;">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-12 col-md-6 col-xl-4">
-                <img src="assets/homePic/Bottom1.jpg" class="d-block w-100 rounded" alt="...">
-                <div style="height: 1rem;"></div> <!-- Spacer -->
-            </div>
-            <div class="col-12 col-md-6 col-xl-4">
-                <img src="assets/homePic/Bottom2.jpg" class="d-block w-100 rounded" alt="...">
-            </div>
-            <div class="col-4 d-none d-xl-block">
-                <img src="assets/homePic/Bottom3.jpg" class="d-block w-100 rounded" alt="...">
-            </div>
+<div class="container-fluid text-center mt-5">
+    <div class="row justify-content-center"  style="width: 70vw; margin: 0 auto;">
+        <div class="col-12 col-md-6 col-xl-4">
+            <img src="assets/homePic/Bottom1.jpg" class="d-block w-100 rounded" alt="...">
+            <div style="height: 1rem;"></div> <!-- Spacer -->
+        </div>
+        <div class="col-12 col-md-6 col-xl-4">
+            <img src="assets/homePic/Bottom2.jpg" class="d-block w-100 rounded" alt="...">
+        </div>
+        <div class="col-4 d-none d-xl-block">
+            <img src="assets/homePic/Bottom3.jpg" class="d-block w-100 rounded" alt="...">
         </div>
     </div>
 </div>
