@@ -20,9 +20,12 @@ export class HomeComponent implements OnInit{
   }//ngOnInit
 
   loadListGames():void{
-    this.serv.listGames().subscribe((resp:any)=>{
-      this.listGames = resp.data.filter((game: any) => game.stockQuantity > 0); //Filtro i soli giochi in stock. (è più giusto farlo qua o sul backend?)
-    })
+    // this.serv.listGames().subscribe((resp:any)=>{
+    //   this.listGames = resp.data.filter((game: any) => game.stockQuantity > 0); //Filtro i soli giochi in stock. (è più giusto farlo qua o sul backend?)
+    // })
+    this.serv.listGames().subscribe((resp: any) => {
+      this.listGames = resp.data;
+    });
   }//loadListGames
 
   scrollLeft() {
