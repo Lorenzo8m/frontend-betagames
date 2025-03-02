@@ -14,14 +14,19 @@ export class CardComponent implements OnInit {
   @Input() game: any;
   @Input() cId: number | undefined;
 
+  constructor(private serv: ApiService, private sharedService: SharedService) {}
 
-  constructor(private serv:ApiService,private sharedService:SharedService ){}  
-
+  userId: any = '';
+  isAuth: boolean = false;
   showReviewForm: boolean = false; // Mostra/nasconde il form
-  reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };
-  userId: any  = "";
-  isAuth :boolean = false; 
-  
+  reviews: any[] = [];
+  reviewData = {
+    score: 1,
+    description: '',
+    usersId: 0,
+    gameId: 0,
+    reviewId: null,
+  };
 
   ngOnInit(): void {
     console.log(this.cId);
@@ -29,13 +34,12 @@ export class CardComponent implements OnInit {
     this.userId = storedUserId ? parseInt(storedUserId, 10) : null; // Converte in numero
     this.loadReviews();
 
-    console.log("User ID from localStorage:", this.userId);
+    console.log('User ID from localStorage:', this.userId);
 
-    if(localStorage.getItem('isLoggedIn')){
+    if (localStorage.getItem('isLoggedIn')) {
       this.isAuth = !this.isAuth;
     }
   }
-  
 
   mainSuffixImg: String = '.webp';
 
@@ -54,85 +58,99 @@ export class CardComponent implements OnInit {
         if (resp.rc) {
           this.sharedService.updateCount(1);
         }
-      })
-  }//addToCart
-
+      });
+  } //addToCart
 
   correctImageName(gameName: string): string {
     return gameName.replace(/\s+/g, ''); // Sostituisci gli spazi con caratteri di sottolineatura
   }
 
   // reviews
-  reviews: any[] = []; // Nuovo array per le recensioni
-  
   loadReviews(): void {
+    if (!this.game?.id) return;
     this.serv.listReview(this.game.id).subscribe(
-      (response: any[]) => {  
-        console.log("Dati ricevuti prima dell'assegnazione:", response);
-        this.reviews = response || []; 
-        console.log("Valore aggiornato di reviews:", this.reviews);
-      },
-      (error) => {
-        console.error("Errore nel caricamento delle recensioni:", error);
-      }
+      (data) => (this.reviews = data),
+      (error) => console.error('Error loading reviews:', error)
     );
   }
 
-  // Metodo per inviare una nuova recensione
   submitReview(): void {
     if (!this.userId) {
-      alert("You must be logged in to add a review.");
+      alert('You must be logged in to add a review.');
       return;
     }
-  
-    this.reviewData.usersId = parseInt(this.userId);
+    this.reviewData.usersId = this.userId;
     this.reviewData.gameId = this.game.id;
-  
-    this.serv.createReview(this.reviewData).subscribe(
-      (response: any) => {
-        if (response.rc === false && response.msg) {
-          alert(response.msg);
+
+    const action = this.reviewData.reviewId ? 'updateReview' : 'createReview';
+
+    this.serv[action](this.reviewData).subscribe(
+      (response) => {
+        if (!response) {
+          alert(response);
         } else {
-          // Reset del form
-          this.showReviewForm = false;
-          this.reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };
-  
-          // Aggiorna la lista delle recensioni chiamando `loadReviews()`
+          this.resetForm();
           this.loadReviews();
         }
       },
       (error) => {
-        console.error("Error adding review:", error);
-        alert("Failed to submit the review.");
+        console.error(`Error during ${action}:`, error);
+        alert('Failed to process the review.');
       }
     );
   }
-  
-  deleteReview(reviewId: number, reviewUserId: number): void {
+
+  deleteReview(reviewId: number): void {
+    alert(reviewId);
+
     if (!this.userId) {
-      alert("You must be logged in to delete a review.");
+      alert('You must be logged in to delete a review.');
       return;
     }
-  
-    if (parseInt(this.userId) !== reviewUserId) {
-      alert("You can only delete your own reviews.");
+    if (!confirm('Are you sure you want to delete this review?')) 
       return;
-    }
-  
-    const confirmDelete = confirm("Are you sure you want to delete this review?");
-    if (!confirmDelete) return;
-  
-    this.serv.deleteReview({ id: reviewId }).subscribe(
-      (response: any) => {
-        console.log("Review deleted:", response);
-        // Aggiorna la lista ricaricandola dal backend
+
+    this.serv.deleteReview(reviewId).subscribe(
+      (response) => {
+        console.log('Review deleted:', response);
         this.loadReviews();
       },
       (error) => {
-        console.error("Error deleting review:", error);
-        alert("Failed to delete the review.");
+        console.error('Error deleting review:', error);
+        alert('Failed to delete the review.');
       }
     );
   }
-  
+
+  prepareUpdateReview(review: any): void {
+    this.reviewData = {
+      ...review,
+      usersId: this.userId,
+      gameId: this.game.id,
+      reviewId: review.id,
+    };
+    this.showReviewForm = true;
+  }
+
+  prepareCreateReview(): void {
+    this.reviewData = {
+      score: 1,
+      description: '',
+      usersId: this.userId,
+      gameId: this.game.id,
+      reviewId: null,
+    };
+    this.showReviewForm = true;
+  }
+
+  resetForm(): void {
+    this.reviewData = {
+      score: 1,
+      description: '',
+      usersId: this.userId,
+      gameId: this.game.id,
+      reviewId: null,
+    };
+    this.showReviewForm = false;
+  }
 }

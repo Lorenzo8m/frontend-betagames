@@ -167,10 +167,10 @@
                 <div class="card-body">
                   <h5 class="card-title">Reviews</h5>
                   <br/>
-
+          
                   <!-- LISTA RECENSIONI -->
                   <ng-container *ngIf="reviews && reviews.length">
-                    <ng-container *ngFor="let review of reviews">
+                    <ng-container *ngFor="let review of reviews; let i = index">
                       <div class="row align-items-center">
                         <div class="col-auto">
                           <h6 class="mb-0">
@@ -184,16 +184,27 @@
                           </ng-container>
                         </div>
                         <div class="col-auto ms-auto" *ngIf="+review.username.id === +userId">
-                          <button class="btn btn-danger btn-sm" (click)="deleteReview(review.id, review.username.id)">
-                            <i class="bi bi-trash"></i>
-                          </button>
+                          <div class="d-flex gap-2">
+                            <div>
+                              <button class="btn btn-warning btn-sm" (click)="prepareUpdateReview(review)">
+                                <i class="bi bi-pencil"></i>
+                              </button>
+                            </div>
+                            <div>
+                              <button class="btn btn-danger btn-sm" (click)="deleteReview(review.id)">
+                                <i class="bi bi-trash"></i>
+                              </button>
+                            </div>
+                          </div>
+                          
+                          
                         </div>
                       </div>
                       <p>{{ review.description }}</p>
                       <hr>
                     </ng-container>
                   </ng-container>
-
+          
                   <!-- FORM DI RECENSIONE (VISIBILE SOLO SE showReviewForm = true) -->
                   <div *ngIf="showReviewForm">
                     <form (ngSubmit)="submitReview()">
@@ -208,25 +219,24 @@
                           name="description" required></textarea>
                       </div>
                       <button type="submit" class="submit-details btn btn-success">
-                        Submit Review
+                        {{ reviewData.reviewId ? 'Update Review' : 'Submit Review' }}
                       </button>
-                      <button type="button" class="cancel-details btn btn-secondary ms-2" (click)="showReviewForm = false">
+                      <button type="button" class="cancel-details btn btn-secondary ms-2" (click)="resetForm()">
                         Cancel
                       </button>
                     </form>
                   </div>
                 </div>
-
+          
                 <div class="card-footer" align="right">
-                  <div *ngIf="isAuth">
-                    <button class="custom-details btn btn-warning" (click)="showReviewForm = !showReviewForm">
-                      <i class="bi bi-plus-lg fs-6"></i> Add Review
-                    </button>
-                  </div>
+                  <button *ngIf="isAuth && !showReviewForm" class="custom-details btn btn-warning" (click)="prepareCreateReview()">
+                    <i class="bi bi-plus-lg fs-6"></i> Add Review
+                  </button>
                 </div>
               </div>
             </div>
           </div><!-- Review row -->
+          
         </div>
       </div><!-- Modal Footer 2 -->
 
