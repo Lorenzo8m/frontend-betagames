@@ -28,7 +28,7 @@ const routes: Routes = [
     path: 'account',
     component: AccountComponent , canActivate:[guardGuard],
     children: [
-      { path: '', redirectTo: 'ordini', pathMatch: 'full' },
+      { path: '', redirectTo: 'infoUser', pathMatch: 'full' },
       { path: 'ordini', component: OrdiniComponent },
       { path: 'formcard', component: FormCartComponent },
       { path: 'infoUser', component: InfoProfiloComponent },
