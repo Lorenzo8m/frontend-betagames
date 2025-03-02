@@ -14,6 +14,9 @@ export class CardComponent implements OnInit {
   @Input() game: any;
   @Input() cId: number | undefined;
 
+  flag: boolean | null = null;
+  message:string = "";
+
 
   constructor(private serv:ApiService,private sharedService:SharedService ){}  
 
@@ -51,9 +54,12 @@ export class CardComponent implements OnInit {
       .subscribe((resp: any) => {
         resp.msg;
         console.log(resp.msg);
+        this.message=resp.msg;
+        this.flag=resp.rc;
         if (resp.rc) {
           this.sharedService.updateCount(1);
         }
+        this.hideFlag()
       })
   }//addToCart
 
@@ -133,6 +139,12 @@ export class CardComponent implements OnInit {
         alert("Failed to delete the review.");
       }
     );
+  }
+
+  hideFlag(): void {
+    setTimeout(() => {
+      this.flag = null;
+    }, 2000);
   }
   
 }

@@ -20,7 +20,8 @@
     </div>
   </div>
 </div>
-
+<app-alert *ngIf="flag === true" [flag]="flag" [message]="message + '     ' + game.name" ></app-alert>
+<app-alert *ngIf="flag === false" [flag]="flag" [message]="message" ></app-alert>
 
 <!-- Modal -->
 <div class="modal modal-xl modal-fullscreen-lg-down" [id]="'modal' + game.id" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

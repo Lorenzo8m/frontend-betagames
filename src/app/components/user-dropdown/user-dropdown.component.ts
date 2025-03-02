@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,14 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './user-dropdown.component.html',
   styleUrl: './user-dropdown.component.scss'
 })
-export class UserDropdownComponent {
+export class UserDropdownComponent{
   
   @Output() logoutEvent = new EventEmitter<void>();
   
   constructor(private auth : AuthService,
               private router : Router
   ){}
-
 
   logout() {
     this.logoutEvent.emit(); // Emette l'evento di logout al componente padre
