@@ -7,18 +7,25 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #orderCreate="ngForm" (ngSubmit)="onSubmit(orderCreate)">
-                    <div class="mb-3">
-                        <select class="form-select" aria-label="Select Paycard" [(ngModel)]="orderCreate.value.payCardId" name="payCardId" ngModel required>
-                          <option selected>Select Paycard</option>
-                          <option *ngFor="let payCard of listUser" [value]="payCard.id">{{payCard.cardNumber}}</option>
-                        </select>
-                    </div>
+                <div class="mb-3" *ngIf="listUser.length > 0">
+                    <form #orderCreate="ngForm" (ngSubmit)="onSubmit(orderCreate)">
 
-                    <div class="modal-footer">
-                        <button type="submit" data-bs-dismiss="modal" class="submit-details btn btn-success" data-bs-dismiss="modal" [disabled]="!orderCreate.valid">Confirm</button>
-                    </div>
-                </form>
+                        <select class="form-select" aria-label="Select Paycard" [(ngModel)]="orderCreate.value.payCardId" name="payCardId" ngModel required>
+                        <option selected>Select Paycard</option>
+                        <option *ngFor="let payCard of listUser" [value]="payCard.id">{{payCard.cardNumber}}</option>
+                        </select>
+
+                        <div class="modal-footer">
+                            <button data-bs-dismiss="modal" class="add btn btn-primary z-1" data-bs-dismiss="modal" routerLink="/account/formcard" >Add new card</button>
+                            <button type="submit" data-bs-dismiss="modal" class="submit-details btn btn-success" data-bs-dismiss="modal" [disabled]="!orderCreate.valid">Confirm</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div *ngIf="listUser.length <= 0">
+                    <p>You must register a payment card</p>
+                    <button data-bs-dismiss="modal" class="add btn btn-primary w-100 z-1" data-bs-dismiss="modal" routerLink="/account/formcard" >Add new card</button>
+                </div>
             </div>
         </div>
     </div>
