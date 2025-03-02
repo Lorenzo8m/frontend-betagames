@@ -17,7 +17,7 @@ import { DetailsShippingComponent } from './components/details-shipping/details-
 
 const routes: Routes = [
 
-  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'login', component: SigninComponent },
   { path: 'home', component: HomeComponent },
   { path: 'shop', component: ShopComponent },
@@ -28,7 +28,7 @@ const routes: Routes = [
     path: 'account',
     component: AccountComponent , canActivate:[guardGuard],
     children: [
-      { path: '', redirectTo: 'ordini', pathMatch: 'full' },
+      { path: '', redirectTo: 'infoUser', pathMatch: 'full' },
       { path: 'ordini', component: OrdiniComponent },
       { path: 'formcard', component: FormCartComponent },
       { path: 'infoUser', component: InfoProfiloComponent },

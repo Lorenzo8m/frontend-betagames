@@ -7,7 +7,7 @@
       <h5 class="card-title">{{ game.name }}</h5>
       <p>Price: {{ game.price | currency : "EUR" }}</p>
 
-      <a class="custom-details w-100 btn btn-inspect z-3" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + game.id">See more</a>
+      <a class="custom-details w-100 btn btn-inspect z-0" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + game.id">See more</a>
       
       <div style="display: inline-block" class="w-100"> <!-- BLOCCO PULSANTE ADD TO CART-->
         <div *ngIf="game.stockQuantity <= 0; else elseBlock">
@@ -25,6 +25,8 @@
     </div>
   </div>
 </div>
+
+<!-- Alerts -->
 <app-alert *ngIf="flag === true" [flag]="flag" [message]="message + '     ' + game.name" ></app-alert>
 <app-alert *ngIf="flag === false" [flag]="flag" [message]="message" ></app-alert>
 
@@ -235,6 +237,10 @@
           </div><!-- Review row -->
         </div>
       </div><!-- Modal Footer 2 -->
+
+      <!-- Alerts -->
+      <app-alert *ngIf="flag === true" [flag]="flag" [message]="message + '     ' + game.name" ></app-alert>
+      <app-alert *ngIf="flag === false" [flag]="flag" [message]="message" ></app-alert>
 
     </div>
   </div>
