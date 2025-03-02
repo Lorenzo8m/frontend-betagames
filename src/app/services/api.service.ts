@@ -177,8 +177,8 @@ export class ApiService {
   updateReview(body: {}) {
     return this.http.post(this.url + 'user/reviews/update', body);
   }
-  deleteReview(body: {}) {
-    return this.http.post(this.url + 'user/reviews/delete', body);
+  deleteReview(id: number) {
+    return this.http.delete(this.url + 'user/reviews/delete?id=' + id);
   }
    //=======DETAILS SHIPPING==================
    deleteDetailShippingById(body:{}){

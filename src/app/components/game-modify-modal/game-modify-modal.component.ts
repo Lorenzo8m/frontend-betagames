@@ -1,4 +1,12 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ApiService } from '../../services/api.service';
 declare var bootstrap: any;
 
@@ -17,7 +25,6 @@ export class GameModifyModalComponent implements OnInit {
 
   flag: boolean | null = null;
   message: string = '';
-  ssage: string = '';
   listGame: any[] = [];
   listEditor: any[] = [];
   listAuthor: any[] = [];
@@ -28,7 +35,6 @@ export class GameModifyModalComponent implements OnInit {
     this.loadListAuthors();
     this.loadListCategory();
   }
-  
 
   loadListEditors(): void {
     this.GameService.listEditors().subscribe((resp: any) => {
@@ -84,7 +90,7 @@ export class GameModifyModalComponent implements OnInit {
   loadListGames() {
     this.GameService.listGames().subscribe((resp: any) => {
       this.listGame = resp.data || []; // Assicura che sia un array
-      this.updateListGames.emit(this.listGame);// emetti array aggiornato
+      this.updateListGames.emit(this.listGame); // emetti array aggiornato
     });
   }
 
@@ -121,4 +127,7 @@ export class GameModifyModalComponent implements OnInit {
       this.flag = null;
     }, 500);
   }
+
 }
+
+
