@@ -52,14 +52,4 @@ export class OrdiniComponent implements OnInit {
     console.log("Pedido seleccionado:", this.selectedOrder);
   }
 
-  onDelete(id: number){
-    console.log(id);
-    this.service.deleteOrdini({
-      id
-    })
-    .subscribe((resp:any)=>{
-      this.loadListOrdini();
-    })
-  }
-
 }

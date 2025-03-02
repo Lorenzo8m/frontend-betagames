@@ -4,11 +4,11 @@
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(79, 225, 241, 0.627);
   }
   
   .user-header {
-    background: #007bff;
+    background: #66d9e8;
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
@@ -55,4 +55,83 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .btn{
+    border: 2px solid #66d9e8;
+    background: none;
+    color: #66d9e8;
+    cursor: pointer;
+    transition: all 0.5s;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+}
+
+.btn:hover {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #66d9e8;
+    z-index: -1;
+    border-radius: 50% 50% 0% 0%;
+    height: 0%;
+    transition: all 0.5s;
+}
+
+.btn:hover:before {
+    height: 190%;
+}
+
+.btn:active{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
   
+.btn-danger{
+  border: 2px solid #e86666;
+  background: none;
+  color: #e86666;
+  cursor: pointer;
+  transition: all 0.5s;
+  position: relative;
+  color: #000;
+  overflow: hidden;
+}
+
+.btn-danger:hover {
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-danger:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #e86666;
+  z-index: -1;
+  border-radius: 50% 50% 0% 0%;
+  height: 0%;
+  transition: all 0.5s;
+}
+
+.btn-danger:hover:before {
+  height: 190%;
+}
+
+.btn-danger:active{
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
