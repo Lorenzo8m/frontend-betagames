@@ -1,7 +1,7 @@
 <!-- Card -->
  <div class="container-fluid">
   <div class="card border-light h-100 shadow-sm">
-    <img [src]="'/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="card-img-top" alt="..." />
+    <img [src]="'/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="card-img-top" alt="..." />
     <div class="card-body">
 
       <h5 class="card-title">{{ game.name }}</h5>
@@ -48,16 +48,16 @@
               <div id="gameCarousel{{ game.id }}" class="carousel slide">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img [src]="'/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="d-block w-100" alt="..." />
+                    <img [src]="'/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="d-block w-100" alt="..." />
                   </div>
                   <div class="carousel-item">
-                    <img [src]=" '/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 2 + mainSuffixImg" class="d-block w-100" alt="..." />
+                    <img [src]=" '/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 2 + mainSuffixImg" class="d-block w-100" alt="..." />
                   </div>
                   <div class="carousel-item">
-                    <img [src]=" '/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 3 + mainSuffixImg" class="d-block w-100" alt="..." />
+                    <img [src]=" '/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 3 + mainSuffixImg" class="d-block w-100" alt="..." />
                   </div>
                   <div class="carousel-item">
-                    <img [src]=" '/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 4 + mainSuffixImg" class="d-block w-100" alt="..." />
+                    <img [src]=" '/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 4 + mainSuffixImg" class="d-block w-100" alt="..." />
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#gameCarousel' + game.id"
