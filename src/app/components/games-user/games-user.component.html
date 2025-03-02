@@ -1,38 +1,47 @@
-<div class="container">
-  <div *ngIf="listUser && hasActiveUsers()">
-    <ng-container *ngFor="let user of listUser">
-      <div *ngIf="user.active" class="user-info mb-4">
-        
-        <div *ngIf="uniqueGames.length === 0" class="no-games text-center">
-          <p>The user has not bought any games yet.</p>
-        </div>
-
-        <div class="user-orders">
-          <div class="order-details">
-            <div *ngFor="let detail of uniqueGames; trackBy: trackByGameId" class="game-info mb-3">
-              <h3 class="game-name">{{ detail.gameDTO.name }}</h3>
-              <p><strong>Price at Time:</strong> €{{ detail.totalPrice }}</p>
-              <p><strong>Total Quantity:</strong> {{ detail.totalQuantity }}</p>
-              <p><strong>Description:</strong> {{ detail.gameDTO.description }}</p>
-              <p><strong>Game Time:</strong> {{ detail.gameDTO.minGameTime }} - {{ detail.gameDTO.maxGameTime }} hours</p>
-              <p><strong>Players:</strong> {{ detail.gameDTO.minPlayerNumber }} - {{ detail.gameDTO.maxPlayerNumber }}</p>
-              <p><strong>Age:</strong> {{ detail.gameDTO.minAge }}+</p>
-              <p><strong>Price:</strong> {{ detail.gameDTO.price | currency: 'EUR' }}</p>
-              <p><strong>Stock Quantity:</strong> {{ detail.gameDTO.stockQuantity }}</p>
-              <p><small><strong>Editor:</strong> {{ detail.gameDTO.editorDTO.name }} ({{ detail.gameDTO.editorDTO.website }})</small></p>
+<div class="wrapper">  <!-- Nuevo contenedor exterior -->
+  <div class="container">
+    <div *ngIf="listUser && hasActiveUsers()">
+      <ng-container *ngFor="let user of listUser">
+        <div *ngIf="user.active" class="user-info mb-4">
+          <div *ngIf="uniqueGames.length === 0" class="no-games text-center">
+            <p>The user has not bought any games yet.</p>
+          </div>
+          <div class="user-orders">
+            <div class="order-details">
+              <div
+                *ngFor="let detail of uniqueGames; trackBy: trackByGameId"
+                class="game-info mb-3"
+              >
+                <h3 class="game-name">{{ detail.gameDTO.name }}</h3>
+                <p><strong>Price at Time:</strong> €{{ detail.priceAtTime }}</p>
+                <p><strong>Total Quantity:</strong> {{ detail.quantity }}</p>
+                <p><strong>Description:</strong> {{ detail.gameDTO.description }}</p>
+                <p>
+                  <strong>Game Time:</strong> {{ detail.gameDTO.minGameTime }} -
+                  {{ detail.gameDTO.maxGameTime }} hours
+                </p>
+                <p>
+                  <strong>Players:</strong> {{ detail.gameDTO.minPlayerNumber }} -
+                  {{ detail.gameDTO.maxPlayerNumber }}
+                </p>
+                <p><strong>Age:</strong> {{ detail.gameDTO.minAge }}+</p>
+                <p><strong>Price:</strong> {{ detail.gameDTO.price | currency : "EUR" }}</p>
+                <p><strong>Stock Quantity:</strong> {{ detail.gameDTO.stockQuantity }}</p>
+                <p>
+                  <small>
+                    <strong>Editor:</strong>
+                    {{ detail.gameDTO.editorDTO.name }} ({{ detail.gameDTO.editorDTO.website }})
+                  </small>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-
-        <button type="button" class="btn btn-danger" (click)="onDelete(user)">
-          Delete
-        </button>
-      </div>
-      <hr />
-    </ng-container>
+        <hr />
+      </ng-container>
+    </div>
+    <p *ngIf="listUser && !hasActiveUsers()" class="text-center text-muted fs-4">
+      There are no active users.
+    </p>
   </div>
-
-  <p *ngIf="listUser && !hasActiveUsers()" class="text-center text-muted fs-4">
-    Non ci sono utenti attivi.
-  </p>
 </div>

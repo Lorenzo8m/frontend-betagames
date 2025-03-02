@@ -45,17 +45,16 @@ export class SigninComponent {
               this.auth.setRoleUser();
             }
           }
-          return this.user.listInfoUsersById(resp.data?.id); // Restituisci il risultato della seconda chiamata
+          return this.user.listInfoUsersById(resp.data?.id);
         })
       )
       .subscribe(
         (resp: any) => {
           if (!resp || !resp.data) {
-            this.errorMessage = resp.msg; // 'Error: User data not found'
+            this.errorMessage = resp.msg;
             return;
           }
           console.log('Informazioni utente:', resp.data);
-          // Gestisci i dati dell'utente qui
           if (this.auth.isLoggedIn) {
             this.router.navigate(['home']);
           }
