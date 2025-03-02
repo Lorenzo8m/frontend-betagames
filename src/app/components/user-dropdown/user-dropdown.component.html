@@ -18,16 +18,16 @@
         class="dropdown-menu dropdown-menu-end"
         aria-labelledby="userDropdown"
       >
-        <li><a class="dropdown-item" routerLink="/account">Profile</a></li>
-        <li><a class="dropdown-item" routerLink="/account/ordini">Orders</a></li>
-        <li><a class="dropdown-item" routerLink="/account/infoUser">My Info</a></li>
-        <li><a class="dropdown-item" routerLink="/account/formcard">New Pay Card</a></li>
-        <li><a class="dropdown-item" routerLink="/account/gamesuser">My Games</a></li>
-        <li><a class="dropdown-item" routerLink="/account/detailsShipping">Details My Shipping</a></li>
-        <li><a class="dropdown-item" routerLink="/admin">Admin</a></li>
-        <li><a class="dropdown-item" routerLink="/login">Login</a></li>
-        <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+        <li *ngIf="isLoggedIn"><a class="dropdown-item" routerLink="/account">Profile</a></li>
+        <li *ngIf="isLoggedIn"><a class="dropdown-item" routerLink="/account/ordini">Orders</a></li>
+        <li *ngIf="isLoggedIn"><a class="dropdown-item" routerLink="/account/infoUser">My Info</a></li>
+        <li *ngIf="isLoggedIn"><a class="dropdown-item" routerLink="/account/formcard">New Pay Card</a></li>
+        <li *ngIf="isLoggedIn"><a class="dropdown-item" routerLink="/account/gamesuser">My Games</a></li>
+        <li *ngIf="isLoggedIn"><a class="dropdown-item" routerLink="/account/detailsShipping">Details My Shipping</a></li>
+        <li *ngIf="isAdmin"><a class="dropdown-item" routerLink="/admin">Admin</a></li>
+        <li *ngIf="!isLoggedIn"><a class="dropdown-item" routerLink="/login">Login</a></li>
+        <li *ngIf="isLoggedIn"><hr class="dropdown-divider"/></li>
+        <li *ngIf="isLoggedIn"><a class="dropdown-item" (click)="logout()">Logout</a></li>
       </ul>
     </div>
 </div>
