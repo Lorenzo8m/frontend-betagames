@@ -7,14 +7,14 @@
       <h5 class="card-title">{{ game.name }}</h5>
       <p>Price: {{ game.price | currency : "EUR" }}</p>
 
-      <a class="custom-details btn btn-inspect z-3" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + game.id">See more</a>
+      <a class="custom-details w-100 btn btn-inspect z-3" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + game.id">See more</a>
       
-      <div style="display: inline-block"> <!-- BLOCCO PULSANTE ADD TO CART-->
+      <div style="display: inline-block" class="w-100"> <!-- BLOCCO PULSANTE ADD TO CART-->
         <div *ngIf="game.stockQuantity <= 0; else elseBlock">
           <a class="add btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
         </div>
         <ng-template #elseBlock>
-          <a class="add btn btn-primary z-1" (click)="addToCart(game.id, 1)">Add to cart</a>
+          <a class="add btn w-100 btn-primary z-1" (click)="addToCart(game.id, 1)">Add to cart</a>
         </ng-template>
       </div>
     </div>
@@ -145,7 +145,7 @@
           <div style="display: inline-block">
             <!-- BLOCCO PULSANTE ADD TO CART-->
             <div *ngIf="game.stockQuantity <= 0; else elseBlock">
-              <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
+              <a class="btn w-100 btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
             </div>
             <ng-template #elseBlock>
               <a class="btn btn-primary" (click)="addToCart(game.id, 1)">
