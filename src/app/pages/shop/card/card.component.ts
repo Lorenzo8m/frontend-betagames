@@ -100,7 +100,7 @@ export class CardComponent implements OnInit {
   }
 
   deleteReview(reviewId: number): void {
-    alert(reviewId);
+    //alert(reviewId);
 
     if (!this.userId) {
       alert('You must be logged in to delete a review.');
@@ -123,6 +123,7 @@ export class CardComponent implements OnInit {
 
   prepareUpdateReview(review: any): void {
     this.reviewData = {
+      //  Prende tutte le proprietà dell'oggetto review e le copia nel nuovo oggetto reviewData
       ...review,
       usersId: this.userId,
       gameId: this.game.id,
