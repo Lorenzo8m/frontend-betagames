@@ -3,6 +3,7 @@ import { ApiService } from '../../../services/api.service';
 
 import { switchMap } from 'rxjs';
 import { SharedService } from '../../../services/shared.service';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-card',
@@ -18,16 +19,17 @@ export class CardComponent implements OnInit {
   message:string = "";
 
 
-  constructor(private serv:ApiService, private sharedService:SharedService ){}  
+  constructor(private serv:ApiService,private sharedService:SharedService, private auth:AuthService ){}  
 
   showReviewForm: boolean = false; // Mostra/nasconde il form
   reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };
   userId: any  = "";
-  isAuth :boolean = false; 
+  isAuth :boolean = false;
+  isLogged: boolean = false;
+
   
 
   ngOnInit(): void {
-    console.log(this.cId);
     const storedUserId = localStorage.getItem('idUser'); // Ottieni l'ID dal localStorage
     this.userId = storedUserId ? parseInt(storedUserId, 10) : null; // Converte in numero
     this.loadReviews();
@@ -37,14 +39,17 @@ export class CardComponent implements OnInit {
     if(localStorage.getItem('isLoggedIn')){
       this.isAuth = !this.isAuth;
     }
+    // if(localStorage.getItem('isLoggedIn')==='0'){
+    //   this.isLogged = !this.isLogged;
+    // }
+    this.isLogged = this.auth.isAutentificated();
+
   }
   
 
   mainSuffixImg: String = '.webp';
 
   addToCart(gameId: number, quantity: number): void {
-    let cartId = this.cId;
-    console.log('add ', gameId + ' ' + quantity + ' ' + cartId);
     this.serv
       .createDetailsCart({
         gameId,
