@@ -11,52 +11,52 @@
                 <form #inputUpdate>
                     <div class="mb-3">
                         <label for="GamesName" class="form-label">Game name</label>
-                        <input type="text" class="form-control" id="gameName" name="gameName">
+                        <input type="text" class="form-control" id="gameName" name="gameName" [value]="gameData?.name">
 
                         <label for="publicationDate" class="form-label">Publication Date</label>
                         <input type="date" class="form-control" id="publicationDate" name="publicationDate">
 
                         <label for="description" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="description" name="description">
+                        <input type="text" class="form-control" id="description" name="description" [value]="gameData?.description">
 
                         <div class="d-flex flex-row justify-content-between">
                             <div>
                                 <label for="minTime" class="form-label">Minimum game time</label>
-                                <input type="number" class="form-control" id="minTime" name="minTime">
+                                <input type="number" class="form-control" id="minTime" name="minTime" [value]="gameData?.minGameTime">
                             </div>
                             <div>
                                 <label for="maxTime" class="form-label">Maximum game time</label>
-                                <input type="number" class="form-control" id="maxTime" name="maxTime">
+                                <input type="number" class="form-control" id="maxTime" name="maxTime" [value]="gameData?.maxGameTime">
                             </div>
                         </div>
                         <div class="d-flex flex-row justify-content-between">
                             <div>
                                 <label for="minPlayerNumber" class="form-label">Minimum player</label>
-                                <input type="number" class="form-control" id="minPlayerNumber" name="minPlayerNumber">
+                                <input type="number" class="form-control" id="minPlayerNumber" name="minPlayerNumber" [value]="gameData?.minPlayerNumber">
                             </div>
                             <div>
                                 <label for="maxPlayernumber" class="form-label">Maximum player</label>
-                                <input type="number" class="form-control" id="maxPlayerNumber" name="maxPlayerNumber">
+                                <input type="number" class="form-control" id="maxPlayerNumber" name="maxPlayerNumber" [value]="gameData?.maxPlayerNumber">
                             </div>
                         </div>
                         <div class="d-flex flex-row justify-content-between">
                             <div>
                                 <label for="minAge" class="form-label">minimum age</label>
-                                <input type="number" class="form-control" id="minAge" name="minAge">
+                                <input type="number" class="form-control" id="minAge" name="minAge" [value]="gameData?.minAge">
                             </div>
                             <div>
                                 <label for="price" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="price" name="price">
+                                <input type="number" class="form-control" id="price" name="price" [value]="gameData?.price">
                             </div>
                         </div>
                         <div>
-                            <label for="editorsId" class="form-label">Stock Quantity</label>
-                            <input type="number" class="form-control" id="editorsId" name="editorsId">
+                            <label for="quantity" class="form-label">Stock Quantity</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" [value]="gameData?.stockQuantity">
                         </div>
                         <div>
                             <label for="editorsId" class="form-label">Id editor</label>
                             <select name="editorsId" class="form-control">
-                            <option *ngFor="let editor of listEditor" [value]="editor.id">
+                            <option *ngFor="let editor of listEditor" [value]="editor.id" [selected]="editor.id === gameData.editorDTO.id">
                                 {{ editor.name }}
                             </option>
                             </select>

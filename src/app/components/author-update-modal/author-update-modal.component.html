@@ -11,16 +11,16 @@
                 <form #authorUpdate>
                     <div class="mb-3">
                         <label for="EditorsName" class="form-label">Author name</label>
-                        <input type="text" class="form-control" id="authorsName" name="authorsName">
-                        <div id="emailHelp" class="form-text">Actual name: {{authorData.name}}</div>
+                        <input type="text" class="form-control" id="authorsName" name="authorsName" [value]="authorData?.name" disabled>
+                        <!-- <div id="emailHelp" class="form-text">Actual name: {{authorData.name}}</div> -->
                         <label for="EditorsName" class="form-label">Author lastname</label>
-                        <input type="text" class="form-control" id="authorsLastname" name="authorsLastname">
-                        <div id="emailHelp" class="form-text">Actual lastname: {{authorData.lastname}}</div>
+                        <input type="text" class="form-control" id="authorsLastname" name="authorsLastname" [value]="authorData?.lastname" disabled>
+                        <!-- <div id="emailHelp" class="form-text">Actual lastname: {{authorData.lastname}}</div> -->
                         <label for="EditorsName" class="form-label">Country: </label>
-                        <input type="text" class="form-control" id="country" name="country">
+                        <input type="text" class="form-control" id="country" name="country" [value]="authorData?.country">
                         <div id="emailHelp" class="form-text">Actual country{{authorData.country}}</div>
                         <label for="EditorsName" class="form-label" name="biography">Biography</label>
-                        <input type="text" class="form-control" id="biography" name="biography">
+                        <input type="text" class="form-control" id="biography" name="biography" [value]="authorData?.biography">
                     </div>
                 </form>
             </div>

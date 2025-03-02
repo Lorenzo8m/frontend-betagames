@@ -28,6 +28,7 @@ export class GameModifyModalComponent implements OnInit {
     this.loadListAuthors();
     this.loadListCategory();
   }
+  
 
   loadListEditors(): void {
     this.GameService.listEditors().subscribe((resp: any) => {

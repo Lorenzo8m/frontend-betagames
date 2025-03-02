@@ -1,11 +1,12 @@
 <!-- Card -->
-<div class="col">
+ <div class="container-fluid">
   <div class="card border-light h-100 shadow-sm">
-    <img [src]="'/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg"
-      class="card-img-top" alt="..." />
+    <img [src]="'/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="card-img-top" alt="..." />
     <div class="card-body">
+
       <h5 class="card-title">{{ game.name }}</h5>
       <p>Price: {{ game.price | currency : "EUR" }}</p>
+
       <a class="custom-details btn btn-inspect z-3" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + game.id">See more</a>
       
       <div style="display: inline-block"> <!-- BLOCCO PULSANTE ADD TO CART-->
@@ -16,16 +17,13 @@
           <a class="add btn btn-primary z-1" (click)="addToCart(game.id, 1)">Add to cart</a>
         </ng-template>
       </div>
-
     </div>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal modal-xl modal-fullscreen-lg-down" [id]="'modal' + game.id" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <!-- Da capire bene come funziona il responsive sul modal - quando farlo andare full page -->
 
+<!-- Modal -->
+<div class="modal modal-xl modal-fullscreen-lg-down" [id]="'modal' + game.id" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- Modal Header -->
@@ -77,8 +75,8 @@
               <div class="row justify-content-between my-2"> <!-- data di pubblicazione e età minima-->
                 <div class="col-6">
                   <span>
-                    <i class="bi bi-calendar-event fs-5" style="padding-right: 10px" data-bs-toggle="tooltip" data-bs-placement="top" title="Publication date"></i>
-                    {{ game.date | date : "MM/yyyy" }}
+                    <i class="bi bi-calendar-event fs-5" style="padding-right: 10px" data-bs-toggle="tooltip" data-bs-placement="top" title="Publication Year"></i>
+                    {{ game.date | date : "yyyy" }}
                   </span>
                 </div>
                 <div class="col-6">
@@ -133,18 +131,42 @@
                   </ng-container>
                 </span>
               </div>
+            </div><!-- Colonna informazioni gioco-->
 
+          </div>         
+        </div>
+      </div><!-- Modal Body-->
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <!-- Vedere come impaginare stock quantity, prezzo (se qui o nel body), e i pulsanti-->
+        <div class="ms-auto">
+          <span class="me-3">Price: {{ game.price | currency : "EUR" }}</span>
+          <div style="display: inline-block">
+            <!-- BLOCCO PULSANTE ADD TO CART-->
+            <div *ngIf="game.stockQuantity <= 0; else elseBlock">
+              <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
             </div>
+            <ng-template #elseBlock>
+              <a class="btn btn-primary" (click)="addToCart(game.id, 1)">
+                Add to cart -
+                <span class="fw-bold">{{ game.price | currency : "EUR" }}</span>
+              </a>
+            </ng-template>
           </div>
+        </div>
+      </div>
 
-          <br/>
+      <!-- Modal Footer 2 (sperando sia legale) -->
+      <div class="modal-footer">
+        <div class="container-fluid mt-3">
 
           <div class="row"> <!-- Reviews -->
             <div align="center">
               <div class="card" style="width: auto" align="left">
                 <div class="card-body">
                   <h5 class="card-title">Reviews</h5>
-                  <br />
+                  <br/>
 
                   <!-- LISTA RECENSIONI -->
                   <ng-container *ngIf="reviews && reviews.length">
@@ -201,33 +223,12 @@
                       <i class="bi bi-plus-lg fs-6"></i> Add Review
                     </button>
                   </div>
-
                 </div>
               </div>
             </div>
-          </div>
+          </div><!-- Review row -->
         </div>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <!-- Vedere come impaginare stock quantity, prezzo (se qui o nel body), e i pulsanti-->
-        <div class="ms-auto">
-          <span class="me-3">Price: {{ game.price | currency : "EUR" }}</span>
-          <div style="display: inline-block">
-            <!-- BLOCCO PULSANTE ADD TO CART-->
-            <div *ngIf="game.stockQuantity <= 0; else elseBlock">
-              <a class="btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
-            </div>
-            <ng-template #elseBlock>
-              <a class="btn btn-primary" (click)="addToCart(game.id, 1)">
-                Add to cart -
-                <span class="fw-bold">{{ game.price | currency : "EUR" }}</span>
-              </a>
-            </ng-template>
-          </div>
-        </div>
-      </div>
+      </div><!-- Modal Footer 2 -->
 
     </div>
   </div>
