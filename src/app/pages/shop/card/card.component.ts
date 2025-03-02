@@ -51,7 +51,9 @@ export class CardComponent implements OnInit {
       .subscribe((resp: any) => {
         resp.msg;
         console.log(resp.msg);
-        this.sharedService.updateCount(1);
+        if (resp.rc) {
+          this.sharedService.updateCount(1);
+        }
       })
   }//addToCart
 

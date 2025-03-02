@@ -19,3 +19,36 @@ pre {
     line-height: 1.175; /* standard è tipo 1.5 ...? */
     font-size: 0.8vw; /* Dimensione di base */
 }
+
+.caption{
+    position:absolute;
+    padding: 18px;
+    top: 0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: all 0.5s;
+    background: rgba(0,0,0,0);
+    overflow: hidden;
+}
+
+.caption h1{
+    margin: 0
+}
+
+.caption p{
+    text-transform: capitalize;
+}
+.container{
+    overflow: hidden;
+}
+.container:hover .caption{
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.5);
+}
