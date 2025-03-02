@@ -1,0 +1,39 @@
+.custom-details {
+    border: 2px solid #ffc107;
+    background: none;
+    color: #ffc107;
+    cursor: pointer;
+    transition: all 0.5s;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+}
+
+.custom-details:hover {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.custom-details:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffc107;
+    z-index: -1;
+    border-radius: 50% 50% 0% 0%;
+    height: 0%;
+    transition: all 0.5s;
+}
+
+.custom-details:hover:before {
+    height: 190%;
+}
+
+.custom-details:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}

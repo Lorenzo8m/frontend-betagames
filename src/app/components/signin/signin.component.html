@@ -14,10 +14,12 @@
       Login
     </button>
   </div>
-
   <p *ngIf="errorMessage" class="error-message text-danger">
     {{ errorMessage }}
   </p>
 </form>
+  <div>
+    <p class="mt-3">You don't have an account yet? click the <a routerLink="/register">link</a> to register</p>
+  </div>
 </div>
 
