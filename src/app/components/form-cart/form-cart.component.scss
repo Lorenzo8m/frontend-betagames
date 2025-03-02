@@ -1,18 +1,16 @@
-/* Centrar el formulario en la página */
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem auto; /* Centrado horizontal */
+    margin: 2rem auto;
     padding: 2rem;
     width: 100%;
-    max-width: 400px; /* Evita que sea demasiado ancho */
+    max-width: 400px;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(79, 225, 241, 0.627);
 }
 
-/* Contenedor de cada input y label */
 .mb-2, .container {
     display: flex;
     flex-direction: column;
@@ -20,7 +18,6 @@ form {
     width: 100%;
 }
 
-/* Centrar y alinear los labels con los inputs */
 .form-label {
     width: 100%;
     text-align: left;
@@ -30,7 +27,6 @@ form {
     margin-bottom: 5px;
 }
 
-/* Inputs alineados con los labels */
 .form-control {
     width: 100%;
     padding: 8px;
@@ -41,14 +37,12 @@ form {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Efecto al enfocar un input */
 .form-control:focus {
-    border-color: #6610f2;
+    border-color: #1ebcd0;
     outline: none;
-    box-shadow: 0 0 5px rgba(102, 16, 242, 0.3);
+    box-shadow: 0 0 5px rgba(16, 219, 242, 0.3);
 }
 
-/* Alineación del checkbox */
 .form-check {
     display: flex;
     align-items: center;
@@ -57,26 +51,46 @@ form {
     justify-content: flex-start;
 }
 
-/* Botón de envío */
-.btn-primary {
-    background-color: #6610f2 !important;
-    border: none;
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    font-weight: bold;
+.btn{
+    border: 2px solid #ffc107;
+    background: none;
+    color: #ffc107;
+    cursor: pointer;
+    transition: all 0.5s;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+}
+
+.btn:hover {
     color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(102, 16, 242, 0.3);
-    transition: background-color 0.3s ease-in-out;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Hover del botón */
-.btn-primary:hover {
-    background-color: #520dc2 !important;
+.btn:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffc107;
+    z-index: -1;
+    border-radius: 50% 50% 0% 0%;
+    height: 0%;
+    transition: all 0.5s;
 }
 
-/* Responsividad */
+.btn:hover:before {
+    height: 190%;
+}
+
+.btn:active{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
 @media (max-width: 768px) {
     form {
         width: 90%;

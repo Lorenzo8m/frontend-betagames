@@ -29,6 +29,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   isAutentificated: boolean = false;
 
+
   ngOnInit(): void {
     console.log("is authentificated?  ",this.auth.isAutentificated())
 

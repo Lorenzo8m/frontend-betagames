@@ -1,26 +1,34 @@
 <!-- Card -->
  <div class="container-fluid">
   <div class="card border-light h-100 shadow-sm">
-    <img [src]="'/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="card-img-top" alt="..." />
+    <img [src]="'/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="card-img-top" alt="..." />
     <div class="card-body">
 
       <h5 class="card-title">{{ game.name }}</h5>
       <p>Price: {{ game.price | currency : "EUR" }}</p>
 
-      <a class="custom-details w-100 btn btn-inspect z-3" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + game.id">See more</a>
+      <a class="custom-details w-100 btn btn-inspect z-0" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + game.id">See more</a>
       
       <div style="display: inline-block" class="w-100"> <!-- BLOCCO PULSANTE ADD TO CART-->
         <div *ngIf="game.stockQuantity <= 0; else elseBlock">
           <a class="add btn btn-primary disabled" role="button" aria-disabled="true">Out of stock</a>
         </div>
         <ng-template #elseBlock>
-          <a class="add btn w-100 btn-primary z-1" (click)="addToCart(game.id, 1)">Add to cart</a>
+          <ng-container *ngIf="isLogged; else notLogged">
+            <a class="add btn w-100 btn-primary z-1" (click)="addToCart(game.id, 1)">Add to cart</a>
+          </ng-container>
+          <ng-template #notLogged>
+            <a class="add btn w-100 btn-primary z-1 disabled" >Loggin needed</a>
+          </ng-template>
         </ng-template>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Alerts -->
+<app-alert *ngIf="flag === true" [flag]="flag" [message]="message + '     ' + game.name" ></app-alert>
+<app-alert *ngIf="flag === false" [flag]="flag" [message]="message" ></app-alert>
 
 <!-- Modal -->
 <div class="modal modal-xl modal-fullscreen-lg-down" [id]="'modal' + game.id" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -43,16 +51,16 @@
               <div id="gameCarousel{{ game.id }}" class="carousel slide">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img [src]="'/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="d-block w-100" alt="..." />
+                    <img [src]="'/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 1 + mainSuffixImg" class="d-block w-100" alt="..." />
                   </div>
                   <div class="carousel-item">
-                    <img [src]=" '/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 2 + mainSuffixImg" class="d-block w-100" alt="..." />
+                    <img [src]=" '/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 2 + mainSuffixImg" class="d-block w-100" alt="..." />
                   </div>
                   <div class="carousel-item">
-                    <img [src]=" '/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 3 + mainSuffixImg" class="d-block w-100" alt="..." />
+                    <img [src]=" '/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 3 + mainSuffixImg" class="d-block w-100" alt="..." />
                   </div>
                   <div class="carousel-item">
-                    <img [src]=" '/assets/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 4 + mainSuffixImg" class="d-block w-100" alt="..." />
+                    <img [src]=" '/assets/games/' + correctImageName(game.name) + '/' + correctImageName(game.name) + 4 + mainSuffixImg" class="d-block w-100" alt="..." />
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#gameCarousel' + game.id"
@@ -239,6 +247,10 @@
           
         </div>
       </div><!-- Modal Footer 2 -->
+
+      <!-- Alerts -->
+      <app-alert *ngIf="flag === true" [flag]="flag" [message]="message + '     ' + game.name" ></app-alert>
+      <app-alert *ngIf="flag === false" [flag]="flag" [message]="message" ></app-alert>
 
     </div>
   </div>
