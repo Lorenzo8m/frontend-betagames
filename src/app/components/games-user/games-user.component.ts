@@ -75,20 +75,6 @@ export class GamesUserComponent implements OnInit {
     return detail.gameDTO.id;
   }
 
-  onDelete(body: {}) {
-    this.service.deleteUser(body).subscribe((resp: any) => {
-      this.loadListInfo();
-      if (resp.rc) {
-        this.rc = resp.rc;
-        this.msg = resp.msg;
-        console.log(this.msg);
-      } else {
-        this.rc = resp.rc;
-        this.msg = resp.msg;
-        console.log(this.msg);
-      }
-    });
-  }
   hasActiveUsers(): boolean {
     return (
       this.listUser &&
