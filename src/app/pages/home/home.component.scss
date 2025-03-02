@@ -20,35 +20,29 @@ pre {
     font-size: 0.8vw; /* Dimensione di base */
 }
 
-.caption{
-    position:absolute;
-    padding: 18px;
+.carousel-item {
+    position: relative; /* Necessario per il posizionamento assoluto corretto della caption */
+  }
+  
+  .carousel-item .caption {
+    opacity: 0; /* Inizialmente nascosto */
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
     top: 0;
-    left:0;
-    height: 100%;
+    left: 0;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    display: flex; /* Utilizza flexbox per centrare il contenuto */
+    flex-direction: column; /* Disponi gli elementi internamente in colonna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra orizzontalmente */
     color: white;
-    opacity: 0;
-    transition: all 0.5s;
-    background: rgba(0,0,0,0);
-    overflow: hidden;
-}
-
-.caption h1{
-    margin: 0
-}
-
-.caption p{
-    text-transform: capitalize;
-}
-.container{
-    overflow: hidden;
-}
-.container:hover .caption{
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.5);
-}
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .carousel-item:hover .caption {
+    opacity: 1; /* Mostra la caption sull'hover del carousel-item */
+  }
