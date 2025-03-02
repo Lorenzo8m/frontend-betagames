@@ -18,7 +18,7 @@
             <a class="add btn w-100 btn-primary z-1" (click)="addToCart(game.id, 1)">Add to cart</a>
           </ng-container>
           <ng-template #notLogged>
-            <a class="add btn w-100 btn-primary z-1 disabled" >Loggin needed</a>
+            <a class="add btn w-100 btn-primary z-1" routerLink='/login'>Loggin needed</a>
           </ng-template>
         </ng-template>
       </div>

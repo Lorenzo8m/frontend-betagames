@@ -32,7 +32,7 @@ export class CardComponent implements OnInit {
   message:string = "";
 
 
-  constructor(private serv:ApiService,private sharedService:SharedService, private auth:AuthService ){}  
+  constructor(private serv:ApiService,private sharedService:SharedService, private auth:AuthService){}  
 
 
   isLogged: boolean = false;

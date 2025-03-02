@@ -38,3 +38,84 @@
     transform: translateY(-1px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
+
+.add {
+    margin-top: 3px;
+    border: 2px solid #66d9e8;
+    background: none;
+    color: #66d9e8;
+    cursor: pointer;
+    transition: all 0.5s;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+}
+
+.add:hover {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.add:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #66d9e8;
+    z-index: -1;
+    border-radius: 50% 50% 0% 0%;
+    height: 0%;
+    transition: all 0.5s;
+}
+
+.add:hover:before {
+    height: 190%;
+}
+
+.add:active{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.add {
+    border: 2px solid #66d9e8;
+    background: none;
+    color: #66d9e8;
+    cursor: pointer;
+    transition: all 0.5s;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+}
+
+.add:hover {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.add:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #66d9e8;
+    z-index: -1;
+    border-radius: 50% 50% 0% 0%;
+    height: 0%;
+    transition: all 0.5s;
+}
+
+.add:hover:before {
+    height: 190%;
+}
+
+.add:active{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
