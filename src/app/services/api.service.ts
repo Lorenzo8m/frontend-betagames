@@ -180,5 +180,9 @@ export class ApiService {
   deleteReview(body: {}) {
     return this.http.post(this.url + 'user/reviews/delete', body);
   }
+   //=======DETAILS SHIPPING==================
+   deleteDetailShippingById(body:{}){
+    return this.http.post(this.url + 'user/detailsShipping/delete', body);
+   }
 
 }//class

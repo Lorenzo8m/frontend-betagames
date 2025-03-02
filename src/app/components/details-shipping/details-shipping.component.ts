@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details-shipping',
@@ -12,7 +13,7 @@ export class DetailsShippingComponent {
   rc: any;
   msg = '';
 
-  constructor(private service: ApiService) {}
+  constructor(private service: ApiService, private router: Router) {}
 
   loadListInfo(): void {
     const id = localStorage.getItem('idUser');
@@ -30,6 +31,25 @@ export class DetailsShippingComponent {
   }
 
   onDelete(body: {}) {
+    if (
+      confirm(
+        'Are you sure you want to delete your details shipping? This action cannot be undone.'
+      )
+    ) {
+      this.service.deleteDetailShippingById(body).subscribe((resp: any) => {
+        this.loadListInfo();
+        if (resp.rc) {
+          this.rc = resp.rc;
+          this.msg = resp.msg;
+          this.router.navigate(['ordini']);
+          console.log(this.msg);
+        } else {
+          this.rc = resp.rc;
+          this.msg = resp.msg;
+          console.log(this.msg);
+        }
+      });
+    }
   }
 
   hasActiveUsers(): boolean {
@@ -39,4 +59,9 @@ export class DetailsShippingComponent {
       this.listUser.some((user) => user.active)
     );
   }
+
+  hasActiveDetails(detailsShipping: any[]): boolean {
+    return detailsShipping.some(detail => detail.active);
+  }
+  
 }
