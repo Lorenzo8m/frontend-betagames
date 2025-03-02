@@ -18,7 +18,7 @@ export class CardComponent implements OnInit {
   message:string = "";
 
 
-  constructor(private serv:ApiService,private sharedService:SharedService ){}  
+  constructor(private serv:ApiService, private sharedService:SharedService ){}  
 
   showReviewForm: boolean = false; // Mostra/nasconde il form
   reviewData = { score: 1, description: '', usersId: 0, gameId: 0 };

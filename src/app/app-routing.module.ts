@@ -17,7 +17,7 @@ import { DetailsShippingComponent } from './components/details-shipping/details-
 
 const routes: Routes = [
 
-  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'login', component: SigninComponent },
   { path: 'home', component: HomeComponent },
   { path: 'shop', component: ShopComponent },
